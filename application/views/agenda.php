@@ -23,7 +23,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     </head>
 
     <body>
@@ -249,7 +248,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Atendimento</h3>
+                            <h3 class="page-title">Agendamento</h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -272,210 +271,136 @@
                     <!-- Start Page Content -->
                     <!-- ============================================================== -->
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="card">
-                                <form class="form-horizontal" action="" method="">
+                                <form class="form-horizontal" action="<?= base_url(); ?>agenda/agendar" method="post">
                                     <div class="card-body">
                                         <h4 class="card-title"></h4>
-                                        <div class="form-group row col-md-12">
-                                            <label class="col-md-12"><h5>Já Fez Algum Curso Pela CRM?</h5></label>                                       
-                                            <div class=" row col-md-8">
-                                                <div class="custom-control custom-radio col-md-3 row">
-                                                    <input type="radio" class="custom-control-input" id="radio_curso_sim" name="radio_curso" required>
-                                                    <label class="custom-control-label" for="radio_curso_sim">Sim</label>
-                                                </div>                              
-                                                <div class="custom-control custom-radio col-md-3 row">
-                                                    <input type="radio" class="custom-control-input" id="radio_curso_nao" name="radio_curso" required>
-                                                    <label class="custom-control-label" for="radio_curso_nao">Não</label>
-                                                </div>                                
-
-                                                <div class="row col-md-5">
-                                                    <label for="qual_curso" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                                    <div class="form-group col-md-7">
-                                                        <input class="form-control" type="text" name="qual_curso" value="" id="qual_curso"/>
-                                                    </div>
-                                                </div>
-                                            </div>    
-                                        </div>
-                                    </div> 
-
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Já Recebeu Algum Atendimento Pela Equipe Técnica da CRM?</h5></label>                                    
-                                        <div class="col-md-4 row"> 
-                                            <label for="tipo_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                            <select class="select2 form-control custom-select" name="tipo_atendimento" id="tipo_atendimento" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="SS">Serviço Social</option>
-                                                <option value="PS">Psicológico</option>
-                                                <option value="JU">Jurídico</option>                              
-                                            </select> 
-
-                                        </div>
-                                        <div class="row col-md-5">
-                                            <label for="ano_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual Ano:</label>
-                                            <div class="form-group col-md-4">
-                                                <input class="form-control" type="number" name="ano_atendimento" value="" id="ano_atendimento"/>
+                                        <label><h5>Usuária</h5></label>
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" name="usuaria" id="usuaria">                                            
+                                        </div> 
+                                        <br>
+                                        <label><h5>CPF</h5></label>
+                                        <div class="input-group col-md-6">
+                                            <input type="text" class="form-control" name="cpf_usuaria" id="cpf_usuaria">                                            
+                                        </div>  
+                                        <br>
+                                        <label><h5>Data</h5></label>
+                                        <div class="input-group col-md-6">
+                                            <input type="date" class="form-control" name="data_agenda" id="data_agenda">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>
-                                        </div>
+                                        </div>   
+                                        <br>
+                                        <label><h5>Horário</h5></label>
+                                        <div class="input-group col-md-6">
+                                            <input type="time" class="form-control" name="horario_agenda" id="horario_agenda">                                            
+                                        </div>     
                                     </div>
-
-                                    <br>
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Autor Da Violência</h5></label>                                    
-                                        <div class="form-group col-md-4 row">       
-                                            <label for="vinculo" class="col-sm-3 text-right control-label col-form-label">Vínculo:</label>
-                                            <select class="select2 form-control custom-select" name="vinculo" id="vinculo" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="CP">Companheiro</option>
-                                                <option value="IR">Irmão</option>
-                                                <option value="VZ">Vizinho</option>                              
-                                            </select> 
-                                        </div>
-                                        <div class="form-group row col-md-4">
-                                            <label for="vinculo" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
-                                            <div class="form-group col-md-7">
-                                                <input class="form-control" type="text" name="vinculo" value="" id="vinculo"/>
-                                            </div>
-                                        </div>                                       
-                                        <div class="form-group col-md-4 row">       
-                                            <label for="tipo_viol" class="col-sm-6 text-right control-label col-form-label">Tipo de Violência:</label>
-                                            <select class="select2 form-control custom-select" name="tipo_viol" id="tipo_viol" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="FS">Física</option>
-                                                <option value="PS">Psicológica</option>
-                                                <option value="FN">Financeira</option>                              
-                                            </select>
-                                        </div>                                    
-                                    </div>
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Principais Quadros Clínicos Apresentados/Diagnóstico</h5></label>                                    
-                                        <div class="col-md-4 row"> 
-                                            <label for="quadro_clinico" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                            <select class="select2 form-control custom-select" name="quadro_clinico" id="quadro_clinico" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="DP">Depressão</option>                                                                             
-                                            </select> 
-                                        </div>
-                                        <div class="row col-md-5">
-                                            <label for="quadro_clinico" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
-                                            <div class="form-group col-md-8">
-                                                <input class="form-control" type="text" name="quadro_clinico" value="" id="quadro_clinico"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card">
-                                                <div class="card-body form-group">
-                                                    <label for="desc_caso" class="text-right control-label col-form-label"><h5>Descrição do Caso e Informações Relevantes Colhidas Durante a Escuta:</h5></label> 
-                                                    <!-- Create the editor container -->                                                     
-                                                    <div  id="editor" name="desc_caso">
-
-                                                    </div>                                                   
-
-
-                                                </div>                                             
-                                            </div>
-                                            <br>
-                                        </div>                                
-                                        <div class="border-top">
-                                            <div class="card-body">
-                                                <button type="submit" class="btn btn-success">Salvar</button>
-                                                <button type="reset" class="btn btn-danger">Cancelar</button>
-                                            </div>                                        
-                                        </div>
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                            <button type="submit" class="btn btn-success">Salvar</button>
+                                            <button type="reset" class="btn btn-danger">Cancelar</button>
+                                        </div>                                        
                                     </div>
                                 </form>
                             </div>
-                        </div>                   
-                    </div>                
-                </div>            
-                <!-- footer -->
-                <!-- ============================================================== -->
-                <footer class="footer text-center">
-                    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-                </footer>
-                <!-- ============================================================== -->
-                <!-- End footer -->
-                <!-- ============================================================== -->
-            </div>
+                        </div>
+                    </div>                   
+                </div>                
+            </div>            
+            <!-- footer -->
             <!-- ============================================================== -->
-            <!-- End Page wrapper  -->
+            <footer class="footer text-center">
+                All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
             <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Wrapper -->
+        <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- All Jquery -->
-        <!-- ============================================================== -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap tether Core JavaScript -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- slimscrollbar scrollbar JavaScript -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
-        <!--Wave Effects -->
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
-        <!--Menu sidebar -->
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
-        <!--Custom JavaScript -->
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
-        <!-- This Page JS -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
-        <script>
-            //***********************************//
-            // For select 2
-            //***********************************//
-            $(".select2").select2();
-            /*colorpicker*/
-            $('.demo').each(function () {
-                //
-                // Dear reader, it's actually very easy to initialize MiniColors. For example:
-                //
-                //  $(selector).minicolors();
-                //
-                // The way I've done it below is just for the demo, so don't get confused
-                // by it. Also, data- attributes aren't supported at this time...they're
-                // only used for this demo.
-                //
-                $(this).minicolors({
-                    control: $(this).attr('data-control') || 'hue',
-                    position: $(this).attr('data-position') || 'bottom left',
-                    change: function (value, opacity) {
-                        if (!value)
-                            return;
-                        if (opacity)
-                            value += ', ' + opacity;
-                        if (typeof console === 'object') {
-                            console.log(value);
-                        }
-                    },
-                    theme: 'bootstrap'
-                });
-            });
-            /*datwpicker*/
-            jQuery('.mydatepicker').datepicker();
-            jQuery('#datepicker-autoclose').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-            var quill = new Quill('#editor', {
-                
-                theme: 'snow'});
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
+    <!-- This Page JS -->
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
+    <script>
+        //***********************************//
+        // For select 2
+        //***********************************//
+        $(".select2").select2();
 
+        /*colorpicker*/
+        $('.demo').each(function () {
+            //
+            // Dear reader, it's actually very easy to initialize MiniColors. For example:
+            //
+            //  $(selector).minicolors();
+            //
+            // The way I've done it below is just for the demo, so don't get confused
+            // by it. Also, data- attributes aren't supported at this time...they're
+            // only used for this demo.
+            //
+            $(this).minicolors({
+                control: $(this).attr('data-control') || 'hue',
+                position: $(this).attr('data-position') || 'bottom left',
 
-        </script>
-    </body>
+                change: function (value, opacity) {
+                    if (!value)
+                        return;
+                    if (opacity)
+                        value += ', ' + opacity;
+                    if (typeof console === 'object') {
+                        console.log(value);
+                    }
+                },
+                theme: 'bootstrap'
+            });
+
+        });
+        /*datwpicker*/
+        jQuery('.mydatepicker').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+                    language: 'pt-BR'
+        });
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+    </script>  
+
+</body>
 
 </html>

@@ -12,10 +12,8 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
         <title>SGAP</title>
         <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/css/select2.min.css">
-        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.css">
-        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.snow.css">
+        <link href="<?= base_url(); ?>assets/matrix/assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
+        <link href="<?= base_url(); ?>assets/matrix/assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
         <link href="<?= base_url(); ?>assets/matrix/dist/css/style.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +21,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     </head>
 
     <body>
@@ -51,7 +48,7 @@
                         <!-- ============================================================== -->
                         <!-- Logo -->
                         <!-- ============================================================== -->
-                        <a class="navbar-brand" >
+                        <a class="navbar-brand" href="index.html">
                             <!-- Logo icon -->
                             <b class="logo-icon p-l-10">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -91,13 +88,13 @@
                             <!-- ============================================================== -->
                             <!-- create new -->
                             <!-- ============================================================== -->
-
+                            
                             <!-- ============================================================== -->
                             <!-- Search -->
                             <!-- ============================================================== -->
                             <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                                 <form class="app-search position-absolute">
-                                    <input type="text" class="form-control" placeholder="Pesquisar"> <a class="srh-btn"><i class="ti-close"></i></a>
+                                    <input type="text" class="form-control" placeholder="Pesquisar..."> <a class="srh-btn"><i class="ti-close"></i></a>
                                 </form>
                             </li>
                         </ul>
@@ -216,20 +213,9 @@
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Início</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard/atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
-
-                           <!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"><a href="<?= base_url(); ?>usuario" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Usuários </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
-                                </ul>
-                            </li> -->
-
-
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard/atendimento" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Atendimento</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard/agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agenda</span></a></li>
+                            
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
@@ -249,7 +235,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Atendimento</h3>
+                            <h3 class="page-title">Agendamento</h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -274,122 +260,104 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <form class="form-horizontal" action="" method="">
-                                    <div class="card-body">
-                                        <h4 class="card-title"></h4>
-                                        <div class="form-group row col-md-12">
-                                            <label class="col-md-12"><h5>Já Fez Algum Curso Pela CRM?</h5></label>                                       
-                                            <div class=" row col-md-8">
-                                                <div class="custom-control custom-radio col-md-3 row">
-                                                    <input type="radio" class="custom-control-input" id="radio_curso_sim" name="radio_curso" required>
-                                                    <label class="custom-control-label" for="radio_curso_sim">Sim</label>
-                                                </div>                              
-                                                <div class="custom-control custom-radio col-md-3 row">
-                                                    <input type="radio" class="custom-control-input" id="radio_curso_nao" name="radio_curso" required>
-                                                    <label class="custom-control-label" for="radio_curso_nao">Não</label>
-                                                </div>                                
-
-                                                <div class="row col-md-5">
-                                                    <label for="qual_curso" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                                    <div class="form-group col-md-7">
-                                                        <input class="form-control" type="text" name="qual_curso" value="" id="qual_curso"/>
+                                <div class="">
+                                    <div class="row">
+                                        <div class="col-lg-3 border-right p-r-0">
+                                            <div class="card-body border-bottom">
+                                                <h4 class="card-title m-t-10">Drag & Drop Event</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div id="calendar-events" class="">
+                                                            <div class="calendar-events m-b-20" data-class="bg-info"><i class="fa fa-circle text-info m-r-10"></i>Event One</div>
+                                                            <div class="calendar-events m-b-20" data-class="bg-success"><i class="fa fa-circle text-success m-r-10"></i> Event Two</div>
+                                                            <div class="calendar-events m-b-20" data-class="bg-danger"><i class="fa fa-circle text-danger m-r-10"></i>Event Three</div>
+                                                            <div class="calendar-events m-b-20" data-class="bg-warning"><i class="fa fa-circle text-warning m-r-10"></i>Event Four</div>
+                                                        </div>
+                                                        <!-- checkbox -->
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="drop-remove">
+                                                            <label class="custom-control-label" for="drop-remove">Remove after drop</label>
+                                                        </div>
+                                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#add-new-event" class="btn m-t-20 btn-info btn-block waves-effect waves-light">
+                                                            <i class="ti-plus"></i> Add New Event
+                                                        </a>
                                                     </div>
                                                 </div>
-                                            </div>    
-                                        </div>
-                                    </div> 
-
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Já Recebeu Algum Atendimento Pela Equipe Técnica da CRM?</h5></label>                                    
-                                        <div class="col-md-4 row"> 
-                                            <label for="tipo_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                            <select class="select2 form-control custom-select" name="tipo_atendimento" id="tipo_atendimento" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="SS">Serviço Social</option>
-                                                <option value="PS">Psicológico</option>
-                                                <option value="JU">Jurídico</option>                              
-                                            </select> 
-
-                                        </div>
-                                        <div class="row col-md-5">
-                                            <label for="ano_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual Ano:</label>
-                                            <div class="form-group col-md-4">
-                                                <input class="form-control" type="number" name="ano_atendimento" value="" id="ano_atendimento"/>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <br>
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Autor Da Violência</h5></label>                                    
-                                        <div class="form-group col-md-4 row">       
-                                            <label for="vinculo" class="col-sm-3 text-right control-label col-form-label">Vínculo:</label>
-                                            <select class="select2 form-control custom-select" name="vinculo" id="vinculo" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="CP">Companheiro</option>
-                                                <option value="IR">Irmão</option>
-                                                <option value="VZ">Vizinho</option>                              
-                                            </select> 
-                                        </div>
-                                        <div class="form-group row col-md-4">
-                                            <label for="vinculo" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
-                                            <div class="form-group col-md-7">
-                                                <input class="form-control" type="text" name="vinculo" value="" id="vinculo"/>
+                                        <div class="col-lg-9">
+                                            <div class="card-body b-l calender-sidebar">
+                                                <div id="calendar"></div>
                                             </div>
-                                        </div>                                       
-                                        <div class="form-group col-md-4 row">       
-                                            <label for="tipo_viol" class="col-sm-6 text-right control-label col-form-label">Tipo de Violência:</label>
-                                            <select class="select2 form-control custom-select" name="tipo_viol" id="tipo_viol" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="FS">Física</option>
-                                                <option value="PS">Psicológica</option>
-                                                <option value="FN">Financeira</option>                              
-                                            </select>
-                                        </div>                                    
+                                        </div> 
                                     </div>
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Principais Quadros Clínicos Apresentados/Diagnóstico</h5></label>                                    
-                                        <div class="col-md-4 row"> 
-                                            <label for="quadro_clinico" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                            <select class="select2 form-control custom-select" name="quadro_clinico" id="quadro_clinico" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="DP">Depressão</option>                                                                             
-                                            </select> 
-                                        </div>
-                                        <div class="row col-md-5">
-                                            <label for="quadro_clinico" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
-                                            <div class="form-group col-md-8">
-                                                <input class="form-control" type="text" name="quadro_clinico" value="" id="quadro_clinico"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card">
-                                                <div class="card-body form-group">
-                                                    <label for="desc_caso" class="text-right control-label col-form-label"><h5>Descrição do Caso e Informações Relevantes Colhidas Durante a Escuta:</h5></label> 
-                                                    <!-- Create the editor container -->                                                     
-                                                    <div  id="editor" name="desc_caso">
-
-                                                    </div>                                                   
-
-
-                                                </div>                                             
-                                            </div>
-                                            <br>
-                                        </div>                                
-                                        <div class="border-top">
-                                            <div class="card-body">
-                                                <button type="submit" class="btn btn-success">Salvar</button>
-                                                <button type="reset" class="btn btn-danger">Cancelar</button>
-                                            </div>                                        
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>                   
-                    </div>                
-                </div>            
+                        </div>
+                    </div>
+                    <!-- BEGIN MODAL -->
+                    <div class="modal none-border" id="my-event">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><strong>Add Event</strong></h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body"></div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>                                    
+                                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal Add Category -->
+                    <div class="modal fade none-border" id="add-new-event">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><strong>Add</strong> a category</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label">Category Name</label>
+                                                <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label">Choose Category Color</label>
+                                                <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
+                                                    <option value="success">Success</option>
+                                                    <option value="danger">Danger</option>
+                                                    <option value="info">Info</option>
+                                                    <option value="primary">Primary</option>
+                                                    <option value="warning">Warning</option>
+                                                    <option value="inverse">Inverse</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
+                                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END MODAL -->
+                    <!-- ============================================================== -->
+                    <!-- End PAge Content -->
+                    <!-- ============================================================== -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Container fluid  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
                 <!-- footer -->
                 <!-- ============================================================== -->
                 <footer class="footer text-center">
@@ -410,6 +378,8 @@
         <!-- All Jquery -->
         <!-- ============================================================== -->
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/jquery.ui.touch-punch-improved.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/jquery-ui.min.js"></script>
         <!-- Bootstrap tether Core JavaScript -->
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -422,60 +392,10 @@
         <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
         <!--Custom JavaScript -->
         <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
-        <!-- This Page JS -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
-        <script>
-            //***********************************//
-            // For select 2
-            //***********************************//
-            $(".select2").select2();
-            /*colorpicker*/
-            $('.demo').each(function () {
-                //
-                // Dear reader, it's actually very easy to initialize MiniColors. For example:
-                //
-                //  $(selector).minicolors();
-                //
-                // The way I've done it below is just for the demo, so don't get confused
-                // by it. Also, data- attributes aren't supported at this time...they're
-                // only used for this demo.
-                //
-                $(this).minicolors({
-                    control: $(this).attr('data-control') || 'hue',
-                    position: $(this).attr('data-position') || 'bottom left',
-                    change: function (value, opacity) {
-                        if (!value)
-                            return;
-                        if (opacity)
-                            value += ', ' + opacity;
-                        if (typeof console === 'object') {
-                            console.log(value);
-                        }
-                    },
-                    theme: 'bootstrap'
-                });
-            });
-            /*datwpicker*/
-            jQuery('.mydatepicker').datepicker();
-            jQuery('#datepicker-autoclose').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-            var quill = new Quill('#editor', {
-                
-                theme: 'snow'});
-
-
-        </script>
+        <!-- this page js -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/moment/min/moment.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/calendar/cal-init.js"></script>
     </body>
 
 </html>

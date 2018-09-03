@@ -248,7 +248,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Usuários</h4>
+                        <h3 class="page-title">Atendimentos Agendados</h3>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -273,27 +273,23 @@
                                 <table class=" table table-striped ">
                                     <thead>
                                 <tr>
-                                    <th>ID</th>  
-                                    <th>Nome</th>
-                                    <th>E-mail</th> 
-                                    <th>Nível</th> 
-                                    <th>Status</th> 
-                                    <th></th> 
+                                    <th>Usuária</th>  
+                                    <th>CPF</th>  
+                                    <th>Data</th>  
+                                    <th>Horário</th>                                        
                                     <th></th> 
                                 </tr>
                                     </thead>
                                 <tbody>    
-                                <?php foreach($usuario as $usu){?>
-                                    
+                                <?php foreach($agenda as $age){?>                                    
                                 <tr>
-                                    <td><?= $usu->idUsuario; ?></td>
-                                    <td><?= $usu->nome; ?></td>
-                                    <td><?= $usu->email; ?></td>
-                                    <td><?= $usu->nivel==1?'Administrador':'Usuário'; ?></td>
-                                    <td><?= $usu->status==1?'Ativo':'Inativo'; ?></td>
+                                    <td><?= $age->usuaria; ?></td>
+                                    <td><?= $age->cpf_usuaria; ?></td>
+                                    <td><?= date("d/m/Y",strtotime($age->data_agenda)); ?></td>
+                                    <td><?= date("H:i",strtotime($age->horario_agenda)); ?></td>                                     
                                     <td>
-                                        <a href="<?= base_url('usuario/atualizar/'.$usu->idUsuario) ?>" class="btn btn-primary btn-group">Atualizar</a>
-                                        <a href="<?= base_url('usuario/excluir/'.$usu->idUsuario) ?>" class="btn btn-danger btn-group" onclick="return confirm('Excluir Usuário?');">Excluir</a>
+                                        <a href="<?= base_url('agenda/editar/'.$age->cod_agenda) ?>" class="btn btn-primary btn-group">Editar</a>
+                                        <a href="<?= base_url('agenda/excluir/'.$age->cod_agenda) ?>" class="btn btn-success btn-group" onclick="return confirm('Este agendamento será removido!');">Concluído</a>
                                     </td>
                                 </tr>                               
                                 <?php }?>   
@@ -303,7 +299,7 @@
                             </div>
                         </div>  
                            
-                            <a href="<?= base_url(); ?>usuario/cadastro" class="btn btn-success">Novo Usuário</a>
+                           <!-- <a href="<?= base_url(); ?>usuario/cadastro" class="btn btn-success">Novo atendimento</a> -->
                         </div>                           
                         
                 </div>

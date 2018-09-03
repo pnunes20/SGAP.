@@ -23,7 +23,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     </head>
 
     <body>
@@ -193,7 +192,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?= base_url(); ?>dashboard/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                    <div class="dropdown-divider"></div>                                    
+                                    <div class="dropdown-divider"></div>                                
                                 </div>
                             </li>
                             <!-- ============================================================== -->
@@ -219,17 +218,17 @@
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard/atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
 
-                           <!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"><a href="<?= base_url(); ?>usuario" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Usuários </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
-                                </ul>
-                            </li> -->
+<!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
+        <ul aria-expanded="false" class="collapse  first-level">
+            <li class="sidebar-item"><a href="<?= base_url(); ?>usuario" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Usuários </span></a></li>
+            <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
+            <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
+            <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
+            <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
+        </ul>
+    </li> -->
 
-
+                            </li>
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
@@ -249,7 +248,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Atendimento</h3>
+                            <h3 class="page-title">Editar Agendamento</h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -272,124 +271,50 @@
                     <!-- Start Page Content -->
                     <!-- ============================================================== -->
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="card">
-                                <form class="form-horizontal" action="" method="">
+                                <form class="form-control form-horizontal " action="<?= base_url(); ?>agenda/salva_editar" method="post">
+                                    <input type="hidden" id="cod_agenda" name="cod_agenda" value="<?= $agenda[0]->cod_agenda; ?>">
                                     <div class="card-body">
-                                        <h4 class="card-title"></h4>
-                                        <div class="form-group row col-md-12">
-                                            <label class="col-md-12"><h5>Já Fez Algum Curso Pela CRM?</h5></label>                                       
-                                            <div class=" row col-md-8">
-                                                <div class="custom-control custom-radio col-md-3 row">
-                                                    <input type="radio" class="custom-control-input" id="radio_curso_sim" name="radio_curso" required>
-                                                    <label class="custom-control-label" for="radio_curso_sim">Sim</label>
-                                                </div>                              
-                                                <div class="custom-control custom-radio col-md-3 row">
-                                                    <input type="radio" class="custom-control-input" id="radio_curso_nao" name="radio_curso" required>
-                                                    <label class="custom-control-label" for="radio_curso_nao">Não</label>
-                                                </div>                                
-
-                                                <div class="row col-md-5">
-                                                    <label for="qual_curso" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                                    <div class="form-group col-md-7">
-                                                        <input class="form-control" type="text" name="qual_curso" value="" id="qual_curso"/>
-                                                    </div>
-                                                </div>
-                                            </div>    
-                                        </div>
-                                    </div> 
-
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Já Recebeu Algum Atendimento Pela Equipe Técnica da CRM?</h5></label>                                    
-                                        <div class="col-md-4 row"> 
-                                            <label for="tipo_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                            <select class="select2 form-control custom-select" name="tipo_atendimento" id="tipo_atendimento" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="SS">Serviço Social</option>
-                                                <option value="PS">Psicológico</option>
-                                                <option value="JU">Jurídico</option>                              
-                                            </select> 
-
-                                        </div>
-                                        <div class="row col-md-5">
-                                            <label for="ano_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual Ano:</label>
-                                            <div class="form-group col-md-4">
-                                                <input class="form-control" type="number" name="ano_atendimento" value="" id="ano_atendimento"/>
+                                        <h3 class="card-title"></h3>  
+                                        <label><h5>Usuária</h5></label>
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" name="usuaria" id="usuaria" value="<?= $agenda[0]->usuaria; ?>">                                            
+                                        </div> 
+                                        <br>
+                                        <label><h5>CPF</h5></label>
+                                        <div class="input-group col-md-6">
+                                            <input type="text" class="form-control" name="cpf_usuaria" id="cpf_usuaria" value="<?= $agenda[0]->cpf_usuaria; ?>">                                            
+                                        </div>  
+                                        <br>
+                                        <label><h5>Data</h5></label>
+                                        <div class="input-group col-md-6">
+                                            <input type="date" class="form-control" name="data_agenda" id="data_agenda" value="<?= $agenda[0]->data_agenda; ?>" >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>
-                                        </div>
+                                        </div>   
+                                        <br>                                        
+                                        <label><h5>Horário</h5></label>
+                                        <div class="input-group col-md-6">
+                                            <input type="time" class="form-control" name="horario_agenda" id="horario_agenda" value="<?= $agenda[0]->horario_agenda; ?>" >
+                                        </div>                                     
                                     </div>
-
-                                    <br>
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Autor Da Violência</h5></label>                                    
-                                        <div class="form-group col-md-4 row">       
-                                            <label for="vinculo" class="col-sm-3 text-right control-label col-form-label">Vínculo:</label>
-                                            <select class="select2 form-control custom-select" name="vinculo" id="vinculo" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="CP">Companheiro</option>
-                                                <option value="IR">Irmão</option>
-                                                <option value="VZ">Vizinho</option>                              
-                                            </select> 
-                                        </div>
-                                        <div class="form-group row col-md-4">
-                                            <label for="vinculo" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
-                                            <div class="form-group col-md-7">
-                                                <input class="form-control" type="text" name="vinculo" value="" id="vinculo"/>
-                                            </div>
-                                        </div>                                       
-                                        <div class="form-group col-md-4 row">       
-                                            <label for="tipo_viol" class="col-sm-6 text-right control-label col-form-label">Tipo de Violência:</label>
-                                            <select class="select2 form-control custom-select" name="tipo_viol" id="tipo_viol" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="FS">Física</option>
-                                                <option value="PS">Psicológica</option>
-                                                <option value="FN">Financeira</option>                              
-                                            </select>
-                                        </div>                                    
-                                    </div>
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Principais Quadros Clínicos Apresentados/Diagnóstico</h5></label>                                    
-                                        <div class="col-md-4 row"> 
-                                            <label for="quadro_clinico" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                            <select class="select2 form-control custom-select" name="quadro_clinico" id="quadro_clinico" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="DP">Depressão</option>                                                                             
-                                            </select> 
-                                        </div>
-                                        <div class="row col-md-5">
-                                            <label for="quadro_clinico" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
-                                            <div class="form-group col-md-8">
-                                                <input class="form-control" type="text" name="quadro_clinico" value="" id="quadro_clinico"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card">
-                                                <div class="card-body form-group">
-                                                    <label for="desc_caso" class="text-right control-label col-form-label"><h5>Descrição do Caso e Informações Relevantes Colhidas Durante a Escuta:</h5></label> 
-                                                    <!-- Create the editor container -->                                                     
-                                                    <div  id="editor" name="desc_caso">
-
-                                                    </div>                                                   
-
-
-                                                </div>                                             
-                                            </div>
-                                            <br>
-                                        </div>                                
-                                        <div class="border-top">
-                                            <div class="card-body">
-                                                <button type="submit" class="btn btn-success">Salvar</button>
-                                                <button type="reset" class="btn btn-danger">Cancelar</button>
-                                            </div>                                        
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                            <button type="submit" class="btn btn-success">Salvar</button>
+                                            <button type="reset" class="btn btn-danger">Cancelar</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>                   
-                    </div>                
-                </div>            
+                    </div>              
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Container fluid  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
                 <!-- footer -->
                 <!-- ============================================================== -->
                 <footer class="footer text-center">
@@ -402,11 +327,68 @@
             <!-- ============================================================== -->
             <!-- End Page wrapper  -->
             <!-- ============================================================== -->
+        </div>    
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <form action="<?= base_url(); ?>usuario/salvar_senha" method="post">
+                    <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $usuario[0]->idUsuario; ?>">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                            <h4 class="modal-title" id="myModalLabel">Atualizar Senha</h4>
+                        </div>
+                        <div class="modal-body">         
+                            <div class="col-md-12 form-group">
+                                <label for="senha_antiga">Senha Antiga</label>
+                                <input type="password" name='senha_antiga' id="senha_antiga" class="form-control">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="senha_nova">Nova Senha</label>
+                                <input type="password" name='senha_nova' id="senha_nova" onkeyup="checarSenha()" class="form-control">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="senha_confirmar">Confirmar Senha</label>
+                                <input type="password" name='senha_confirmar' id="senha_confirmar" onkeyup="checarSenha()" class="form-control">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <div id="divcheck">                      
+                                </div>
+                            </div>          
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success" id="enviarsenha" disabled>Salvar</button>
+                        </div>
+                    </div>
+                </form>      
+            </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Wrapper -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
+
+        <script>
+            $(document).ready(function () {
+                $("#senha_nova").keyup(checkPasswordMatch);
+                $("#senha_confirmar").keyup(checkPasswordMatch);
+
+            });
+            function checarSenha() {
+                var password = $("#senha_nova").val();
+                var confirmPassword = $("#senha_confirmar").val();
+
+                if (password == '' || '' == confirmPassword) {
+                    $("#divcheck").html("<span style='color: red'>Campo de senha vazio!</span>");
+                    document.getElementById("enviarsenha").disabled = true;
+                } else if (password != confirmPassword) {
+                    $("#divcheck").html("<span style='color: red'>Senhas não conferem!</span>");
+                    document.getElementById("enviarsenha").disabled = true;
+                } else {
+                    $("#divcheck").html("<span style='color: green'>Senhas iguais!</span>");
+                    document.getElementById("enviarsenha").disabled = false;
+                }
+            }
+        </script>
+
         <!-- All Jquery -->
         <!-- ============================================================== -->
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
@@ -438,6 +420,7 @@
             // For select 2
             //***********************************//
             $(".select2").select2();
+
             /*colorpicker*/
             $('.demo').each(function () {
                 //
@@ -452,6 +435,7 @@
                 $(this).minicolors({
                     control: $(this).attr('data-control') || 'hue',
                     position: $(this).attr('data-position') || 'bottom left',
+
                     change: function (value, opacity) {
                         if (!value)
                             return;
@@ -463,6 +447,7 @@
                     },
                     theme: 'bootstrap'
                 });
+
             });
             /*datwpicker*/
             jQuery('.mydatepicker').datepicker();
@@ -471,11 +456,11 @@
                 todayHighlight: true
             });
             var quill = new Quill('#editor', {
-                
-                theme: 'snow'});
-
+                theme: 'snow'
+            });
 
         </script>
     </body>
 
 </html>
+<?php
