@@ -187,7 +187,7 @@
                                 <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url(); ?>assets/matrix/assets/images/users/1.jpg" alt="Perfil" class="rounded-circle" width="31"></a>
                                 <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>Perfil</a>
-                                    <a class="dropdown-item" href="<?= base_url(); ?>usuario"><i class="ti-wallet m-r-5 m-l-5"></i>Usuários</a>
+                                    <a class="dropdown-item" href="<?= base_url(); ?>login"><i class="ti-wallet m-r-5 m-l-5"></i>Usuários</a>
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
@@ -216,7 +216,7 @@
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Início</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard/atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
+                            <li class="sidebar-item"> <a data-toggle="modal" data-target="#myModal2" class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
 
                            <!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
@@ -274,7 +274,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <form class="form-horizontal" action="" method="">
+                                <form class="form-horizontal" action="<?= base_url() ?>atendimento/salvar_prontuario" method="post">
+                                    <input type="hidden" name="data_atendimento" value="<?php date("d-m-Y");?>"/>
                                     <div class="card-body">
                                         <h4 class="card-title"></h4>
                                         <div class="form-group row col-md-12">
@@ -287,12 +288,11 @@
                                                 <div class="custom-control custom-radio col-md-3 row">
                                                     <input type="radio" class="custom-control-input" id="radio_curso_nao" name="radio_curso" required>
                                                     <label class="custom-control-label" for="radio_curso_nao">Não</label>
-                                                </div>                                
-
+                                                </div>     
                                                 <div class="row col-md-5">
                                                     <label for="qual_curso" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
                                                     <div class="form-group col-md-7">
-                                                        <input class="form-control" type="text" name="qual_curso" value="" id="qual_curso"/>
+                                                        <input class="form-control" type="text" name="qual_curso" id="qual_curso"/>
                                                     </div>
                                                 </div>
                                             </div>    
@@ -305,16 +305,16 @@
                                             <label for="tipo_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
                                             <select class="select2 form-control custom-select" name="tipo_atendimento" id="tipo_atendimento" style="width: 50%; height:36px;">
                                                 <option>---</option>                                            
-                                                <option value="SS">Serviço Social</option>
-                                                <option value="PS">Psicológico</option>
-                                                <option value="JU">Jurídico</option>                              
+                                                <option value="servico_social">Serviço Social</option>
+                                                <option value="psicologico">Psicológico</option>
+                                                <option value="juridico">Jurídico</option>                              
                                             </select> 
 
                                         </div>
                                         <div class="row col-md-5">
                                             <label for="ano_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual Ano:</label>
                                             <div class="form-group col-md-4">
-                                                <input class="form-control" type="number" name="ano_atendimento" value="" id="ano_atendimento"/>
+                                                <input class="form-control" type="number" name="ano_atendimento" id="ano_atendimento"/>
                                             </div>
                                         </div>
                                     </div>
@@ -323,27 +323,41 @@
                                     <div class="form-group row col-md-12">
                                         <label class="col-md-9 m-t-7"><h5>Autor Da Violência</h5></label>                                    
                                         <div class="form-group col-md-4 row">       
-                                            <label for="vinculo" class="col-sm-3 text-right control-label col-form-label">Vínculo:</label>
-                                            <select class="select2 form-control custom-select" name="vinculo" id="vinculo" style="width: 50%; height:36px;">
+                                            <label for="agressor" class="col-sm-3 text-right control-label col-form-label">Vínculo:</label>
+                                            <select class="select2 form-control custom-select" name="agressor" id="agressor" style="width: 50%; height:36px;">
                                                 <option>---</option>                                            
-                                                <option value="CP">Companheiro</option>
-                                                <option value="IR">Irmão</option>
-                                                <option value="VZ">Vizinho</option>                              
+                                                <option value="companheiro">Companheiro</option>
+                                                <option value="irmao">Irmão</option>
+                                                <option value="vizinho">Vizinho</option> 
+                                                <option value="marido">Marido</option>
+                                                <option value="namorado">Namorado</option>
+                                                <option value="pai">Pai</option>
+                                                <option value="Amigo">Amigo</option>
+                                                <option value="ex_marido">Ex-Marido</option>
+                                                <option value="ex_namorado">Ex-Namorado</option>
+                                                <option value="ex_companheiro">Ex-Companheiro</option>
+                                                <option value="padastro">Padastro</option>
+                                                <option value="parente">Parente</option>
+                                                <option value="desconhecido">Desconhecido</option>
                                             </select> 
                                         </div>
                                         <div class="form-group row col-md-4">
-                                            <label for="vinculo" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
+                                            <label for="agressor" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
                                             <div class="form-group col-md-7">
-                                                <input class="form-control" type="text" name="vinculo" value="" id="vinculo"/>
+                                                <input class="form-control" type="text" id="agressor"/>
                                             </div>
                                         </div>                                       
                                         <div class="form-group col-md-4 row">       
                                             <label for="tipo_viol" class="col-sm-6 text-right control-label col-form-label">Tipo de Violência:</label>
                                             <select class="select2 form-control custom-select" name="tipo_viol" id="tipo_viol" style="width: 50%; height:36px;">
                                                 <option>---</option>                                            
-                                                <option value="FS">Física</option>
-                                                <option value="PS">Psicológica</option>
-                                                <option value="FN">Financeira</option>                              
+                                                <option value="fisica">Física</option>
+                                                <option value="psicologica">Psicológica</option>
+                                                <option value="patrimonial">Patrimonal</option>
+                                                <option value="sexual">Sexual</option>
+                                                <option value="moral">Moral</option>   
+                                                <option value="ameaca_morte">Ameaça de Morte</option>
+                                                <option value="homicidio">Tentativa de Homicídio</option>
                                             </select>
                                         </div>                                    
                                     </div>
@@ -353,7 +367,11 @@
                                             <label for="quadro_clinico" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
                                             <select class="select2 form-control custom-select" name="quadro_clinico" id="quadro_clinico" style="width: 50%; height:36px;">
                                                 <option>---</option>                                            
-                                                <option value="DP">Depressão</option>                                                                             
+                                                <option value="depressao">Depressão</option>  
+                                                <option value="toc">TOC</option>
+                                                <option value="sin_pan">Síndrome Do Pânico</option>
+                                                <option value="depen_quim">Dependência Química</option>
+                                                <option value="ansiedade">Ansiedade</option>
                                             </select> 
                                         </div>
                                         <div class="row col-md-5">
@@ -366,46 +384,64 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card">
-                                                <div class="card-body form-group">
-                                                    <label for="desc_caso" class="text-right control-label col-form-label"><h5>Descrição do Caso e Informações Relevantes Colhidas Durante a Escuta:</h5></label> 
-                                                    <!-- Create the editor container -->                                                     
-                                                    <div  id="editor" name="desc_caso">
-
-                                                    </div>                                                   
-
-
-                                                </div>                                             
+                                                <div class="card-body">
+                                                    <label for="desc_caso" class="text-right control-label col-form-label"><h5>Descrição do Caso e Informações Relevantes Colhidas Durante a Escuta:</h5></label>
+                                                    <!-- Create the editor container -->
+                                                    <textarea name="desc_caso" style="height: 150px; width: 550px;"></textarea>
+                                                </div>
                                             </div>
-                                            <br>
-                                        </div>                                
-                                        <div class="border-top">
-                                            <div class="card-body">
-                                                <button type="submit" class="btn btn-success">Salvar</button>
-                                                <button type="reset" class="btn btn-danger">Cancelar</button>
-                                            </div>                                        
                                         </div>
+                                    </div>                                    
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                            <button type="submit" class="btn btn-success">Salvar</button>
+                                            <button type="reset" class="btn btn-danger">Cancelar</button>
+                                        </div>                                        
                                     </div>
                                 </form>
                             </div>
-                        </div>                   
-                    </div>                
-                </div>            
-                <!-- footer -->
-                <!-- ============================================================== -->
-                <footer class="footer text-center">
-                    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-                </footer>
-                <!-- ============================================================== -->
-                <!-- End footer -->
-                <!-- ============================================================== -->
-            </div>
+                        </div>
+                    </div>                   
+                </div>                
+            </div>            
+            <!-- footer -->
             <!-- ============================================================== -->
-            <!-- End Page wrapper  -->
+            <footer class="footer text-center">
+                All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
             <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+
+
+        <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                            <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
+                        </div>
+                        <div class="modal-body">         
+                            <div class="col-md-12 form-group">                       
+                                <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
+                            </div>                        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Pesquisar</button>
+                        </div>
+                    </div>
+                </form>      
+            </div>
+        </div> 
         <!-- ============================================================== -->
         <!-- All Jquery -->
         <!-- ============================================================== -->
@@ -471,10 +507,8 @@
                 todayHighlight: true
             });
             var quill = new Quill('#editor', {
-                
+
                 theme: 'snow'});
-
-
         </script>
     </body>
 

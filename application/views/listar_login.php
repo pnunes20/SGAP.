@@ -248,7 +248,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Editar Agendamento</h3>
+                            <h4 class="page-title">Usuários</h4>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -265,52 +265,50 @@
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Container fluid  -->
-                <!-- ============================================================== -->
-                <div class="container-fluid">
-                    <!-- ============================================================== -->
-                    <!-- Start Page Content -->
-                    <!-- ============================================================== -->
+                <div class="container-fluid">                
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <form class="form-control form-horizontal " action="<?= base_url(); ?>agenda/salva_editar" method="post">
-                                    <input type="hidden" id="cod_agenda" name="cod_agenda" value="<?= $agenda[0]->cod_agenda; ?>">
-                                    <div class="card-body">
-                                        <h3 class="card-title"></h3>  
-                                        <label><h5>Usuária</h5></label>
-                                        <div class="form-group col-md-6">
-                                            <input type="text" class="form-control" name="nome" id="nome" value="<?= $agenda[0]->nome; ?>">                                            
-                                        </div> 
-                                        <br>
-                                        <label><h5>CPF</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="text" class="form-control" name="CPF" id="CPF" value="<?= $agenda[0]->CPF; ?>">                                            
-                                        </div>  
-                                        <br>
-                                        <label><h5>Data</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="date" class="form-control" name="data_agenda" id="data_agenda" value="<?= $agenda[0]->data_agenda; ?>" >
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>   
-                                        <br>                                        
-                                        <label><h5>Horário</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="time" class="form-control" name="horario_agenda" id="horario_agenda" value="<?= $agenda[0]->horario_agenda; ?>" >
-                                        </div>                                     
-                                    </div>
-                                    <div class="border-top">
-                                        <div class="card-body">
-                                            <button type="submit" class="btn btn-success">Salvar</button>
-                                            <a type="reset" class="btn btn-danger" href="<?= base_url() ?>dashboard">Cancelar</a>
-                                        </div>
-                                    </div>
-                                </form>
+                        <div class="col-md-12">
+                            <div class="card"> 
+                                <div class="card-body table-responsive">                                
+                                    <table class=" table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>  
+                                                <th>Nome</th>
+                                                <th>E-mail</th> 
+                                                <th>Data de Nascimento</th>
+                                                <th>Status</th> 
+                                                <th></th> 
+                                                <th></th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>    
+                                            <?php foreach ($login as $log) { ?>
+
+                                                <tr>
+                                                    <td><?= $log->cod_login; ?></td>
+                                                    <td><?= $log->nome; ?></td>
+                                                    <td><?= $log->email; ?></td> 
+                                                    <td><?= date("d/m/Y", strtotime($log->data_nascimento)); ?></td> 
+                                                    <td><?= $log->status == 1 ? 'Ativo' : 'Inativo'; ?></td>
+                                                    <td>
+                                                        <a href="<?= base_url('login/atualizar/' . $log->cod_login) ?>" class="btn btn-primary btn-group">Atualizar</a>
+                                                        <a href="<?= base_url('login/excluir/' . $log->cod_login) ?>" class="btn btn-danger btn-group" onclick="return confirm('Excluir Usuário?');">Excluir</a>
+                                                    </td>
+                                                </tr>                               
+                                            <?php } ?>   
+                                        </tbody>
+                                    </table>                                
+                                </div>
                             </div>
-                        </div>                   
-                    </div>              
+                            <a href="<?= base_url(); ?>login/cadastro" class="btn btn-success">Novo Usuário</a>
+                        </div>                           
+
+                    </div>
+
                 </div>
+                <!-- ============================================================== -->
+
                 <!-- ============================================================== -->
                 <!-- End Container fluid  -->
                 <!-- ============================================================== -->
@@ -327,9 +325,10 @@
             <!-- ============================================================== -->
             <!-- End Page wrapper  -->
             <!-- ============================================================== -->
-        </div>    
-
-        <!-- Modal -->        
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Wrapper -->
+        <!-- ============================================================== -->
         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog">
                 <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
@@ -350,8 +349,8 @@
                     </div>
                 </form>      
             </div>
-        </div>       
-
+        </div> 
+        <!-- ============================================================== -->
         <!-- All Jquery -->
         <!-- ============================================================== -->
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
@@ -379,51 +378,50 @@
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
         <script>
-            //***********************************//
-            // For select 2
-            //***********************************//
-            $(".select2").select2();
+                                                        //***********************************//
+                                                        // For select 2
+                                                        //***********************************//
+                                                        $(".select2").select2();
 
-            /*colorpicker*/
-            $('.demo').each(function () {
-                //
-                // Dear reader, it's actually very easy to initialize MiniColors. For example:
-                //
-                //  $(selector).minicolors();
-                //
-                // The way I've done it below is just for the demo, so don't get confused
-                // by it. Also, data- attributes aren't supported at this time...they're
-                // only used for this demo.
-                //
-                $(this).minicolors({
-                    control: $(this).attr('data-control') || 'hue',
-                    position: $(this).attr('data-position') || 'bottom left',
+                                                        /*colorpicker*/
+                                                        $('.demo').each(function () {
+                                                            //
+                                                            // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                                                            //
+                                                            //  $(selector).minicolors();
+                                                            //
+                                                            // The way I've done it below is just for the demo, so don't get confused
+                                                            // by it. Also, data- attributes aren't supported at this time...they're
+                                                            // only used for this demo.
+                                                            //
+                                                            $(this).minicolors({
+                                                                control: $(this).attr('data-control') || 'hue',
+                                                                position: $(this).attr('data-position') || 'bottom left',
 
-                    change: function (value, opacity) {
-                        if (!value)
-                            return;
-                        if (opacity)
-                            value += ', ' + opacity;
-                        if (typeof console === 'object') {
-                            console.log(value);
-                        }
-                    },
-                    theme: 'bootstrap'
-                });
+                                                                change: function (value, opacity) {
+                                                                    if (!value)
+                                                                        return;
+                                                                    if (opacity)
+                                                                        value += ', ' + opacity;
+                                                                    if (typeof console === 'object') {
+                                                                        console.log(value);
+                                                                    }
+                                                                },
+                                                                theme: 'bootstrap'
+                                                            });
 
-            });
-            /*datwpicker*/
-            jQuery('.mydatepicker').datepicker();
-            jQuery('#datepicker-autoclose').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-            var quill = new Quill('#editor', {
-                theme: 'snow'
-            });
+                                                        });
+                                                        /*datwpicker*/
+                                                        jQuery('.mydatepicker').datepicker();
+                                                        jQuery('#datepicker-autoclose').datepicker({
+                                                            autoclose: true,
+                                                            todayHighlight: true
+                                                        });
+                                                        var quill = new Quill('#editor', {
+                                                            theme: 'snow'
+                                                        });
 
         </script>
     </body>
 
 </html>
-<?php

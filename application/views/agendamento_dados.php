@@ -192,7 +192,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?= base_url(); ?>dashboard/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                    <div class="dropdown-divider"></div>                                
+                                    <div class="dropdown-divider"></div>                                    
                                 </div>
                             </li>
                             <!-- ============================================================== -->
@@ -218,17 +218,17 @@
                             <li class="sidebar-item"> <a data-toggle="modal" data-target="#myModal2" class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
 
-<!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
-        <ul aria-expanded="false" class="collapse  first-level">
-            <li class="sidebar-item"><a href="<?= base_url(); ?>usuario" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Usuários </span></a></li>
-            <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
-            <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
-            <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
-            <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
-        </ul>
-    </li> -->
+                           <!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"><a href="<?= base_url(); ?>usuario" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Usuários </span></a></li>
+                                    <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
+                                    <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
+                                    <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
+                                    <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
+                                </ul>
+                            </li> -->
 
-                            </li>
+
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
@@ -248,7 +248,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Editar Agendamento</h3>
+                            <h3 class="page-title">Agendamento</h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -273,157 +273,155 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
-                                <form class="form-control form-horizontal " action="<?= base_url(); ?>agenda/salva_editar" method="post">
-                                    <input type="hidden" id="cod_agenda" name="cod_agenda" value="<?= $agenda[0]->cod_agenda; ?>">
+                                <form class="form-horizontal" action="<?= base_url(); ?>agenda/agendar" method="post">
                                     <div class="card-body">
-                                        <h3 class="card-title"></h3>  
+                                        <h4 class="card-title"></h4>
                                         <label><h5>Usuária</h5></label>
                                         <div class="form-group col-md-6">
-                                            <input type="text" class="form-control" name="nome" id="nome" value="<?= $agenda[0]->nome; ?>">                                            
+                                            <input type="text" class="form-control" name="nome" id="nome" value="<?= $usuaria[0]->nome;?>">                                            
                                         </div> 
                                         <br>
                                         <label><h5>CPF</h5></label>
                                         <div class="input-group col-md-6">
-                                            <input type="text" class="form-control" name="CPF" id="CPF" value="<?= $agenda[0]->CPF; ?>">                                            
+                                            <input type="text" class="form-control" name="CPF" id="CPF" value="<?= $usuaria[0]->CPF;?>">                                            
                                         </div>  
                                         <br>
                                         <label><h5>Data</h5></label>
                                         <div class="input-group col-md-6">
-                                            <input type="date" class="form-control" name="data_agenda" id="data_agenda" value="<?= $agenda[0]->data_agenda; ?>" >
+                                            <input type="date" class="form-control" name="data_agenda" id="data_agenda">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>
                                         </div>   
-                                        <br>                                        
+                                        <br>
                                         <label><h5>Horário</h5></label>
                                         <div class="input-group col-md-6">
-                                            <input type="time" class="form-control" name="horario_agenda" id="horario_agenda" value="<?= $agenda[0]->horario_agenda; ?>" >
-                                        </div>                                     
+                                            <input type="time" class="form-control" name="horario_agenda" id="horario_agenda">                                            
+                                        </div>     
                                     </div>
                                     <div class="border-top">
                                         <div class="card-body">
                                             <button type="submit" class="btn btn-success">Salvar</button>
-                                            <a type="reset" class="btn btn-danger" href="<?= base_url() ?>dashboard">Cancelar</a>
-                                        </div>
+                                            <button type="reset" class="btn btn-danger">Cancelar</button>
+                                        </div>                                        
                                     </div>
                                 </form>
                             </div>
-                        </div>                   
-                    </div>              
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Container fluid  -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- footer -->
-                <!-- ============================================================== -->
-                <footer class="footer text-center">
-                    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-                </footer>
-                <!-- ============================================================== -->
-                <!-- End footer -->
-                <!-- ============================================================== -->
-            </div>
+                        </div>
+                    </div>                   
+                </div>                
+            </div>            
+            <!-- footer -->
             <!-- ============================================================== -->
-            <!-- End Page wrapper  -->
+            <footer class="footer text-center">
+                All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            </footer>
             <!-- ============================================================== -->
-        </div>    
-
-        <!-- Modal -->        
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog">
-                <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
-                    <div class="modal-content">
-                        <div class="modal-header">
-                          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                            <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
-                        </div>
-                        <div class="modal-body">         
-                            <div class="col-md-12 form-group">                       
-                                <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
-                            </div>                        
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-success">Pesquisar</button>
-                        </div>
-                    </div>
-                </form>      
-            </div>
-        </div>       
-
-        <!-- All Jquery -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
         <!-- ============================================================== -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap tether Core JavaScript -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- slimscrollbar scrollbar JavaScript -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
-        <!--Wave Effects -->
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
-        <!--Menu sidebar -->
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
-        <!--Custom JavaScript -->
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
-        <!-- This Page JS -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
-        <script>
-            //***********************************//
-            // For select 2
-            //***********************************//
-            $(".select2").select2();
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
+                    </div>
+                    <div class="modal-body">         
+                        <div class="col-md-12 form-group">                       
+                            <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
+                        </div>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Pesquisar</button>
+                    </div>
+                </div>
+            </form>      
+        </div>
+    </div> 
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
+    <!-- This Page JS -->
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
+    <script>
+        //***********************************//
+        // For select 2
+        //***********************************//
+        $(".select2").select2();
 
-            /*colorpicker*/
-            $('.demo').each(function () {
-                //
-                // Dear reader, it's actually very easy to initialize MiniColors. For example:
-                //
-                //  $(selector).minicolors();
-                //
-                // The way I've done it below is just for the demo, so don't get confused
-                // by it. Also, data- attributes aren't supported at this time...they're
-                // only used for this demo.
-                //
-                $(this).minicolors({
-                    control: $(this).attr('data-control') || 'hue',
-                    position: $(this).attr('data-position') || 'bottom left',
+        /*colorpicker*/
+        $('.demo').each(function () {
+            //
+            // Dear reader, it's actually very easy to initialize MiniColors. For example:
+            //
+            //  $(selector).minicolors();
+            //
+            // The way I've done it below is just for the demo, so don't get confused
+            // by it. Also, data- attributes aren't supported at this time...they're
+            // only used for this demo.
+            //
+            $(this).minicolors({
+                control: $(this).attr('data-control') || 'hue',
+                position: $(this).attr('data-position') || 'bottom left',
 
-                    change: function (value, opacity) {
-                        if (!value)
-                            return;
-                        if (opacity)
-                            value += ', ' + opacity;
-                        if (typeof console === 'object') {
-                            console.log(value);
-                        }
-                    },
-                    theme: 'bootstrap'
-                });
-
+                change: function (value, opacity) {
+                    if (!value)
+                        return;
+                    if (opacity)
+                        value += ', ' + opacity;
+                    if (typeof console === 'object') {
+                        console.log(value);
+                    }
+                },
+                theme: 'bootstrap'
             });
-            /*datwpicker*/
-            jQuery('.mydatepicker').datepicker();
-            jQuery('#datepicker-autoclose').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-            var quill = new Quill('#editor', {
-                theme: 'snow'
-            });
 
-        </script>
-    </body>
+        });
+        /*datwpicker*/
+        jQuery('.mydatepicker').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+                    language: 'pt-BR'
+        });
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+    </script>  
+
+</body>
 
 </html>
-<?php

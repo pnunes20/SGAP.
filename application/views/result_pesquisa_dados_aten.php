@@ -12,8 +12,10 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
         <title>SGAP</title>
         <!-- Custom CSS -->
-        <link href="<?= base_url(); ?>assets/matrix/assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
-        <link href="<?= base_url(); ?>assets/matrix/assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/css/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.css">
+        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.snow.css">
         <link href="<?= base_url(); ?>assets/matrix/dist/css/style.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +50,7 @@
                         <!-- ============================================================== -->
                         <!-- Logo -->
                         <!-- ============================================================== -->
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" >
                             <!-- Logo icon -->
                             <b class="logo-icon p-l-10">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -88,13 +90,13 @@
                             <!-- ============================================================== -->
                             <!-- create new -->
                             <!-- ============================================================== -->
-                            
+
                             <!-- ============================================================== -->
                             <!-- Search -->
                             <!-- ============================================================== -->
                             <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                                 <form class="app-search position-absolute">
-                                    <input type="text" class="form-control" placeholder="Pesquisar..."> <a class="srh-btn"><i class="ti-close"></i></a>
+                                    <input type="text" class="form-control" placeholder="Pesquisar"> <a class="srh-btn"><i class="ti-close"></i></a>
                                 </form>
                             </li>
                         </ul>
@@ -184,13 +186,13 @@
                                 <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url(); ?>assets/matrix/assets/images/users/1.jpg" alt="Perfil" class="rounded-circle" width="31"></a>
                                 <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>Perfil</a>
-                                    <a class="dropdown-item" href="<?= base_url(); ?>usuario"><i class="ti-wallet m-r-5 m-l-5"></i>Usuários</a>
+                                    <a class="dropdown-item" href="<?= base_url(); ?>login"><i class="ti-wallet m-r-5 m-l-5"></i>Usuários</a>
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?= base_url(); ?>dashboard/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                    <div class="dropdown-divider"></div>                                    
+                                    <div class="dropdown-divider"></div>                                
                                 </div>
                             </li>
                             <!-- ============================================================== -->
@@ -213,9 +215,20 @@
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Início</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard/atendimento" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Atendimento</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard/agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agenda</span></a></li>
-                            
+                            <li class="sidebar-item"> <a data-toggle="modal" data-target="#myModal2" class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
+
+<!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
+        <ul aria-expanded="false" class="collapse  first-level">
+            <li class="sidebar-item"><a href="<?= base_url(); ?>usuario" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Usuários </span></a></li>
+            <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
+            <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
+            <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
+            <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
+        </ul>
+    </li> -->
+
+                            </li>
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
@@ -235,7 +248,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Agendamento</h3>
+                            <h3 class="page-title">Usuárias</h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -252,108 +265,40 @@
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Container fluid  -->
-                <!-- ============================================================== -->
-                <div class="container-fluid">
-                    <!-- ============================================================== -->
-                    <!-- Start Page Content -->
-                    <!-- ============================================================== -->
+                <div class="container-fluid">                
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
-                                <div class="">
-                                    <div class="row">
-                                        <div class="col-lg-3 border-right p-r-0">
-                                            <div class="card-body border-bottom">
-                                                <h4 class="card-title m-t-10">Drag & Drop Event</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div id="calendar-events" class="">
-                                                            <div class="calendar-events m-b-20" data-class="bg-info"><i class="fa fa-circle text-info m-r-10"></i>Event One</div>
-                                                            <div class="calendar-events m-b-20" data-class="bg-success"><i class="fa fa-circle text-success m-r-10"></i> Event Two</div>
-                                                            <div class="calendar-events m-b-20" data-class="bg-danger"><i class="fa fa-circle text-danger m-r-10"></i>Event Three</div>
-                                                            <div class="calendar-events m-b-20" data-class="bg-warning"><i class="fa fa-circle text-warning m-r-10"></i>Event Four</div>
-                                                        </div>
-                                                        <!-- checkbox -->
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="drop-remove">
-                                                            <label class="custom-control-label" for="drop-remove">Remove after drop</label>
-                                                        </div>
-                                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#add-new-event" class="btn m-t-20 btn-info btn-block waves-effect waves-light">
-                                                            <i class="ti-plus"></i> Add New Event
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-9">
-                                            <div class="card-body b-l calender-sidebar">
-                                                <div id="calendar"></div>
-                                            </div>
-                                        </div> 
-                                    </div>
+                            <div class="card"> 
+                                <div class="card-body table-responsive">                                
+                                    <table class=" table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Usuária</th>  
+                                                <th>CPF</th>                                                                                        
+                                                <th></th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>    
+                                            <?php foreach ($usuaria as $usu) { ?>                                    
+                                                <tr>
+                                                    <td><?= $usu->cod_usuaria; ?></td>
+                                                    <td><?= $usu->nome; ?></td>
+                                                    <td><?= $usu->CPF; ?></td>                                                                                       
+                                                    <td>
+                                                        <a href="<?= base_url('atendimento/') ?>" class="btn btn-success btn-group" onclick="return confirm('Iniciar Atendimento?');" >Iniciar Atendimento</a>                                                        
+                                                    </td>
+                                                </tr>                               
+                                            <?php } ?>   
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </div>
-                        </div>
+                            </div>   
+                        </div>     
                     </div>
-                    <!-- BEGIN MODAL -->
-                    <div class="modal none-border" id="my-event">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title"><strong>Add Event</strong></h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                <div class="modal-body"></div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>                                    
-                                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal Add Category -->
-                    <div class="modal fade none-border" id="add-new-event">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title"><strong>Add</strong> a category</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label class="control-label">Category Name</label>
-                                                <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="control-label">Choose Category Color</label>
-                                                <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
-                                                    <option value="success">Success</option>
-                                                    <option value="danger">Danger</option>
-                                                    <option value="info">Info</option>
-                                                    <option value="primary">Primary</option>
-                                                    <option value="warning">Warning</option>
-                                                    <option value="inverse">Inverse</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
-                                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END MODAL -->
-                    <!-- ============================================================== -->
-                    <!-- End PAge Content -->
-                    <!-- ============================================================== -->
                 </div>
+                <!-- ============================================================== -->
+
                 <!-- ============================================================== -->
                 <!-- End Container fluid  -->
                 <!-- ============================================================== -->
@@ -374,12 +319,31 @@
         <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                            <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
+                        </div>
+                        <div class="modal-body">         
+                            <div class="col-md-12 form-group">                       
+                                <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
+                            </div>                        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Pesquisar</button>
+                        </div>
+                    </div>
+                </form>      
+            </div>
+        </div> 
         <!-- ============================================================== -->
         <!-- All Jquery -->
         <!-- ============================================================== -->
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/jquery.ui.touch-punch-improved.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/jquery-ui.min.js"></script>
         <!-- Bootstrap tether Core JavaScript -->
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -392,10 +356,62 @@
         <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
         <!--Custom JavaScript -->
         <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
-        <!-- this page js -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/moment/min/moment.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/calendar/cal-init.js"></script>
+        <!-- This Page JS -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
+        <script>
+                                                        //***********************************//
+                                                        // For select 2
+                                                        //***********************************//
+                                                        $(".select2").select2();
+
+                                                        /*colorpicker*/
+                                                        $('.demo').each(function () {
+                                                            //
+                                                            // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                                                            //
+                                                            //  $(selector).minicolors();
+                                                            //
+                                                            // The way I've done it below is just for the demo, so don't get confused
+                                                            // by it. Also, data- attributes aren't supported at this time...they're
+                                                            // only used for this demo.
+                                                            //
+                                                            $(this).minicolors({
+                                                                control: $(this).attr('data-control') || 'hue',
+                                                                position: $(this).attr('data-position') || 'bottom left',
+
+                                                                change: function (value, opacity) {
+                                                                    if (!value)
+                                                                        return;
+                                                                    if (opacity)
+                                                                        value += ', ' + opacity;
+                                                                    if (typeof console === 'object') {
+                                                                        console.log(value);
+                                                                    }
+                                                                },
+                                                                theme: 'bootstrap'
+                                                            });
+
+                                                        });
+                                                        /*datwpicker*/
+                                                        jQuery('.mydatepicker').datepicker();
+                                                        jQuery('#datepicker-autoclose').datepicker({
+                                                            autoclose: true,
+                                                            todayHighlight: true
+                                                        });
+                                                        var quill = new Quill('#editor', {
+                                                            theme: 'snow'
+                                                        });
+
+        </script>
     </body>
 
 </html>

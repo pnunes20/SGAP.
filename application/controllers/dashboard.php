@@ -12,7 +12,11 @@ class Dashboard extends CI_Controller {
 
     public function index() {
         $this->verificar_sessao();
-        $this->db->select('*');       
+        $this->db->select('*');  
+        
+        $this->db->order_by('data_agenda');
+        $this->db->order_by('horario_agenda');
+        
         $dados['agenda'] = $this->db->get('agenda')->result();
         $this->load->view('listar_agenda',$dados);
     }
@@ -24,16 +28,16 @@ class Dashboard extends CI_Controller {
     public function logar() {
 
         $email = $this->input->post('email');
-        $senha = $this->input->post('senha');
+        $senha = sha1($this->input->post('senha'));
 
         $this->db->where('senha', $senha);
         $this->db->where('email', $email);
         $this->db->where('status', 1);
-        $data['usuario'] = $this->db->get('usuario')->result();
+        $data['login'] = $this->db->get('login')->result();
 
-        if (count($data['usuario']) == 1) {
-            $dados['nome'] = $data['usuario'][0]->nome;
-            $dados['id'] = $data['usuario'][0]->idUsuario;
+        if (count($data['login']) == 1) {
+            $dados['nome'] = $data['login'][0]->nome;
+            $dados['id'] = $data['login'][0]->cod_login;
             $dados['logado'] = true;
             $this->session->set_userdata($dados);
             redirect('dashboard');
@@ -45,12 +49,6 @@ class Dashboard extends CI_Controller {
     public function logout() {
         $this->session->sess_destroy();
         redirect('dashboard/login');
-    }  
-    
-    public function atendimento() {
-        $this->verificar_sessao();
-        $this->load->view('atendimento');
-    }    
-    
+    }      
 
 }

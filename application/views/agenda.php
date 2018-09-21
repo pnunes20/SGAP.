@@ -186,7 +186,7 @@
                                 <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url(); ?>assets/matrix/assets/images/users/1.jpg" alt="Perfil" class="rounded-circle" width="31"></a>
                                 <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>Perfil</a>
-                                    <a class="dropdown-item" href="<?= base_url(); ?>usuario"><i class="ti-wallet m-r-5 m-l-5"></i>Usuários</a>
+                                    <a class="dropdown-item" href="<?= base_url(); ?>login"><i class="ti-wallet m-r-5 m-l-5"></i>Usuários</a>
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
@@ -215,7 +215,7 @@
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="p-t-30">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Início</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard/atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
+                            <li class="sidebar-item"> <a data-toggle="modal" data-target="#myModal2" class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
 
                            <!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
@@ -266,46 +266,24 @@
                 <!-- ============================================================== -->
                 <!-- Container fluid  -->
                 <!-- ============================================================== -->
+                <br><br>
                 <div class="container-fluid">
                     <!-- ============================================================== -->
                     <!-- Start Page Content -->
                     <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <form class="form-horizontal" action="<?= base_url(); ?>agenda/agendar" method="post">
-                                    <div class="card-body">
-                                        <h4 class="card-title"></h4>
-                                        <label><h5>Usuária</h5></label>
-                                        <div class="form-group col-md-6">
-                                            <input type="text" class="form-control" name="usuaria" id="usuaria">                                            
-                                        </div> 
-                                        <br>
-                                        <label><h5>CPF</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="text" class="form-control" name="cpf_usuaria" id="cpf_usuaria">                                            
-                                        </div>  
-                                        <br>
-                                        <label><h5>Data</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="date" class="form-control" name="data_agenda" id="data_agenda">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>   
-                                        <br>
-                                        <label><h5>Horário</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="time" class="form-control" name="horario_agenda" id="horario_agenda">                                            
-                                        </div>     
-                                    </div>
-                                    <div class="border-top">
-                                        <div class="card-body">
-                                            <button type="submit" class="btn btn-success">Salvar</button>
-                                            <button type="reset" class="btn btn-danger">Cancelar</button>
-                                        </div>                                        
-                                    </div>
-                                </form>
+                    <div class="row">   
+                        <div class="col-md-6 col-lg-4 col-xlg-3">
+                            <div class="card card-hover">                                
+                                <a data-toggle="modal" data-target="#myModal" class="box bg-success text-center" href="">
+                                    <h1 class="font-light text-white"><i class="mdi mdi-account-search"></i></h1>
+                                    <h6 class="text-white">Pesquisar Cadastro de Usuária e Agendar</h6></a>                              
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xlg-3">
+                            <div class="card card-hover">
+                                <a class="box bg-danger text-center" href="<?= base_url(); ?>agenda/agendamento">
+                                    <h1 class="font-light text-white"><i class="mdi mdi-calendar-text"></i></h1>
+                                    <h6 class="text-white">Inserir Informações e Agendar</h6></a>
                             </div>
                         </div>
                     </div>                   
@@ -327,6 +305,51 @@
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" >
+            <form action="<?= base_url(); ?>agenda/pesquisar" method="post">                
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
+                    </div>
+                    <div class="modal-body">         
+                        <div class="col-md-12 form-group">                            
+                            <input type="text" name="pesquisar" class="form-control" placeholder="Nome ou CPF">
+                        </div>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Pesquisar</button>
+                    </div>
+                </div>
+            </form>      
+        </div>
+    </div>    
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
+                    </div>
+                    <div class="modal-body">         
+                        <div class="col-md-12 form-group">                       
+                            <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
+                        </div>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Pesquisar</button>
+                    </div>
+                </div>
+            </form>      
+        </div>
+    </div> 
+
+
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->

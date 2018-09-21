@@ -15,10 +15,21 @@ class Agenda extends CI_Controller {
         $this->load->view('agenda');
     }
 
+    public function agendamento() {
+        $this->verificar_sessao();
+        
+        $this->db->select('*');
+        
+        $dados['agenda'] = $this->db->get('agenda')->result();
+        
+        $this->load->view('agendamento',$dados);
+    }
+
     public function agendar() {
         $this->verificar_sessao();
-        $data['usuaria'] = $this->input->post('usuaria');
-        $data['cpf_usuaria'] = $this->input->post('cpf_usuaria');
+
+        $data['nome'] = $this->input->post('nome');
+        $data['CPF'] = $this->input->post('CPF');
         $data['data_agenda'] = $this->input->post('data_agenda');
         $data['horario_agenda'] = $this->input->post('horario_agenda');
 
@@ -46,8 +57,6 @@ class Agenda extends CI_Controller {
         $this->db->where('cod_agenda', $cod);
         $data['agenda'] = $this->db->get('agenda')->result();
 
-
-
         $this->load->view('editar_agenda', $data);
     }
 
@@ -55,9 +64,9 @@ class Agenda extends CI_Controller {
         $this->verificar_sessao();
 
         $cod = $this->input->post('cod_agenda');
-        
-        $data['usuaria'] = $this->input->post('usuaria');
-        $data['cpf_usuaria'] = $this->input->post('cpf_usuaria');
+
+        $data['nome'] = $this->input->post('nome');
+        $data['CPF'] = $this->input->post('CPF');
         $data['data_agenda'] = $this->input->post('data_agenda');
         $data['horario_agenda'] = $this->input->post('horario_agenda');
 
@@ -67,6 +76,29 @@ class Agenda extends CI_Controller {
         } else {
             redirect('dashboard');
         }
+    }
+
+    public function pesquisar() {
+        $this->verificar_sessao();
+
+        $termo = $this->input->post('pesquisar');
+
+        $this->db->where('nome', $termo);
+        $this->db->or_where('CPF', $termo);
+
+        $data['usuaria'] = $this->db->get('usuaria')->result();
+
+        $this->load->view('result_pesquisa_dados', $data);
+    }
+
+    public function agendamento_dados($cod = null) {
+
+        $this->verificar_sessao();
+
+        $this->db->where('cod_usuaria', $cod);
+        $data['usuaria'] = $this->db->get('usuaria')->result();
+
+        $this->load->view('agendamento_dados', $data);
     }
 
 }

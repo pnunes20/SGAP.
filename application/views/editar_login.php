@@ -248,7 +248,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Editar Agendamento</h3>
+                            <h4 class="page-title">Atualizar Login</h4>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -273,37 +273,51 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
-                                <form class="form-control form-horizontal " action="<?= base_url(); ?>agenda/salva_editar" method="post">
-                                    <input type="hidden" id="cod_agenda" name="cod_agenda" value="<?= $agenda[0]->cod_agenda; ?>">
+                                <form class="form-control form-horizontal " action="<?= base_url(); ?>login/salvar_atualizacao" method="post">
+                                    <input type="hidden" id="cod_login" name="cod_login" value="<?= $login[0]->cod_login; ?>">
                                     <div class="card-body">
-                                        <h3 class="card-title"></h3>  
-                                        <label><h5>Usuária</h5></label>
-                                        <div class="form-group col-md-6">
-                                            <input type="text" class="form-control" name="nome" id="nome" value="<?= $agenda[0]->nome; ?>">                                            
-                                        </div> 
-                                        <br>
-                                        <label><h5>CPF</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="text" class="form-control" name="CPF" id="CPF" value="<?= $agenda[0]->CPF; ?>">                                            
-                                        </div>  
-                                        <br>
-                                        <label><h5>Data</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="date" class="form-control" name="data_agenda" id="data_agenda" value="<?= $agenda[0]->data_agenda; ?>" >
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        <h4 class="card-title">Dados Pessoais </h4>
+                                        <div class="form-group row">
+                                            <label for="nome" class="col-sm-3 text-right control-label col-form-label">Nome</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?= $login[0]->nome; ?>" required>
                                             </div>
-                                        </div>   
-                                        <br>                                        
-                                        <label><h5>Horário</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="time" class="form-control" name="horario_agenda" id="horario_agenda" value="<?= $agenda[0]->horario_agenda; ?>" >
-                                        </div>                                     
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="email" class="col-sm-3 text-right control-label col-form-label">E-mail</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="email" name="email" placeholder="E-mail" value="<?= $login[0]->email; ?>" required>
+                                            </div>
+                                        </div> 
+                                        <div class="form-group row">
+                                            <label for="data_nasc" class="col-sm-3 text-right control-label col-form-label">Data de Nascimento</label>
+                                            <div class="col-sm-9">
+                                                <input type="date" class="form-control" id="data_nasc" name="data_nasc" placeholder="Data de Nascimento" required>
+                                            </div>
+                                        </div>  
+                                        <div class="form-group row">
+                                            <label for="senha" class="col-sm-3 text-right control-label col-form-label">Senha</label>
+                                            <div class="col-sm-9">
+                                                <input type="button" class="btn btn-default btn-block" value="Atualizar Senha" data-toggle="modal" data-target="#myModal">
+                                            </div>
+                                        </div>                  
+
+                                        <div class="form-group row">
+                                            <label for="status" class="col-md-3 m-t-15">Status</label>
+                                            <div class="col-md-9">
+                                                <select id="status" name="status" required class="select2 form-control custom-select" style="width: 100%; height:36px;">
+
+                                                    <option value="0">---</option>
+                                                    <option value="1" <?= $login[0]->status == 1 ? ' selected ' : ''; ?>>Ativo</option>
+                                                    <option value="2" <?= $login[0]->status == 2 ? ' selected ' : ''; ?>>Inativo</option>                                           
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="border-top">
                                         <div class="card-body">
                                             <button type="submit" class="btn btn-success">Salvar</button>
-                                            <a type="reset" class="btn btn-danger" href="<?= base_url() ?>dashboard">Cancelar</a>
+                                            <button type="reset" class="btn btn-danger">Cancelar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -327,9 +341,7 @@
             <!-- ============================================================== -->
             <!-- End Page wrapper  -->
             <!-- ============================================================== -->
-        </div>    
-
-        <!-- Modal -->        
+        </div>   
         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog">
                 <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
@@ -350,7 +362,68 @@
                     </div>
                 </form>      
             </div>
-        </div>       
+        </div> 
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <form action="<?= base_url(); ?>login/salvar_senha" method="post">
+                    <input type="hidden" id="cod_login" name="cod_login" value="<?= $login[0]->cod_login; ?>">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                            <h4 class="modal-title" id="myModalLabel">Atualizar Senha</h4>
+                        </div>
+                        <div class="modal-body">         
+                            <div class="col-md-12 form-group">
+                                <label for="senha_antiga">Senha Antiga</label>
+                                <input type="password" name='senha_antiga' id="senha_antiga" class="form-control">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="senha_nova">Nova Senha</label>
+                                <input type="password" name='senha_nova' id="senha_nova" onkeyup="checarSenha()" class="form-control">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="senha_confirmar">Confirmar Senha</label>
+                                <input type="password" name='senha_confirmar' id="senha_confirmar" onkeyup="checarSenha()" class="form-control">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <div id="divcheck">                      
+                                </div>
+                            </div>          
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success" id="enviarsenha" disabled>Salvar</button>
+                        </div>
+                    </div>
+                </form>      
+            </div>
+        </div>
+
+
+        <script>
+            $(document).ready(function () {
+                $("#senha_nova").keyup(checkPasswordMatch);
+                $("#senha_confirmar").keyup(checkPasswordMatch);
+
+            });
+            function checarSenha() {
+                var password = $("#senha_nova").val();
+                var confirmPassword = $("#senha_confirmar").val();
+
+                if (password == '' || '' == confirmPassword) {
+                    $("#divcheck").html("<span style='color: red'>Campo de senha vazio!</span>");
+                    document.getElementById("enviarsenha").disabled = true;
+                } else if (password != confirmPassword) {
+                    $("#divcheck").html("<span style='color: red'>Senhas não conferem!</span>");
+                    document.getElementById("enviarsenha").disabled = true;
+                } else {
+                    $("#divcheck").html("<span style='color: green'>Senhas iguais!</span>");
+                    document.getElementById("enviarsenha").disabled = false;
+                }
+            }
+        </script>
 
         <!-- All Jquery -->
         <!-- ============================================================== -->
@@ -427,3 +500,5 @@
 
 </html>
 <?php
+
+
