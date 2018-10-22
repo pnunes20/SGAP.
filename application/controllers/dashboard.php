@@ -9,21 +9,14 @@ class Dashboard extends CI_Controller {
             redirect('dashboard/login');
         }
     }
-
+   
     public function index() {
-        $this->verificar_sessao();
-        $this->db->select('*');  
-        
-        $this->db->order_by('data_agenda');
-        $this->db->order_by('horario_agenda');
-        
-        $dados['agenda'] = $this->db->get('agenda')->result();
-        $this->load->view('listar_agenda',$dados);
-    }
+        $this->verificar_sessao();   
+    } 
 
     public function login() {
         $this->load->view('login');
-    }   
+    }
 
     public function logar() {
 
@@ -40,7 +33,7 @@ class Dashboard extends CI_Controller {
             $dados['id'] = $data['login'][0]->cod_login;
             $dados['logado'] = true;
             $this->session->set_userdata($dados);
-            redirect('dashboard');
+            redirect('agenda/listar_agenda');
         } else {
             redirect('dashboard/login');
         }
@@ -49,6 +42,6 @@ class Dashboard extends CI_Controller {
     public function logout() {
         $this->session->sess_destroy();
         redirect('dashboard/login');
-    }      
+    }
 
 }

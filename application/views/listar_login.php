@@ -94,11 +94,11 @@
                             <!-- ============================================================== -->
                             <!-- Search -->
                             <!-- ============================================================== -->
-                            <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <!-- <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                                 <form class="app-search position-absolute">
                                     <input type="text" class="form-control" placeholder="Pesquisar"> <a class="srh-btn"><i class="ti-close"></i></a>
                                 </form>
-                            </li>
+                            </li> -->
                         </ul>
                         <!-- ============================================================== -->
                         <!-- Right side toggle and nav items -->
@@ -214,20 +214,11 @@
                     <!-- Sidebar navigation-->
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="p-t-30">
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Início</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda/listar_agenda" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Início</span></a></li>
                             <li class="sidebar-item"> <a data-toggle="modal" data-target="#myModal2" class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
-
-<!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
-        <ul aria-expanded="false" class="collapse  first-level">
-            <li class="sidebar-item"><a href="<?= base_url(); ?>usuario" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Usuários </span></a></li>
-            <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
-            <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
-            <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
-            <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
-        </ul>
-    </li> -->
-
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" data-toggle="modal" data-target="#myModal3" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Prontuários</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Relatórios</span></a></li>
                             </li>
                         </ul>
                     </nav>
@@ -292,7 +283,7 @@
                                                     <td><?= date("d/m/Y", strtotime($log->data_nascimento)); ?></td> 
                                                     <td><?= $log->status == 1 ? 'Ativo' : 'Inativo'; ?></td>
                                                     <td>
-                                                        <a href="<?= base_url('login/atualizar/' . $log->cod_login) ?>" class="btn btn-primary btn-group">Atualizar</a>
+                                                        <a href="<?= base_url('login/atualizar/' . $log->cod_login) ?>" class="btn btn-primary btn-group">Editar</a>
                                                         <a href="<?= base_url('login/excluir/' . $log->cod_login) ?>" class="btn btn-danger btn-group" onclick="return confirm('Excluir Usuário?');">Excluir</a>
                                                     </td>
                                                 </tr>                               
@@ -316,7 +307,7 @@
                 <!-- footer -->
                 <!-- ============================================================== -->
                 <footer class="footer text-center">
-                    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+                    <!--  All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>. -->
                 </footer>
                 <!-- ============================================================== -->
                 <!-- End footer -->
@@ -329,6 +320,26 @@
         <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg">                            
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">Pesquisar Prontuário</h4>
+                    </div>
+                    <div class="modal-body">         
+                        <div class="col-md-12 form-group">                       
+                            <input type="text" name="pesquisar_p" id="pesquisar_p" class="form-control" placeholder="Nome ou CPF">
+                        </div>  
+                        <div id="check"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn btn-danger" >Fechar</a>
+                        <button type="button" class="btn btn-success" id="pesquisar">Pesquisar</button>
+                    </div>
+                </div>                    
+            </div>
+        </div> 
         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog">
                 <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
@@ -365,6 +376,7 @@
         <!--Menu sidebar -->
         <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
         <!--Custom JavaScript -->
+        <script type="text/javascript" src="<?= base_url(); ?>assets/javascriptcustom.js"></script>
         <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
         <!-- This Page JS -->
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>

@@ -23,6 +23,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
     </head>
 
     <body>
@@ -192,7 +193,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?= base_url(); ?>dashboard/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                    <div class="dropdown-divider"></div>                                
+                                    <div class="dropdown-divider"></div>                                    
                                 </div>
                             </li>
                             <!-- ============================================================== -->
@@ -238,7 +239,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Atendimentos Agendados</h3>
+                            <h3 class="page-title">Atendimento</h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -255,124 +256,237 @@
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Container fluid  -->
-                <div class="container-fluid">                
-                    <div class="row">  
-                        <div class="col-md-3">
-                            <input class="col-md-7 form-group form-control" type="text" id="pesq-age" placeholder="Pesquisar..." />
-                        </div>                             
-                        <div class="col-md-4 row">
-                            <label class="form-group col-md-5">Filtrar Por Data:</label>
-                            <input type="date" class="form-control form-group col-md-6" id="pesq-date" />                            
-                        </div>   
-                        <div id="result-pesq" class="col-md-11 table table-responsive form-group">
-                            <table class=" table table-striped table-hover table-condensed">
-                                <thead class="">
-                                    <tr>                                               
-                                        <th><h4>Usuária</h4></th>  
-                                        <th><h4>CPF</h4></th>  
-                                        <th><h4>Data</h4></th>  
-                                        <th><h4>Horário</h4></th>                                        
-                                        <th></th> 
-                                    </tr>
-                                </thead>
-                                <tbody>     
-                                    <?php foreach ($agenda as $age) { ?>   
-                                        <tr >                                                    
-                                            <td><?= $age->nome; ?></td>
-                                            <td><?= $age->CPF; ?></td>
-                                            <td><?= date("d/m/Y", strtotime($age->data_agenda)); ?></td> 
-                                            <td><?= date("H:i", strtotime($age->horario_agenda)); ?></td>                                    
-                                            <td>   
-                                                <form action="<?= base_url() ?>atendimento" method="post">
-                                                    <input type="hidden" name="nome_usu" value="<?= $age->nome ?>"/>
-                                                    <button type="submit" class="btn btn-success btn-group">Atendimento</button>
-                                                    <a href="<?= base_url('agenda/editar/' . $age->cod_agenda) ?>" class="btn btn-primary btn-group">Editar</a>                                                        
-                                                    <a href="<?= base_url('agenda/excluir/' . $age->cod_agenda) ?>" class="btn btn-danger btn-group" onclick="return confirm('Este Agendamento Será Cancelado! Continuar?');">Cancelar</a>    
-                                                    <a class="btn btn-info btn-group" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dados Da Usuária</a>
-                                                    <div class="dropdown-menu dropdown-menu-right user-dd animated"> 
-                                                        <div class="form-group container-fluid">
-                                                            <?php
-                                                            $cpf = $age->CPF;
-                                                            $this->db->where('CPF', $cpf);
-                                                            $dados['usuaria'] = $this->db->get('usuaria')->result();
-                                                            ?>
-                                                            <?php foreach ($dados['usuaria'] as $da) { ?>
-                                                                <?php
-                                                                $s = $da->sexo;
-                                                                if ($s === 'F') {
-                                                                    $sexo = 'Feminino';
-                                                                } elseif ($s === 'M') {
-                                                                    $sexo = 'Masculino';
-                                                                } else {
-                                                                    $sexo = 'Hermafrodita';
-                                                                }
-                                                                ?>
-                                                                <span>Nome: <?= $da->nome; ?></span><br>  
-                                                                <span>CPF: <?= $da->CPF; ?></span><br>
-                                                                <span>RG: <?= $da->RG; ?></span><br>
-                                                                <span>Telefone: <?= $da->telefone; ?></span><br>
-                                                                <span>Data de Nascimento: <?= date("d/m/Y", strtotime($da->data_nascimento)); ?></span><br>
-                                                                <span>Sexo: <?= $sexo; ?></span>
-                                                            <?php } ?>   
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr> 
+                <!-- ============================================================== -->
+                <div class="container-fluid">
+                    <!-- ============================================================== -->
+                    <!-- Start Page Content -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <form class="form-horizontal" action="#" method="post">
+                                    <input type="hidden" name="cod_usuaria" value="<?= $usuaria[0]->cod_usuaria; ?> "/>
+                                    <div class="card-body">
+                                        <div class="row col-12">
+                                            <div class="col-md-9">
+                                                <h4 class="card-title">Usuária: <?= $usuaria[0]->nome; ?> </h4>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#myModal5">Informações de Atendimentos Ateriores</a>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class=" row col-md-12">
+                                            <label class="col-md-9"><h5>Já Fez Algum Curso Pela CRM?</h5></label>                                       
+                                            <div class="row col-md-8">
+                                                <div class=" custom-control custom-radio col-md-3 row">
+                                                    <input type="radio" class="custom-control-input" id="radio_curso_sim" name="radio_curso" required>
+                                                    <label class="custom-control-label" for="radio_curso_sim">Sim</label>
+                                                </div>                              
+                                                <div class="custom-control custom-radio col-md-3 row">
+                                                    <input type="radio" class="custom-control-input" id="radio_curso_nao" name="radio_curso" required>
+                                                    <label class="custom-control-label" for="radio_curso_nao">Não</label>
+                                                </div>     
+                                                <div class="row col-md-5">
+                                                    <label for="qual_curso" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
+                                                    <div class="form-group col-md-7">
+                                                        <input class="form-control" type="text" name="qual_curso" id="qual_curso"/>
+                                                    </div> 
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div> 
+                                    <div class="form-group row col-md-12">
+                                        <label class="col-md-9 m-t-7"><h5>Já Recebeu Algum Atendimento Pela Equipe Técnica da CRM?</h5></label>                                    
+                                        <div class="col-md-4 row"> 
+                                            <label for="tipo_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
+                                            <select class="select2 form-control custom-select" name="tipo_atendimento" id="tipo_atendimento" style="width: 50%; height:36px;">
+                                                <option>---</option>                                            
+                                                <option value="servico_social">Serviço Social</option>
+                                                <option value="psicologico">Psicológico</option>
+                                                <option value="juridico">Jurídico</option>                              
+                                            </select> 
 
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                            <?php /*
-                              $n_pag = 1;
-                              for ($i=1;$i<=$qtd_botoes;$i++){?>
-                              <a href="<?= base_url('agenda/pag/'.$n_pag)?>"><?=$i?></a>
-                              <?php
-                              $n_pag+=$reg_p_pag;
-                              } */ ?>
+                                        </div>
+                                        <div class="row col-md-5">
+                                            <label for="ano_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual Ano:</label>
+                                            <div class="form-group col-md-4">
+                                                <input class="form-control" type="number" name="ano_atendimento" id="ano_atendimento"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="form-group row col-md-12">
+                                        <label class="col-md-9 m-t-7"><h5>Autor Da Violência</h5></label>                                    
+                                        <div class="form-group col-md-4 row">       
+                                            <label for="agressor" class="col-sm-3 text-right control-label col-form-label">Vínculo:</label>
+                                            <select class="select2 form-control custom-select" name="agressor" id="agressor" style="width: 50%; height:36px;">
+                                                <option>---</option>                                            
+                                                <option value="companheiro">Companheiro</option>
+                                                <option value="irmao">Irmão</option>
+                                                <option value="vizinho">Vizinho</option> 
+                                                <option value="marido">Marido</option>
+                                                <option value="namorado">Namorado</option>
+                                                <option value="pai">Pai</option>
+                                                <option value="Amigo">Amigo</option>
+                                                <option value="ex_marido">Ex-Marido</option>
+                                                <option value="ex_namorado">Ex-Namorado</option>
+                                                <option value="ex_companheiro">Ex-Companheiro</option>
+                                                <option value="padastro">Padastro</option>
+                                                <option value="parente">Parente</option>
+                                                <option value="desconhecido">Desconhecido</option>
+                                            </select> 
+                                        </div>
+                                        <div class="form-group row col-md-4">
+                                            <label for="agressor" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
+                                            <div class="form-group col-md-7">
+                                                <input class="form-control" type="text" id="agressor"/>
+                                            </div>
+                                        </div>                                       
+                                        <div class="form-group col-md-4 row">       
+                                            <label for="tipo_viol" class="col-sm-6 text-right control-label col-form-label">Tipo de Violência:</label>
+                                            <select class="select2 form-control custom-select" name="tipo_viol" id="tipo_viol" style="width: 50%; height:36px;">
+                                                <option>---</option>                                            
+                                                <option value="fisica">Física</option>
+                                                <option value="psicologica">Psicológica</option>
+                                                <option value="patrimonial">Patrimonal</option>
+                                                <option value="sexual">Sexual</option>
+                                                <option value="moral">Moral</option>   
+                                                <option value="ameaca_morte">Ameaça de Morte</option>
+                                                <option value="homicidio">Tentativa de Homicídio</option>
+                                            </select>
+                                        </div>                                    
+                                    </div>
+                                    <div class="form-group row col-md-12">
+                                        <label class="col-md-9 m-t-7"><h5>Principais Quadros Clínicos Apresentados/Diagnóstico</h5></label>                                    
+                                        <div class="col-md-4 row"> 
+                                            <label for="quadro_clinico" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
+                                            <select class="select2 form-control custom-select" name="quadro_clinico" id="quadro_clinico" style="width: 50%; height:36px;">
+                                                <option>---</option>                                            
+                                                <option value="depressao">Depressão</option>  
+                                                <option value="toc">TOC</option>
+                                                <option value="sin_pan">Síndrome Do Pânico</option>
+                                                <option value="depen_quim">Dependência Química</option>
+                                                <option value="ansiedade">Ansiedade</option>
+                                            </select> 
+                                        </div>
+                                        <div class="row col-md-5">
+                                            <label for="quadro_clinico" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
+                                            <div class="form-group col-md-8">
+                                                <input class="form-control" type="text" id="quadro_clinico"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <label for="desc_caso" class="text-right control-label col-form-label"><h5>Descrição do Caso e Informações Relevantes Colhidas Durante a Escuta:</h5></label>
+                                                    <!-- Create the editor container -->
+                                                    <textarea name="desc_caso" style="height: 150px; width: 550px;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                            <button type="button" class="btn btn-success">Salvar</button>
+                                            <a type="reset" class="btn btn-danger" href="<?= base_url() ?>agenda/listar_agenda">Cancelar</a>
+                                        </div>                                        
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>    
-
-                </div>
-                <!-- ============================================================== -->
-
-                <!-- ============================================================== -->
-                <!-- End Container fluid  -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- footer -->
-                <!-- ============================================================== -->
-                <footer class="footer text-center">
-                    <!--  All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>. -->
-                </footer>
-                <!-- ============================================================== -->
-                <!-- End footer -->
-                <!-- ============================================================== -->
-            </div>
+                    </div>                   
+                </div>                
+            </div>            
+            <!-- footer -->
             <!-- ============================================================== -->
-            <!-- End Page wrapper  -->
+            <footer class="footer text-center">
+                <!--  All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>. -->
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
             <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Wrapper -->
+        <!-- End Page wrapper  -->
         <!-- ============================================================== -->
 
-        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg">                            
+
+        <!-- ============================================================== -->
+        <!-- End Wrapper -->
+        <!-- ============================================================== -->
+        <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">                              
                 <div class="modal-content">
                     <div class="modal-header">
                       <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                        <h4 class="modal-title" id="myModalLabel">Pesquisar Prontuário</h4>
+                        <h4 class="modal-title" id="myModalLabel"></h4>
                     </div>
                     <div class="modal-body">         
-                        <div class="col-md-12 form-group">                       
-                            <input type="text" name="pesquisar_p" id="pesquisar_p" class="form-control" placeholder="Nome ou CPF">
-                        </div>  
-                        <div id="check"></div>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title m-b-0">Informações De Outros Atendimentos:</h5>
+                                    <div class="form-group m-t-20">
+                                        <label>Cursos Já Realizados Na CRM:<small class="text-muted"></small></label>
+                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                            <input class="form-control col-md-4" value="<?= $aten->qual_curso; ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label>Atendimentos Já Recebidos Pela Equipe Técnica Da CRM:<small class="text-muted"></small></label>
+                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                            <?php
+                                            if ($aten->tipo_atendimento === 'servico_social') {
+                                                $atend = 'Serviço Social';
+                                            }
+                                            if ($aten->tipo_atendimento === 'psicologico') {
+                                                $atend = 'Psicológico';
+                                            }
+                                            if ($aten->tipo_atendimento === 'juridico') {
+                                                $atend = 'Jurídico';
+                                            }
+                                            ?>
+                                            <input class="form-control form-group col-md-4" value="<?= $atend; ?>" disabled/>
+                                            <span class="form-group">Ano:</span><input class="form-control form-group col-md-4" value="<?= $aten->ano_atendimento ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Autor Da Violência:<small class="text-muted"></small></label>
+                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                            <input class="form-control col-md-4" value="<?= $aten->agressor; ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tipo de Violência:<small class="text-muted"></small></label>
+                                        <?php foreach ($violencia as $viol) { ?>
+                                            <input class="form-control col-md-4" value="<?= $viol->descricao; ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quadro Clínico:<small class="text-muted"></small></label>
+                                        <?php foreach ($quadro_clinico as $qdr) { ?>
+                                            <input class="form-control col-md-4" value="<?= $qdr->descricao; ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Descrição Do Caso:<small class="text-muted"></small></label>
+                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                            <textarea class="form-control" style=" height: 100px; width: 300px;" disabled> 
+                                                <?= $aten->descricao_caso ?>
+                                            </textarea>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                     
                     </div>
                     <div class="modal-footer">
-                        <a href="" class="btn btn-danger" >Fechar</a>
-                        <button type="button" class="btn btn-success" id="pesquisar">Pesquisar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+
                     </div>
                 </div>                    
             </div>
@@ -399,8 +513,26 @@
                 </form>      
             </div>
         </div> 
-
-
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg">                            
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">Pesquisar Prontuário</h4>
+                    </div>
+                    <div class="modal-body">         
+                        <div class="col-md-12 form-group">                       
+                            <input type="text" name="pesquisar_p" id="pesquisar_p" class="form-control" placeholder="Nome ou CPF">
+                        </div>  
+                        <div id="check"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn btn-danger" >Fechar</a>
+                        <button type="button" class="btn btn-success" id="pesquisar">Pesquisar</button>
+                    </div>
+                </div>                    
+            </div>
+        </div>
         <!-- ============================================================== -->
         <!-- All Jquery -->
         <!-- ============================================================== -->
@@ -430,49 +562,51 @@
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
         <script>
-                                                    //***********************************//
-                                                    // For select 2
-                                                    //***********************************//
-                                                    $(".select2").select2();
+            function pegarDataAtual() {
+                data = new Date();
+                document.getElementById('data_atendimento').value = data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear();
+            }
+        </script>
+        <script>
+            //***********************************//
+            // For select 2
+            //***********************************//
+            $(".select2").select2();
+            /*colorpicker*/
+            $('.demo').each(function () {
+                //
+                // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                //
+                //  $(selector).minicolors();
+                //
+                // The way I've done it below is just for the demo, so don't get confused
+                // by it. Also, data- attributes aren't supported at this time...they're
+                // only used for this demo.
+                //
+                $(this).minicolors({
+                    control: $(this).attr('data-control') || 'hue',
+                    position: $(this).attr('data-position') || 'bottom left',
+                    change: function (value, opacity) {
+                        if (!value)
+                            return;
+                        if (opacity)
+                            value += ', ' + opacity;
+                        if (typeof console === 'object') {
+                            console.log(value);
+                        }
+                    },
+                    theme: 'bootstrap'
+                });
+            });
+            /*datwpicker*/
+            jQuery('.mydatepicker').datepicker();
+            jQuery('#datepicker-autoclose').datepicker({
+                autoclose: true,
+                todayHighlight: true
+            });
+            var quill = new Quill('#editor', {
 
-                                                    /*colorpicker*/
-                                                    $('.demo').each(function () {
-                                                        //
-                                                        // Dear reader, it's actually very easy to initialize MiniColors. For example:
-                                                        //
-                                                        //  $(selector).minicolors();
-                                                        //
-                                                        // The way I've done it below is just for the demo, so don't get confused
-                                                        // by it. Also, data- attributes aren't supported at this time...they're
-                                                        // only used for this demo.
-                                                        //
-                                                        $(this).minicolors({
-                                                            control: $(this).attr('data-control') || 'hue',
-                                                            position: $(this).attr('data-position') || 'bottom left',
-
-                                                            change: function (value, opacity) {
-                                                                if (!value)
-                                                                    return;
-                                                                if (opacity)
-                                                                    value += ', ' + opacity;
-                                                                if (typeof console === 'object') {
-                                                                    console.log(value);
-                                                                }
-                                                            },
-                                                            theme: 'bootstrap'
-                                                        });
-
-                                                    });
-                                                    /*datwpicker*/
-                                                    jQuery('.mydatepicker').datepicker();
-                                                    jQuery('#datepicker-autoclose').datepicker({
-                                                        autoclose: true,
-                                                        todayHighlight: true
-                                                    });
-                                                    var quill = new Quill('#editor', {
-                                                        theme: 'snow'
-                                                    });
-
+                theme: 'snow'});
         </script>
     </body>
 

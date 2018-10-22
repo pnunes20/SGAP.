@@ -257,267 +257,273 @@
                 <!-- ============================================================== -->
                 <!-- Container fluid  -->
                 <!-- ============================================================== -->
+                <!-- Container fluid  -->
+                <!-- ============================================================== -->
                 <div class="container-fluid">
                     <!-- ============================================================== -->
                     <!-- Start Page Content -->
                     <!-- ============================================================== -->
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="card">
-                                <form class="form-horizontal" action="<?= base_url('atendimento/salvar_prontuario/') ?>" method="post">
-                                    <input type="hidden" name="cod_usuaria" value="<?= $usuaria[0]->cod_usuaria; ?> "/>
-                                    <div class="card-body">
-                                        <h4 class="card-title">Usuária: <?= $usuaria[0]->nome; ?> </h4> <br>
-                                        <div class=" row col-md-12">
-                                            <label class="col-md-9"><h5>Já Fez Algum Curso Pela CRM?</h5></label>                                       
-                                            <div class="row col-md-8">
-                                                <div class=" custom-control custom-radio col-md-3 row">
-                                                    <input type="radio" class="custom-control-input" id="radio_curso_sim" name="radio_curso" required>
-                                                    <label class="custom-control-label" for="radio_curso_sim">Sim</label>
-                                                </div>                              
-                                                <div class="custom-control custom-radio col-md-3 row">
-                                                    <input type="radio" class="custom-control-input" id="radio_curso_nao" name="radio_curso" required>
-                                                    <label class="custom-control-label" for="radio_curso_nao">Não</label>
-                                                </div>     
-                                                <div class="row col-md-5">
-                                                    <label for="qual_curso" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                                    <div class="form-group col-md-7">
-                                                        <input class="form-control" type="text" name="qual_curso" id="qual_curso"/>
-                                                    </div> 
-                                                </div>
-                                            </div>    
+                                <div class="card-body">
+                                    <h5 class="card-title m-b-0">Dados Cadastrais</h5>
+                                    <div class="form-group m-t-20">
+                                        <div class="form-group m-t-20">
+                                            <label>ID:<small class="text-muted"></small></label>                                      
+                                            <input class="form-control col-md-4" value="<?= $usuaria[0]->cod_usuaria; ?>" disabled/>                                     
                                         </div>
-                                    </div> 
+                                        <label>Nome:<small class="text-muted"></small></label>                                      
+                                        <input class="form-control col-md-6" value="<?= $usuaria[0]->nome; ?>" disabled/>                                     
+                                    </div>
+                                    <div class="form-group m-t-20">
+                                        <label>CPF:<small class="text-muted"></small></label>                                      
+                                        <input class="form-control col-md-6" value="<?= $usuaria[0]->CPF; ?>" disabled/>                                     
+                                    </div>
+                                    <div class="form-group m-t-20">
+                                        <label>RG:<small class="text-muted"></small></label>                                      
+                                        <input class="form-control col-md-4" value="<?= $usuaria[0]->RG; ?>" disabled/>                                     
+                                    </div>
+                                    <div class="form-group m-t-20">
+                                        <label>Telefone:<small class="text-muted"></small></label>                                      
+                                        <input class="form-control col-md-6" value="<?= $usuaria[0]->telefone; ?>" disabled/>                                     
+                                    </div>
+                                    <div class="form-group m-t-20">
+                                        <label>Sexo:<small class="text-muted"></small></label>         
+                                        <?php
+                                        if ($usuaria[0]->sexo === 'F') {
+                                            $sexo = 'Feminino';
+                                        }
+                                        if ($usuaria[0]->sexo === 'M') {
+                                            $sexo = 'Masculino';
+                                        }
+                                        if ($usuaria[0]->sexo === 'H') {
+                                            $sexo = 'Hermafrodita';
+                                        }
+                                        ?>
+                                        <input class="form-control form-group col-md-4" value="<?= $sexo; ?>" disabled/>
+                                    </div>
+                                </div>
+                            </div>                 
+                        </div>   
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title m-b-0">Informações Do Atendimento Psicológico</h5>
+                                    <div class="form-group m-t-20">
+                                        <label>Atendimento Realizado na Data:<small class="text-muted"></small></label>
+                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                            <input class="form-control col-md-6" value="<?= date("d/m/Y", strtotime($aten->data_atendimento)); ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="form-group m-t-20">
+                                        <label>Cursos Já Realizados Na CRM:<small class="text-muted"></small></label>
+                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                            <input class="form-control col-md-6" value="<?= $aten->qual_curso; ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
                                     <div class="form-group row col-12">
-                                        <label class="col-md-7 m-t-7"><h5>Anteriormente Já Recebeu Outro Atendimento Pela Equipe Técnica da CRM?</h5></label>                                    
-                                        <div class="col-md-6 row"> 
-                                            <label for="tipo_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                            <select class="select2 form-control custom-select" multiple="multiple" name="tipo_atendimento" id="tipo_atendimento" style="width: 40%; height:36px;">
-                                                <option value="nenhum">Nenhum</option>   
-                                                <option value="servico_social">Serviço Social</option>                                             
-                                                <option value="juridico">Jurídico</option>                              
-                                            </select> 
+                                        <label>Outros Atendimentos Recebidos Pela Equipe Técnica Da CRM:<small class="text-muted"></small></label>
+                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                            <?php
+                                            if ($aten->tipo_atendimento === 'servico_social') {
+                                                $atend = 'Serviço Social';
+                                            }
+                                            if ($aten->tipo_atendimento === 'psicologico') {
+                                                $atend = 'Psicológico';
+                                            }
+                                            if ($aten->tipo_atendimento === 'juridico') {
+                                                $atend = 'Jurídico';
+                                            }
+                                            if ($aten->tipo_atendimento === 'nenhum') {
+                                                $atend = 'Nenhum';
+                                            }
+                                            ?>
+                                            <input class="form-control form-group col-md-6" value="<?= $atend; ?>" disabled/>
+                                            <span class="form-group">Ano:</span><input class="form-control form-group col-md-4" value="<?= $aten->ano_atendimento ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Autor Da Violência:<small class="text-muted"></small></label>
+                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                            <input class="form-control col-md-4" value="<?= $aten->agressor; ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tipo de Violência:<small class="text-muted"></small></label>
+                                        <?php foreach ($violencia as $viol) { ?>
+                                            <input class="form-control col-md-4" value="<?= $viol->descricao; ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quadro Clínico:<small class="text-muted"></small></label>
+                                        <?php foreach ($quadro_clinico as $qdr) { ?>
+                                            <?php
+                                            if ($qdr->descricao === 'sin_pan') {
+                                                $quadro = 'Síndrome Do Pânico';
+                                            }
+                                            if ($qdr->descricao === 'depressao') {
+                                                $quadro = 'Depressão';
+                                            }
+                                            if ($qdr->descricao === 'toc') {
+                                                $quadro = 'TOC';
+                                            }
+                                            if ($qdr->descricao === 'depen_quim') {
+                                                $quadro = 'Dependência Química';
+                                            }
+                                            if ($qdr->descricao === 'ansiedade') {
+                                                $quadro = 'Ansiedade';
+                                            }
+                                            ?>
+                                            <input class="form-control col-md-4" value="<?= $quadro ?>" disabled/>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Descrição Do Caso:<small class="text-muted"></small></label>
+                                        <?php foreach ($atendimento_psicologico as $aten) { ?>                                          
+                                            <textarea class="form-control" style=" height: 100px; width: 300px;" disabled> 
+                                                <?= $aten->descricao_caso ?>
+                                            </textarea>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <!--                              
+                                                            </div>
+                                                        </div>
+                                                    </div>            
+                                                </div>
+                                            </div>            
+                                <!-- footer -->
+                                <!-- ============================================================== -->
+                                <footer class="footer text-center">
+                                    <!--  All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>. -->
+                                </footer>
+                                <!-- ============================================================== -->
+                                <!-- End footer -->
+                                <!-- ============================================================== -->
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- End Page wrapper  -->
+                            <!-- ============================================================== -->
+                            <!-- ============================================================== -->
+                            <!-- End Wrapper -->
+                            <!-- ============================================================== -->
+                            <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog modal-lg">                            
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                                            <h4 class="modal-title" id="myModalLabel">Pesquisar Prontuário</h4>
                                         </div>
-                                        <div class="row col-md-5">
-                                            <label for="ano_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual Ano:</label>
-                                            <div class="form-group col-md-4">
-                                                <input class="form-control" type="number" name="ano_atendimento" id="ano_atendimento"/>
+                                        <div class="modal-body">         
+                                            <div class="col-md-12 form-group">                       
+                                                <input type="text" name="pesquisar_p" id="pesquisar_p" class="form-control" placeholder="Nome ou CPF">
+                                            </div>  
+                                            <div id="check"></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="" class="btn btn-danger" >Fechar</a>
+                                            <button type="button" class="btn btn-success" id="pesquisar">Pesquisar</button>
+                                        </div>
+                                    </div>                    
+                                </div>
+                            </div> 
+                            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog">
+                                    <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                              <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                                                <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
+                                            </div>
+                                            <div class="modal-body">         
+                                                <div class="col-md-12 form-group">                       
+                                                    <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
+                                                </div>                        
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-success">Pesquisar</button>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                  
-                                    <br>
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Autor Da Violência</h5></label>                                    
-                                        <div class="form-group col-md-4 row">       
-                                            <label for="agressor" class="col-sm-3 text-right control-label col-form-label">Vínculo:</label>
-                                            <select class="select2 form-control custom-select" name="agressor" id="agressor" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="companheiro">Companheiro</option>
-                                                <option value="irmao">Irmão</option>
-                                                <option value="vizinho">Vizinho</option> 
-                                                <option value="marido">Marido</option>
-                                                <option value="namorado">Namorado</option>
-                                                <option value="pai">Pai</option>
-                                                <option value="Amigo">Amigo</option>
-                                                <option value="ex_marido">Ex-Marido</option>
-                                                <option value="ex_namorado">Ex-Namorado</option>
-                                                <option value="ex_companheiro">Ex-Companheiro</option>
-                                                <option value="padastro">Padastro</option>
-                                                <option value="parente">Parente</option>
-                                                <option value="desconhecido">Desconhecido</option>
-                                            </select> 
-                                        </div>
-                                        <!--                                        <div class="form-group row col-md-4">
-                                                                                    <label for="agressor" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
-                                                                                    <div class="form-group col-md-7">
-                                                                                        <input class="form-control" type="text" id="agressor"/>
-                                                                                    </div>
-                                                                                </div>   
-                                        -->
-                                        
-                                    </div>
-                                    <div class="form-group row col-12">
-                                        <label class="col-md-12 m-t-7"><h5>Tipo de Violência</h5></label>                                    
-                                        <div class="col-md-8"> 
-                                            <select class="select2 form-control custom-select" multiple="multiple" name="tipo_viol" id="tipo_viol" style="width: 30%; height:36px;">
-                                                <option value="NI">Não Informado</option>                                            
-                                                <option value="fisica">Física</option>
-                                                <option value="psicologica">Psicológica</option>
-                                                <option value="patrimonial">Patrimonal</option>
-                                                <option value="sexual">Sexual</option>
-                                                <option value="moral">Moral</option>   
-                                                <option value="ameaca_morte">Ameaça de Morte</option>
-                                                <option value="homicidio">Tentativa de Homicídio</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Principais Quadros Clínicos Apresentados/Diagnóstico</h5></label>                                    
-                                        <div class="col-md-6"> 
-                                            
-                                            <select class="select2 form-control custom-select" multiple="multiple" name="quadro_clinico" id="quadro_clinico" style="width: 50%; height:36px;">
-                                                <option value="NID"></option>                                            
-                                                <option value="depressao">Depressão</option>  
-                                                <option value="toc">TOC</option>
-                                                <option value="sin_pan">Síndrome Do Pânico</option>
-                                                <option value="depen_quim">Dependência Química</option>
-                                                <option value="ansiedade">Ansiedade</option>
-                                            </select> 
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Descrição do Caso e Informações Relevantes Colhidas Durante a Escuta:</h5></label>                                    
-                                        <div class="form-group col-md-4"> 
-                                            <textarea class="form-control form-group" name="desc_caso" style="height: 150px; width: 550px;"></textarea>
-                                        </div>
-                                    </div>
+                                    </form>      
+                                </div>
+                            </div> 
+                            <!-- ============================================================== -->
+                            <!-- All Jquery -->
+                            <!-- ============================================================== -->
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
+                            <!-- Bootstrap tether Core JavaScript -->
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+                            <!-- slimscrollbar scrollbar JavaScript -->
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
+                            <!--Wave Effects -->
+                            <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
+                            <!--Menu sidebar -->
+                            <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
+                            <!--Custom JavaScript -->
+                            <script type="text/javascript" src="<?= base_url(); ?>assets/javascriptcustom.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
+                            <!-- This Page JS -->
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
+                            <script>
+                                function pegarDataAtual() {
+                                    data = new Date();
+                                    document.getElementById('data_atendimento').value = data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear();
+                                }
+                            </script>
+                            <script>
+                                //***********************************//
+                                // For select 2
+                                //***********************************//
+                                $(".select2").select2();
+                                /*colorpicker*/
+                                $('.demo').each(function () {
+                                    //
+                                    // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                                    //
+                                    //  $(selector).minicolors();
+                                    //
+                                    // The way I've done it below is just for the demo, so don't get confused
+                                    // by it. Also, data- attributes aren't supported at this time...they're
+                                    // only used for this demo.
+                                    //
+                                    $(this).minicolors({
+                                        control: $(this).attr('data-control') || 'hue',
+                                        position: $(this).attr('data-position') || 'bottom left',
+                                        change: function (value, opacity) {
+                                            if (!value)
+                                                return;
+                                            if (opacity)
+                                                value += ', ' + opacity;
+                                            if (typeof console === 'object') {
+                                                console.log(value);
+                                            }
+                                        },
+                                        theme: 'bootstrap'
+                                    });
+                                });
+                                /*datwpicker*/
+                                jQuery('.mydatepicker').datepicker();
+                                jQuery('#datepicker-autoclose').datepicker({
+                                    autoclose: true,
+                                    todayHighlight: true
+                                });
+                                var quill = new Quill('#editor', {
 
-                                    <div class="border-top">
-                                        <div class="card-body">
-                                            <button type="submit" class="btn btn-success">Salvar</button>
-                                            <a type="reset" class="btn btn-danger" href="<?= base_url() ?>agenda/listar_agenda">Cancelar</a>
-                                        </div>                                        
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>                   
-                </div>                
-            </div>            
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer text-center">
-                <!--  All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>. -->
-            </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- End Wrapper -->
-        <!-- ============================================================== -->
-        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg">                            
-                <div class="modal-content">
-                    <div class="modal-header">
-                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                        <h4 class="modal-title" id="myModalLabel">Pesquisar Prontuário</h4>
-                    </div>
-                    <div class="modal-body">         
-                        <div class="col-md-12 form-group">                       
-                            <input type="text" name="pesquisar_p" id="pesquisar_p" class="form-control" placeholder="Nome ou CPF">
-                        </div>  
-                        <div id="check"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="" class="btn btn-danger" >Fechar</a>
-                        <button type="button" class="btn btn-success" id="pesquisar">Pesquisar</button>
-                    </div>
-                </div>                    
-            </div>
-        </div> 
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog">
-                <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
-                    <div class="modal-content">
-                        <div class="modal-header">
-                          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                            <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
-                        </div>
-                        <div class="modal-body">         
-                            <div class="col-md-12 form-group">                       
-                                <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
-                            </div>                        
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-success">Pesquisar</button>
-                        </div>
-                    </div>
-                </form>      
-            </div>
-        </div> 
-        <!-- ============================================================== -->
-        <!-- All Jquery -->
-        <!-- ============================================================== -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap tether Core JavaScript -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- slimscrollbar scrollbar JavaScript -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
-        <!--Wave Effects -->
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
-        <!--Menu sidebar -->
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
-        <!--Custom JavaScript -->
-        <script type="text/javascript" src="<?= base_url(); ?>assets/javascriptcustom.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
-        <!-- This Page JS -->
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
-        <script>
-            function pegarDataAtual() {
-                data = new Date();
-                document.getElementById('data_atendimento').value = data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear();
-            }
-        </script>
-        <script>
-            //***********************************//
-            // For select 2
-            //***********************************//
-            $(".select2").select2();
-            /*colorpicker*/
-            $('.demo').each(function () {
-                //
-                // Dear reader, it's actually very easy to initialize MiniColors. For example:
-                //
-                //  $(selector).minicolors();
-                //
-                // The way I've done it below is just for the demo, so don't get confused
-                // by it. Also, data- attributes aren't supported at this time...they're
-                // only used for this demo.
-                //
-                $(this).minicolors({
-                    control: $(this).attr('data-control') || 'hue',
-                    position: $(this).attr('data-position') || 'bottom left',
-                    change: function (value, opacity) {
-                        if (!value)
-                            return;
-                        if (opacity)
-                            value += ', ' + opacity;
-                        if (typeof console === 'object') {
-                            console.log(value);
-                        }
-                    },
-                    theme: 'bootstrap'
-                });
-            });
-            /*datwpicker*/
-            jQuery('.mydatepicker').datepicker();
-            jQuery('#datepicker-autoclose').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            });
-            var quill = new Quill('#editor', {
+                                    theme: 'snow'});
+                            </script>
+                            </body>
 
-                theme: 'snow'});
-        </script>
-    </body>
-
-</html>
+                            </html>

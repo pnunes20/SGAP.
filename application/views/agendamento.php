@@ -94,11 +94,11 @@
                             <!-- ============================================================== -->
                             <!-- Search -->
                             <!-- ============================================================== -->
-                            <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <!-- <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                                 <form class="app-search position-absolute">
                                     <input type="text" class="form-control" placeholder="Pesquisar"> <a class="srh-btn"><i class="ti-close"></i></a>
                                 </form>
-                            </li>
+                            </li> -->
                         </ul>
                         <!-- ============================================================== -->
                         <!-- Right side toggle and nav items -->
@@ -214,21 +214,11 @@
                     <!-- Sidebar navigation-->
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="p-t-30">
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Início</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda/listar_agenda" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Início</span></a></li>
                             <li class="sidebar-item"> <a data-toggle="modal" data-target="#myModal2" class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
-
-                           <!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"><a href="<?= base_url(); ?>usuario" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Usuários </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
-                                    <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
-                                </ul>
-                            </li> -->
-
-
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" data-toggle="modal" data-target="#myModal3" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Prontuários</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Relatórios</span></a></li>
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
@@ -273,71 +263,52 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
-                                <form class="form-horizontal" action="<?= base_url(); ?>agenda/agendar" method="post">
-                                    <div class="card-body">
-                                        <h4 class="card-title"></h4>
-                                        <label><h5>Usuária</h5></label>
-                                        <div class="form-group col-md-6">
-                                            <input type="text" class="form-control" name="nome" id="nome">                                            
-                                        </div> 
-                                        <br>
-                                        <label><h5>CPF</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="text" class="form-control" name="CPF" id="CPF">                                            
-                                        </div>  
-                                        <br>
-                                        <label><h5>Data</h5></label>
-                                        <div class="input-group col-md-6">                                           
-                                            <input type="date" class="form-control" name="data_agenda" id="data_agenda">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-calendar-alt"></i></span>
-                                            </div> 
+                                <div class="card-body">
+                                    <h4 class="card-title"></h4>
+                                    <label><h5>Usuária</h5></label>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" name="nome" id="nome" required>                                            
+                                    </div> 
+                                    <br>
+                                    <label><h5>CPF</h5></label>
+                                    <div class="input-group col-md-6">
+                                        <input type="text" class="form-control" name="CPF" id="CPF">                                            
+                                    </div>  
+                                    <br> 
+                                    <label><h5>Data</h5></label>
+                                    <div class="input-group col-md-6">
+                                        <input type="date" class="form-control" name="data_agenda" id="data_agenda" required> 
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>   
-                                        <br>
-                                        <label><h5>Horário</h5></label>
-                                        <div class="input-group col-md-6">
-                                            <input type="time" class="form-control" name="horario_agenda" id="horario_agenda"> 
-                                            <div class="input-group-append">
-                                                <a data-toggle="modal" data-target="#myModal3" class="input-group-text btn"><i class="fa fa-clock"></i></a>
-                                            </div> 
-                                        </div>     
+                                    </div>   
+                                    <br>
+                                    <label><h5>Horário</h5></label>
+                                    <div class="input-group col-md-6">
+                                        <input type="time" class="form-control" name="horario_agenda" id="horario_agenda" required>  
+                                        <div class="input-group-append">                                               
+                                            <span class="input-group-text"><i class="fa fa-clock"></i></span>                                                 
+                                        </div>   
                                     </div>
+                                    <div id="resulth"></div>
+                                    <br>
                                     <div class="border-top">
+                                        <div id="resulthd"></div>
                                         <div class="card-body">
-                                            <button type="submit" class="btn btn-success">Salvar</button>
-                                            <button type="reset" class="btn btn-danger">Cancelar</button>
+                                            <button type="button" id="agenda" class="btn btn-success">Agendar</button>
+                                            <a class="btn btn-danger" href="<?= base_url() ?>agenda/listar_agenda">Cancelar</a>
                                         </div>                                        
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- mostrar horarios disponíveis -->
-                        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <table class=" table table-borderless">
-                                        <thead>
-                                            <tr>
-                                                <th>Disponíveis</th>  
-                                                <th>Indisponíveis</th>
-                                                <th></th> 
-                                            </tr>
-                                        </thead>
-                                        <tbody>    
-                                            <?php foreach ($agenda as $age) { ?>                                    
-                                                <tr>
-                                                    <td></td> 
-                                                    <td class="table-warning"><?= $age->horario_agenda; ?></td>
-                                                    <td></td>
-                                                </tr>                               
-                                            <?php } ?>   
-                                        </tbody>
-                                    </table>
+                                    </div>                                         
                                 </div>
+
                             </div>
                         </div> 
-
+                        <!-- AQUI MOSTRA OS HORARIOS AGENDADOS -->
+                        <div class="col-md-6">
+                            <div id="resultado">                                  
+                            </div>                    
+                        </div> 
+                        <!--################################## -->
                     </div>             
                 </div>                 
             </div>            
@@ -345,7 +316,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+                <!--  All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>. -->
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -354,105 +325,126 @@
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog">
-            <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
+
+        <!-- ============================================================== -->
+        <!-- End Wrapper -->
+        <!-- ============================================================== -->
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg">                            
                 <div class="modal-content">
                     <div class="modal-header">
                       <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                        <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
+                        <h4 class="modal-title" id="myModalLabel">Pesquisar Prontuário</h4>
                     </div>
                     <div class="modal-body">         
                         <div class="col-md-12 form-group">                       
-                            <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
-                        </div>                        
+                            <input type="text" name="pesquisar_p" id="pesquisar_p" class="form-control" placeholder="Nome ou CPF">
+                        </div>  
+                        <div id="check"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success">Pesquisar</button>
+                        <a href="" class="btn btn-danger" >Fechar</a>
+                        <button type="button" class="btn btn-success" id="pesquisar">Pesquisar</button>
                     </div>
-                </div>
-            </form>      
-        </div>
-    </div> 
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
-    <!-- This Page JS -->
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
-    <script>
-        //***********************************//
-        // For select 2
-        //***********************************//
-        $(".select2").select2();
+                </div>                    
+            </div>
+        </div> 
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                            <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
+                        </div>
+                        <div class="modal-body">         
+                            <div class="col-md-12 form-group">                       
+                                <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
+                            </div>                        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Pesquisar</button>
+                        </div>
+                    </div>
+                </form>      
+            </div>
+        </div> 
+        <!-- ============================================================== -->
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
+        <!--Wave Effects -->
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
+        <!--Custom JavaScript -->
+        <script type="text/javascript" src="<?= base_url(); ?>assets/javascriptcustom.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
+        <!-- This Page JS -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
+        <script>
+            //***********************************//
+            // For select 2
+            //***********************************//
+            $(".select2").select2();
 
-        /*colorpicker*/
-        $('.demo').each(function () {
-            //
-            // Dear reader, it's actually very easy to initialize MiniColors. For example:
-            //
-            //  $(selector).minicolors();
-            //
-            // The way I've done it below is just for the demo, so don't get confused
-            // by it. Also, data- attributes aren't supported at this time...they're
-            // only used for this demo.
-            //
-            $(this).minicolors({
-                control: $(this).attr('data-control') || 'hue',
-                position: $(this).attr('data-position') || 'bottom left',
+            /*colorpicker*/
+            $('.demo').each(function () {
+                //
+                // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                //
+                //  $(selector).minicolors();
+                //
+                // The way I've done it below is just for the demo, so don't get confused
+                // by it. Also, data- attributes aren't supported at this time...they're
+                // only used for this demo.
+                //
+                $(this).minicolors({
+                    control: $(this).attr('data-control') || 'hue',
+                    position: $(this).attr('data-position') || 'bottom left',
 
-                change: function (value, opacity) {
-                    if (!value)
-                        return;
-                    if (opacity)
-                        value += ', ' + opacity;
-                    if (typeof console === 'object') {
-                        console.log(value);
-                    }
-                },
-                theme: 'bootstrap'
+                    change: function (value, opacity) {
+                        if (!value)
+                            return;
+                        if (opacity)
+                            value += ', ' + opacity;
+                        if (typeof console === 'object') {
+                            console.log(value);
+                        }
+                    },
+                    theme: 'bootstrap'
+                });
+
+            });
+            /*datwpicker*/
+            jQuery('.mydatepicker').datepicker();
+            jQuery('#datepicker-autoclose').datepicker({
+                autoclose: true,
+                todayHighlight: true
+                        language: 'pt-BR'
+            });
+            var quill = new Quill('#editor', {
+                theme: 'snow'
             });
 
-        });
-        /*datwpicker*/
-        jQuery('.mydatepicker').datepicker();
-        jQuery('#datepicker-autoclose').datepicker({
-            autoclose: true,
-            todayHighlight: true
-                    language: 'pt-BR'
-        });
-        var quill = new Quill('#editor', {
-            theme: 'snow'
-        });
+        </script>  
 
-    </script>  
-
-</body>
+    </body>
 
 </html>
