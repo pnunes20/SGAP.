@@ -16,8 +16,6 @@ class Dashboard extends CI_Controller {
 
     public function login($indice = null) {
         if ($indice == 1) {
-            $data['msg'] = "";
-            $this->load->view('includes/msg_erro', $data);
             $teste['key'] = '1';
             $this->load->view('login', $teste);
         } else {
