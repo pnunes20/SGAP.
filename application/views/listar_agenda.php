@@ -264,6 +264,7 @@
                             <label class="form-group col-md-5">Filtrar Por Data:</label>
                             <input type="date" class="form-control form-group col-md-6" id="pesq-date" />                            
                         </div>   
+
                         <div id="result-pesq" class="col-md-11 table table-responsive form-group">
                             <table class=" table table-striped table-hover table-condensed">
                                 <thead class="">
@@ -286,7 +287,7 @@
                                                 <form action="<?= base_url() ?>atendimento" method="post">
                                                     <input type="hidden" name="nome_usu" value="<?= $age->nome ?>"/>
                                                     <button type="submit" class="btn btn-success btn-group">Atendimento</button>
-                                                    <a href="<?= base_url('agenda/editar/' . $age->cod_agenda) ?>" class="btn btn-primary btn-group">Editar</a>                                                        
+                                                    <a href="<?= base_url('agenda/editar/' . $age->cod_agenda) ?>" class="btn btn-primary btn-group">Alterar Data Ou Horário</a>                                                        
                                                     <a href="<?= base_url('agenda/excluir/' . $age->cod_agenda) ?>" class="btn btn-danger btn-group" onclick="return confirm('Este Agendamento Será Cancelado! Continuar?');">Cancelar</a>    
                                                     <a class="btn btn-info btn-group" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dados Da Usuária</a>
                                                     <div class="dropdown-menu dropdown-menu-right user-dd animated"> 
@@ -330,9 +331,8 @@
                               <?php
                               $n_pag+=$reg_p_pag;
                               } */ ?>
-                        </div>
+                        </div>                    
                     </div>    
-
                 </div>
                 <!-- ============================================================== -->
 
@@ -430,48 +430,48 @@
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
         <script>
-                                                    //***********************************//
-                                                    // For select 2
-                                                    //***********************************//
-                                                    $(".select2").select2();
+                                                            //***********************************//
+                                                            // For select 2
+                                                            //***********************************//
+                                                            $(".select2").select2();
 
-                                                    /*colorpicker*/
-                                                    $('.demo').each(function () {
-                                                        //
-                                                        // Dear reader, it's actually very easy to initialize MiniColors. For example:
-                                                        //
-                                                        //  $(selector).minicolors();
-                                                        //
-                                                        // The way I've done it below is just for the demo, so don't get confused
-                                                        // by it. Also, data- attributes aren't supported at this time...they're
-                                                        // only used for this demo.
-                                                        //
-                                                        $(this).minicolors({
-                                                            control: $(this).attr('data-control') || 'hue',
-                                                            position: $(this).attr('data-position') || 'bottom left',
+                                                            /*colorpicker*/
+                                                            $('.demo').each(function () {
+                                                                //
+                                                                // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                                                                //
+                                                                //  $(selector).minicolors();
+                                                                //
+                                                                // The way I've done it below is just for the demo, so don't get confused
+                                                                // by it. Also, data- attributes aren't supported at this time...they're
+                                                                // only used for this demo.
+                                                                //
+                                                                $(this).minicolors({
+                                                                    control: $(this).attr('data-control') || 'hue',
+                                                                    position: $(this).attr('data-position') || 'bottom left',
 
-                                                            change: function (value, opacity) {
-                                                                if (!value)
-                                                                    return;
-                                                                if (opacity)
-                                                                    value += ', ' + opacity;
-                                                                if (typeof console === 'object') {
-                                                                    console.log(value);
-                                                                }
-                                                            },
-                                                            theme: 'bootstrap'
-                                                        });
+                                                                    change: function (value, opacity) {
+                                                                        if (!value)
+                                                                            return;
+                                                                        if (opacity)
+                                                                            value += ', ' + opacity;
+                                                                        if (typeof console === 'object') {
+                                                                            console.log(value);
+                                                                        }
+                                                                    },
+                                                                    theme: 'bootstrap'
+                                                                });
 
-                                                    });
-                                                    /*datwpicker*/
-                                                    jQuery('.mydatepicker').datepicker();
-                                                    jQuery('#datepicker-autoclose').datepicker({
-                                                        autoclose: true,
-                                                        todayHighlight: true
-                                                    });
-                                                    var quill = new Quill('#editor', {
-                                                        theme: 'snow'
-                                                    });
+                                                            });
+                                                            /*datwpicker*/
+                                                            jQuery('.mydatepicker').datepicker();
+                                                            jQuery('#datepicker-autoclose').datepicker({
+                                                                autoclose: true,
+                                                                todayHighlight: true
+                                                            });
+                                                            var quill = new Quill('#editor', {
+                                                                theme: 'snow'
+                                                            });
 
         </script>
     </body>

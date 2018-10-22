@@ -108,7 +108,7 @@ class Atendimento extends CI_Controller {
                     $this->db->where('cod_quadro_clinico', $cod);
                     $data['quadro_clinico'] = $this->db->get('quadro_clinico')->result();
                     foreach ($data['atendimento_psicologico'] as $da) {
-                        echo '<a href="'. base_url("atendimento/prontuario/". '' . $da->cod_atendimento . '').'" class="btn btn-success btn-group">Prontuário de ' . date("d/m/Y", strtotime($da->data_atendimento)) . '</a>';
+                        echo '<a href="'. base_url("atendimento/prontuario/". '' . $da->cod_atendimento . '').'" class="btn btn-secondary btn-group">Prontuário de ' . date("d/m/Y", strtotime($da->data_atendimento)) . '</a><br><br>';
                     }   
                 }
             }

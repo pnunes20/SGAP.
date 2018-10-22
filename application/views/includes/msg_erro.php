@@ -1,8 +1,7 @@
-
-
-<div class="alert alert-danger" role="alert">
+<div class="" role="alert">
     <?= $msg; ?>
 </div>
+
 
 
 
