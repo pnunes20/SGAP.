@@ -238,8 +238,7 @@
                 <!-- ============================================================== -->
                 <div class="page-breadcrumb">
                     <div class="row">
-                        <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Atendimento</h3>
+                        <div class="col-12 d-flex no-block align-items-center">                           
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -267,120 +266,70 @@
                                 <form class="form-horizontal" action="<?= base_url('atendimento/salvar_prontuario/') ?>" method="post">
                                     <input type="hidden" name="cod_usuaria" value="<?= $usuaria[0]->cod_usuaria; ?> "/>
                                     <div class="card-body">
-                                        <h4 class="card-title">Usuária: <?= $usuaria[0]->nome; ?> </h4> <br>
-                                        <div class=" row col-md-12">
-                                            <label class="col-md-9"><h5>Já Fez Algum Curso Pela CRM?</h5></label>                                       
-                                            <div class="row col-md-8">
-                                                <div class=" custom-control custom-radio col-md-3 row">
-                                                    <input type="radio" class="custom-control-input" id="radio_curso_sim" name="radio_curso" required>
-                                                    <label class="custom-control-label" for="radio_curso_sim">Sim</label>
-                                                </div>                              
-                                                <div class="custom-control custom-radio col-md-3 row">
-                                                    <input type="radio" class="custom-control-input" id="radio_curso_nao" name="radio_curso" required>
-                                                    <label class="custom-control-label" for="radio_curso_nao">Não</label>
-                                                </div>     
-                                                <div class="row col-md-5">
-                                                    <label for="qual_curso" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                                    <div class="form-group col-md-7">
-                                                        <input class="form-control" type="text" name="qual_curso" id="qual_curso"/>
-                                                    </div> 
-                                                </div>
-                                            </div>    
-                                        </div>
-                                    </div> 
-                                    <div class="form-group row col-12">
-                                        <label class="col-md-7 m-t-7"><h5>Anteriormente Já Recebeu Outro Atendimento Pela Equipe Técnica da CRM?</h5></label>                                    
-                                        <div class="col-md-6 row"> 
-                                            <label for="tipo_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual:</label>
-                                            <select class="select2 form-control custom-select" multiple="multiple" name="tipo_atendimento" id="tipo_atendimento" style="width: 40%; height:36px;">
-                                                <option value="nenhum">Nenhum</option>   
-                                                <option value="servico_social">Serviço Social</option>                                             
-                                                <option value="juridico">Jurídico</option>                              
-                                            </select> 
-                                        </div>
-                                        <div class="row col-md-5">
-                                            <label for="ano_atendimento" class="col-sm-3 text-right control-label col-form-label">Qual Ano:</label>
-                                            <div class="form-group col-md-4">
-                                                <input class="form-control" type="number" name="ano_atendimento" id="ano_atendimento"/>
+                                        <div class="row col-12">
+                                            <div class="col-md-8">
+                                                <h3 class="page-title">Atendimento</h3>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#myModal5">Ver Prontuário</a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a href="" class="btn btn-info" data-toggle="modal" data-target="#myModal6">Ver Dados Cadastrais</a>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                  
-                                    <br>
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Autor Da Violência</h5></label>                                    
-                                        <div class="form-group col-md-4 row">       
-                                            <label for="agressor" class="col-sm-3 text-right control-label col-form-label">Vínculo:</label>
-                                            <select class="select2 form-control custom-select" name="agressor" id="agressor" style="width: 50%; height:36px;">
-                                                <option>---</option>                                            
-                                                <option value="companheiro">Companheiro</option>
-                                                <option value="irmao">Irmão</option>
-                                                <option value="vizinho">Vizinho</option> 
-                                                <option value="marido">Marido</option>
-                                                <option value="namorado">Namorado</option>
-                                                <option value="pai">Pai</option>
-                                                <option value="Amigo">Amigo</option>
-                                                <option value="ex_marido">Ex-Marido</option>
-                                                <option value="ex_namorado">Ex-Namorado</option>
-                                                <option value="ex_companheiro">Ex-Companheiro</option>
-                                                <option value="padastro">Padastro</option>
-                                                <option value="parente">Parente</option>
-                                                <option value="desconhecido">Desconhecido</option>
-                                            </select> 
-                                        </div>
-                                        <!--                                        <div class="form-group row col-md-4">
-                                                                                    <label for="agressor" class="col-sm-3 text-right control-label col-form-label">Outro:</label>
-                                                                                    <div class="form-group col-md-7">
-                                                                                        <input class="form-control" type="text" id="agressor"/>
-                                                                                    </div>
-                                                                                </div>   
-                                        -->
-                                        
-                                    </div>
-                                    <div class="form-group row col-12">
-                                        <label class="col-md-12 m-t-7"><h5>Tipo de Violência</h5></label>                                    
-                                        <div class="col-md-8"> 
-                                            <select class="select2 form-control custom-select" multiple="multiple" name="tipo_viol" id="tipo_viol" style="width: 30%; height:36px;">
-                                                <option value="NI">Não Informado</option>                                            
-                                                <option value="fisica">Física</option>
-                                                <option value="psicologica">Psicológica</option>
-                                                <option value="patrimonial">Patrimonal</option>
-                                                <option value="sexual">Sexual</option>
-                                                <option value="moral">Moral</option>   
-                                                <option value="ameaca_morte">Ameaça de Morte</option>
-                                                <option value="homicidio">Tentativa de Homicídio</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="form-group row col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Principais Quadros Clínicos Apresentados/Diagnóstico</h5></label>                                    
-                                        <div class="col-md-6"> 
-                                            
-                                            <select class="select2 form-control custom-select" multiple="multiple" name="quadro_clinico" id="quadro_clinico" style="width: 50%; height:36px;">
-                                                <option value="NID"></option>                                            
-                                                <option value="depressao">Depressão</option>  
-                                                <option value="toc">TOC</option>
-                                                <option value="sin_pan">Síndrome Do Pânico</option>
-                                                <option value="depen_quim">Dependência Química</option>
-                                                <option value="ansiedade">Ansiedade</option>
-                                            </select> 
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="col-md-9 m-t-7"><h5>Descrição do Caso e Informações Relevantes Colhidas Durante a Escuta:</h5></label>                                    
-                                        <div class="form-group col-md-4"> 
-                                            <textarea class="form-control form-group" name="desc_caso" style="height: 150px; width: 550px;"></textarea>
-                                        </div>
-                                    </div>
+                                        <br>
+                                        <div class="form-group row col-md-12">
+                                            <label class="col-md-9 m-t-7"><h5>Principais Quadros Clínicos Apresentados/Diagnóstico:</h5></label>                                    
+                                            <div class="col-md-12"> 
+                                                <div class="form-group row">
+                                                    <div class="col-md-3">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input type="checkbox" name="quadro_clinico1" value="Depressão" class="custom-control-input" id="customControlAutosizing1">
+                                                            <label class="custom-control-label" for="customControlAutosizing1">Depressão</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input type="checkbox" name="quadro_clinico2" value="TOC" class="custom-control-input" id="customControlAutosizing2">
+                                                            <label class="custom-control-label" for="customControlAutosizing2">TOC</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input type="checkbox" name="quadro_clinico3" value="Síndrome do Pânico" class="custom-control-input" id="customControlAutosizing3">
+                                                            <label class="custom-control-label" for="customControlAutosizing3">Síndrome Do Pânico</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input type="checkbox" name="quadro_clinico4" value="Dependência Química" class="custom-control-input" id="customControlAutosizing4">
+                                                            <label class="custom-control-label" for="customControlAutosizing4">Dependência Química</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input type="checkbox" name="quadro_clinico5" value="Ansiedade" class="custom-control-input" id="customControlAutosizing5">
+                                                            <label class="custom-control-label" for="customControlAutosizing5">Ansiedade</label>
+                                                        </div>                                                       
+                                                    </div>
+                                                </div>
 
-                                    <div class="border-top">
-                                        <div class="card-body">
-                                            <button type="submit" class="btn btn-success">Salvar</button>
-                                            <a type="reset" class="btn btn-danger" href="<?= base_url() ?>agenda/listar_agenda">Cancelar</a>
-                                        </div>                                        
-                                    </div>
+<!--                                                <select class="select2 form-control custom-select" multiple="multiple" name="quadro_clinico" id="quadro_clinico" style="width: 60%; height:36px;">                                                                                   
+                                                    <option value="depressao">Depressão</option>  
+                                                    <option value="toc">TOC</option>
+                                                    <option value="sin_pan">Síndrome Do Pânico</option>
+                                                    <option value="depen_quim">Dependência Química</option>
+                                                    <option value="ansiedade">Ansiedade</option>
+                                                </select> -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-9 m-t-7"><h5>Descrição do Caso e Informações Relevantes Colhidas Durante a Escuta:</h5></label>                                    
+                                            <div class="form-group col-md-4"> 
+                                                <textarea class="form-control form-group" name="desc_caso" style="height: 150px; width: 550px;"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="border-top">
+                                            <div class="card-body">
+                                                <button type="submit" class="btn btn-success">Salvar</button>
+                                                <a type="reset" class="btn btn-danger" href="<?= base_url() ?>agenda/listar_agenda">Cancelar</a>
+                                            </div>                                        
+                                        </div>
                                 </form>
                             </div>
                         </div>
@@ -402,6 +351,134 @@
         <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->
+        <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg">                              
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel"></h4>
+                    </div>
+                    <div class="modal-body">         
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title m-b-0">Dados Cadastrais:</h3>
+                                    <div class="form-group m-t-20">
+                                        <label>ID:<small class="text-muted"></small></label>                        
+                                        <input class="form-control col-md-4" value="<?= $usuaria[0]->cod_usuaria; ?>" disabled/>                                            
+                                    </div>
+                                    <div class="form-group m-t-20">
+                                        <label>Nome:<small class="text-muted"></small></label>                        
+                                        <input class="form-control col-md-4" value="<?= $usuaria[0]->nome; ?>" disabled/>                                            
+                                    </div>
+                                    <div class="form-group row col-12">
+                                        <label class="col-md-12">CPF:<small class="text-muted"></small></label>                                                                      
+                                        <input class="form-control form-group col-md-4" value="<?= $usuaria[0]->CPF; ?>" disabled/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>RG:<small class="text-muted"></small></label>
+                                        <input class="form-control col-md-4" value="<?= $usuaria[0]->RG; ?>" disabled/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefone:<small class="text-muted"></small></label>                                       
+                                        <input class="form-control col-md-4" value="<?= $usuaria[0]->telefone; ?>" disabled/>                                    
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sexo:<small class="text-muted"></small></label>
+                                        <?php
+                                        if ($usuaria[0]->sexo === 'F') {
+                                            $sexo = 'Feminino';
+                                        }
+                                        if ($usuaria[0]->sexo === 'M') {
+                                            $sexo = 'Masculino';
+                                        }
+                                        if ($usuaria[0]->sexo === 'H') {
+                                            $sexo = 'Hermafrodita';
+                                        }
+                                        ?>
+                                        <input class="form-control col-md-4" value="<?= $sexo; ?>" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                     
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+
+                    </div>
+                </div>                    
+            </div>
+        </div> 
+
+        <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg">                              
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel"></h4>
+                    </div>
+                    <div class="modal-body">         
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title m-b-0">Informações De Outros Atendimentos:</h3>
+                                    <?php if ($atendimento_psicologico === ''){}else{   ?>
+                                    <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                        <div class="form-group m-t-20">
+                                            <label>Atendimento Realizado Na Data:<small class="text-muted"></small></label>                        
+                                            <input class="form-control col-md-4" value="<?= date('d/m/Y', strtotime($aten->data_atendimento)) ?>" disabled/>                                            
+                                        </div>
+                                        <div class="form-group m-t-20">
+                                            <label>Cursos Já Realizados Na CRM:<small class="text-muted"></small></label>                        
+                                            <input class="form-control col-md-4" value="" disabled/>                                            
+                                        </div>
+                                        <div class="form-group row col-12">
+                                            <label class="col-md-12">Atendimentos Já Recebidos Pela Equipe Técnica Da CRM:<small class="text-muted"></small></label>
+
+                                            <input class="form-control form-group col-md-4" value="" disabled/>
+                                            <span class="form-group">Ano:</span><input class="form-control form-group col-md-4" value="" disabled/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Autor Da Violência:<small class="text-muted"></small></label>
+                                            <input class="form-control col-md-4" value="" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tipo de Violência:<small class="text-muted"></small></label>
+                                            <input class="form-control col-md-4" value="" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Quadro Clínico:<small class="text-muted"></small></label>                                           
+                                            <?php
+                                            $codigo = $aten->cod_atendimento;
+                                            $this->db->where('cod_quadro_clinico', $codigo);
+                                            $dados['quadro_clinico'] = $this->db->get('quadro_clinico')->result();
+                                            ?>
+                                            <?php foreach ($dados['quadro_clinico'] as $da) { ?>                                                               
+                                                <input class="form-control col-md-12" value="<?= $da->descricao; ?>" disabled/>
+                                            <?php } ?>                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descrição Do Caso:<small class="text-muted"></small></label>
+                                            <textarea class="form-control" style=" height: 100px; width: 300px;" disabled> 
+                                                <?= $aten->descricao_caso ?>
+                                            </textarea>               
+                                        </div>
+                                        __________________________________________________________________________
+                                    <?php }?>
+                                    <?php }?>
+                                </div>
+                            </div>
+                        </div>                     
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+
+                    </div>
+                </div>                    
+            </div>
+        </div> 
+
         <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg">                            
                 <div class="modal-content">
@@ -416,7 +493,7 @@
                         <div id="check"></div>
                     </div>
                     <div class="modal-footer">
-                        <a href="" class="btn btn-danger" >Fechar</a>
+                        <a data-dismiss="modal" href="#" class="btn btn-danger" >Fechar</a>
                         <button type="button" class="btn btn-success" id="pesquisar">Pesquisar</button>
                     </div>
                 </div>                    

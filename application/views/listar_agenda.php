@@ -285,7 +285,7 @@
                                             <td><?= date("H:i", strtotime($age->horario_agenda)); ?></td>                                    
                                             <td>   
                                                 <form action="<?= base_url() ?>atendimento" method="post">
-                                                    <input type="hidden" name="nome_usu" value="<?= $age->nome ?>"/>
+                                                    <input type="hidden" name="cpf_usu" value="<?= $age->CPF ?>"/>
                                                     <button type="submit" class="btn btn-success btn-group">Atendimento</button>
                                                     <a href="<?= base_url('agenda/editar/' . $age->cod_agenda) ?>" class="btn btn-primary btn-group">Alterar Data Ou Horário</a>                                                        
                                                     <a href="<?= base_url('agenda/excluir/' . $age->cod_agenda) ?>" class="btn btn-danger btn-group" onclick="return confirm('Este Agendamento Será Cancelado! Continuar?');">Cancelar</a>    

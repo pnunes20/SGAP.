@@ -239,7 +239,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Atendimento</h3>
+                            <h3 class="page-title"></h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -248,7 +248,7 @@
                                     </ol>
                                 </nav>
                             </div>
-                        </div>
+                        </div>                       
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -306,224 +306,182 @@
                                 </div>
                             </div>                 
                         </div>   
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title m-b-0">Informações Do Atendimento Psicológico</h5>
-                                    <div class="form-group m-t-20">
-                                        <label>Atendimento Realizado na Data:<small class="text-muted"></small></label>
-                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title m-b-0">Informações Do Atendimento Psicológico</h5>
+                                        <div class="form-group m-t-20">
+                                            <label>Atendimento Realizado na Data:<small class="text-muted"></small></label>
                                             <input class="form-control col-md-6" value="<?= date("d/m/Y", strtotime($aten->data_atendimento)); ?>" disabled/>
-                                        <?php } ?>
-                                    </div>
-                                    <div class="form-group m-t-20">
-                                        <label>Cursos Já Realizados Na CRM:<small class="text-muted"></small></label>
-                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
-                                            <input class="form-control col-md-6" value="<?= $aten->qual_curso; ?>" disabled/>
-                                        <?php } ?>
-                                    </div>
-                                    <div class="form-group row col-12">
-                                        <label>Outros Atendimentos Recebidos Pela Equipe Técnica Da CRM:<small class="text-muted"></small></label>
-                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                        </div>
+                                        <div class="form-group m-t-20">
+                                            <label>Cursos Já Realizados Na CRM:<small class="text-muted"></small></label>                                       
+                                            <input class="form-control col-md-6" value="" disabled/>                                      
+                                        </div>
+                                        <div class="form-group row col-12">
+                                            <label>Outros Atendimentos Recebidos Pela Equipe Técnica Da CRM:<small class="text-muted"></small></label>
+                                            <input class="form-control form-group col-md-6" value="" disabled/>
+                                            <span class="form-group">Ano:</span><input class="form-control form-group col-md-4" value="" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Autor Da Violência:<small class="text-muted"></small></label>
+                                            <input class="form-control col-md-4" value="" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tipo de Violência:<small class="text-muted"></small></label>
+                                            <input class="form-control col-md-4" value="" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Quadro Clínico:<small class="text-muted"></small></label>  
                                             <?php
-                                            if ($aten->tipo_atendimento === 'servico_social') {
-                                                $atend = 'Serviço Social';
-                                            }
-                                            if ($aten->tipo_atendimento === 'psicologico') {
-                                                $atend = 'Psicológico';
-                                            }
-                                            if ($aten->tipo_atendimento === 'juridico') {
-                                                $atend = 'Jurídico';
-                                            }
-                                            if ($aten->tipo_atendimento === 'nenhum') {
-                                                $atend = 'Nenhum';
-                                            }
+                                            $codigo = $aten->cod_atendimento;
+                                            $this->db->where('cod_quadro_clinico', $codigo);
+                                            $dados['quadro_clinico'] = $this->db->get('quadro_clinico')->result();
                                             ?>
-                                            <input class="form-control form-group col-md-6" value="<?= $atend; ?>" disabled/>
-                                            <span class="form-group">Ano:</span><input class="form-control form-group col-md-4" value="<?= $aten->ano_atendimento ?>" disabled/>
-                                        <?php } ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Autor Da Violência:<small class="text-muted"></small></label>
-                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
-                                            <input class="form-control col-md-4" value="<?= $aten->agressor; ?>" disabled/>
-                                        <?php } ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tipo de Violência:<small class="text-muted"></small></label>
-                                        <?php foreach ($violencia as $viol) { ?>
-                                            <input class="form-control col-md-4" value="<?= $viol->descricao; ?>" disabled/>
-                                        <?php } ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Quadro Clínico:<small class="text-muted"></small></label>
-                                        <?php foreach ($quadro_clinico as $qdr) { ?>
-                                            <?php
-                                            if ($qdr->descricao === 'sin_pan') {
-                                                $quadro = 'Síndrome Do Pânico';
-                                            }
-                                            if ($qdr->descricao === 'depressao') {
-                                                $quadro = 'Depressão';
-                                            }
-                                            if ($qdr->descricao === 'toc') {
-                                                $quadro = 'TOC';
-                                            }
-                                            if ($qdr->descricao === 'depen_quim') {
-                                                $quadro = 'Dependência Química';
-                                            }
-                                            if ($qdr->descricao === 'ansiedade') {
-                                                $quadro = 'Ansiedade';
-                                            }
-                                            ?>
-                                            <input class="form-control col-md-4" value="<?= $quadro ?>" disabled/>
-                                        <?php } ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Descrição Do Caso:<small class="text-muted"></small></label>
-                                        <?php foreach ($atendimento_psicologico as $aten) { ?>                                          
+                                            <?php foreach ($dados['quadro_clinico'] as $da) { ?>                                                               
+                                                <input class="form-control col-md-12" value="<?= $da->descricao; ?>" disabled/>
+                                            <?php } ?>   
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descrição Do Caso:<small class="text-muted"></small></label>
                                             <textarea class="form-control" style=" height: 100px; width: 300px;" disabled> 
-                                                <?= $aten->descricao_caso ?>
+                                                <?= $aten->descricao_caso; ?>
                                             </textarea>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <!--                              
-                                                            </div>
-                                                        </div>
-                                                    </div>            
-                                                </div>
-                                            </div>            
-                                <!-- footer -->
-                                <!-- ============================================================== -->
-                                <footer class="footer text-center">
-                                    <!--  All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>. -->
-                                </footer>
-                                <!-- ============================================================== -->
-                                <!-- End footer -->
-                                <!-- ============================================================== -->
+                                        </div>
+                                    </div>                               
+                                </div>                        
                             </div>
-                            <!-- ============================================================== -->
-                            <!-- End Page wrapper  -->
-                            <!-- ============================================================== -->
-                            <!-- ============================================================== -->
-                            <!-- End Wrapper -->
-                            <!-- ============================================================== -->
-                            <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog modal-lg">                            
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                                            <h4 class="modal-title" id="myModalLabel">Pesquisar Prontuário</h4>
-                                        </div>
-                                        <div class="modal-body">         
-                                            <div class="col-md-12 form-group">                       
-                                                <input type="text" name="pesquisar_p" id="pesquisar_p" class="form-control" placeholder="Nome ou CPF">
-                                            </div>  
-                                            <div id="check"></div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a href="" class="btn btn-danger" >Fechar</a>
-                                            <button type="button" class="btn btn-success" id="pesquisar">Pesquisar</button>
-                                        </div>
-                                    </div>                    
-                                </div>
-                            </div> 
-                            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog">
-                                    <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                              <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                                                <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
-                                            </div>
-                                            <div class="modal-body">         
-                                                <div class="col-md-12 form-group">                       
-                                                    <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
-                                                </div>                        
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" class="btn btn-success">Pesquisar</button>
-                                            </div>
-                                        </div>
-                                    </form>      
-                                </div>
-                            </div> 
-                            <!-- ============================================================== -->
-                            <!-- All Jquery -->
-                            <!-- ============================================================== -->
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
-                            <!-- Bootstrap tether Core JavaScript -->
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-                            <!-- slimscrollbar scrollbar JavaScript -->
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
-                            <!--Wave Effects -->
-                            <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
-                            <!--Menu sidebar -->
-                            <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
-                            <!--Custom JavaScript -->
-                            <script type="text/javascript" src="<?= base_url(); ?>assets/javascriptcustom.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
-                            <!-- This Page JS -->
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-                            <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
-                            <script>
-                                function pegarDataAtual() {
-                                    data = new Date();
-                                    document.getElementById('data_atendimento').value = data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear();
-                                }
-                            </script>
-                            <script>
-                                //***********************************//
-                                // For select 2
-                                //***********************************//
-                                $(".select2").select2();
-                                /*colorpicker*/
-                                $('.demo').each(function () {
-                                    //
-                                    // Dear reader, it's actually very easy to initialize MiniColors. For example:
-                                    //
-                                    //  $(selector).minicolors();
-                                    //
-                                    // The way I've done it below is just for the demo, so don't get confused
-                                    // by it. Also, data- attributes aren't supported at this time...they're
-                                    // only used for this demo.
-                                    //
-                                    $(this).minicolors({
-                                        control: $(this).attr('data-control') || 'hue',
-                                        position: $(this).attr('data-position') || 'bottom left',
-                                        change: function (value, opacity) {
-                                            if (!value)
-                                                return;
-                                            if (opacity)
-                                                value += ', ' + opacity;
-                                            if (typeof console === 'object') {
-                                                console.log(value);
-                                            }
-                                        },
-                                        theme: 'bootstrap'
-                                    });
-                                });
-                                /*datwpicker*/
-                                jQuery('.mydatepicker').datepicker();
-                                jQuery('#datepicker-autoclose').datepicker({
-                                    autoclose: true,
-                                    todayHighlight: true
-                                });
-                                var quill = new Quill('#editor', {
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                    theme: 'snow'});
-                            </script>
-                            </body>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- End Wrapper -->
+        <!-- ============================================================== -->
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg">                            
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">Pesquisar Prontuário</h4>
+                    </div>
+                    <div class="modal-body">         
+                        <div class="col-md-12 form-group">                       
+                            <input type="text" name="pesquisar_p" id="pesquisar_p" class="form-control" placeholder="Nome ou CPF">
+                        </div>  
+                        <div id="check"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn btn-danger" >Fechar</a>
+                        <button type="button" class="btn btn-success" id="pesquisar">Pesquisar</button>
+                    </div>
+                </div>                    
+            </div>
+        </div> 
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                            <h4 class="modal-title" id="myModalLabel">Pesquisar Cadastro</h4>
+                        </div>
+                        <div class="modal-body">         
+                            <div class="col-md-12 form-group">                       
+                                <input type="text" name="pesquisar" id="nome" class="form-control" placeholder="Nome ou CPF">
+                            </div>                        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Pesquisar</button>
+                        </div>
+                    </div>
+                </form>      
+            </div>
+        </div> 
+        <!-- ============================================================== -->
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
+        <!--Wave Effects -->
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
+        <!--Custom JavaScript -->
+        <script type="text/javascript" src="<?= base_url(); ?>assets/javascriptcustom.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
+        <!-- This Page JS -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
+        <script>
+            function pegarDataAtual() {
+                data = new Date();
+                document.getElementById('data_atendimento').value = data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear();
+            }
+        </script>
+        <script>
+            //***********************************//
+            // For select 2
+            //***********************************//
+            $(".select2").select2();
+            /*colorpicker*/
+            $('.demo').each(function () {
+                //
+                // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                //
+                //  $(selector).minicolors();
+                //
+                // The way I've done it below is just for the demo, so don't get confused
+                // by it. Also, data- attributes aren't supported at this time...they're
+                // only used for this demo.
+                //
+                $(this).minicolors({
+                    control: $(this).attr('data-control') || 'hue',
+                    position: $(this).attr('data-position') || 'bottom left',
+                    change: function (value, opacity) {
+                        if (!value)
+                            return;
+                        if (opacity)
+                            value += ', ' + opacity;
+                        if (typeof console === 'object') {
+                            console.log(value);
+                        }
+                    },
+                    theme: 'bootstrap'
+                });
+            });
+            /*datwpicker*/
+            jQuery('.mydatepicker').datepicker();
+            jQuery('#datepicker-autoclose').datepicker({
+                autoclose: true,
+                todayHighlight: true
+            });
+            var quill = new Quill('#editor', {
 
-                            </html>
+                theme: 'snow'});
+        </script>
+    </body>
+
+</html>

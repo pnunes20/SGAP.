@@ -289,9 +289,12 @@
                                             <div class="input-group-append">                                               
                                                 <span class="input-group-text"><i class="fa fa-clock"></i></span>                                                 
                                             </div>   
-                                        </div>                                     
+                                        </div>
+                                         <div id="resulth"></div>
+                                    <br>
                                     </div>
                                     <div class="border-top">
+                                         <div id="resulthd"></div>
                                         <div class="card-body">
                                             <button type="submit" class="btn btn-success">Salvar</button>
                                             <a class="btn btn-danger" href="<?= base_url() ?>agenda/listar_agenda">Cancelar</a>

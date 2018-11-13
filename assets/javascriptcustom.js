@@ -126,5 +126,20 @@ $(function () {
             $("#check").html(retorna);
         });
     });
+    //ver prontuário
+    $("#verp").click(function () {
+        var pesquisa = $(this).val();
+
+        var getUrl = window.location;
+        var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+
+        var dados = {
+            ver_p: pesquisa
+        };
+        $.post(baseUrl + "/atendimento/prontuario", dados, function (retorna) {
+            //Mostra dentro da div os resultado obtidos 
+            $("#atend").html(retorna);
+        });
+    });
 
 });

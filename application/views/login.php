@@ -62,7 +62,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Login V1</title>
+        <title>Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--===============================================================================================-->	
@@ -122,7 +122,7 @@
                         <div class="col-12">
                             <?php
                             if ($key[0] == '1') {
-                                echo '<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                                echo '<div class="container-login100-form-btn">
                                          <div class="alert alert-danger" role="alert">
                                              Email ou Senha Inválidos!
                                          </div>

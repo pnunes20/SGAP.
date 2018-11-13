@@ -147,46 +147,43 @@ class Agenda extends CI_Controller {
         }
     }
 
-    public function verif_hora() {
-        $this->verificar_sessao();
-        $hora = $this->input->post('hora_a');
-        $date = $this->input->post('data_a');
-
-        date("Y-m-d", strtotime($date));
-        date("H:i:s", strtotime($hora));
-
-        if (($date != '') && ($hora != '')) {
-            $this->db->where('horario_agenda', $hora);
-            $this->db->where('data_agenda', $date);
-            $data['agenda'] = $this->db->get('agenda')->result();
-            if (count($data['agenda']) > 0) {
-                echo '<span style="color: red">Horário Indisponível!</span>';
-            }
-            if (count($data['agenda']) == 0) {
-                $this->db->where('data_agenda', $date);
-                $age['agenda'] = $this->db->get('agenda')->result();
-                if (count($age['agenda']) == 0) {
-                    echo '<span style="color: green">Horário Disponível!</span>';
-                } else {
-                    //CONTINUA AQUI
-                    foreach ($age['agenda'] as $a) {
-                        $he = $a->horario_agenda;
-                    }
-                    $d1 = new DateTime($he);
-                    $d2 = new DateTime($hora);
-                    $diff = $d1->diff($d2);
-                    $key = '%H:%59:%s';
-                    if ($diff < $key) {
-                        echo '<span style="color: red">Horário Indisponível!</span>';
-                    } else {
-                        echo '<span style="color: green">Horário Disponível!</span>';
-                    }
-                }
-            }
-        } else {
-            
-        }
-    }
+//    public function verif_hora() {
+//        $this->verificar_sessao();
+//        $hora = $this->input->post('hora_a');
+//        $date = $this->input->post('data_a');
+//
+//        date("Y-m-d", strtotime($date));
+//        date("H:i:s", strtotime($hora));
+//
+//        if (($date != '') && ($hora != '')) {
+//            $this->db->where('horario_agenda', $hora);
+//            $this->db->where('data_agenda', $date);
+//            $data['agenda'] = $this->db->get('agenda')->result();
+//            if (count($data['agenda']) > 0) {
+//                echo '<span style="color: red">Horário Indisponível!</span>';
+//            }
+//            if (count($data['agenda']) == 0) {
+//                $this->db->where('data_agenda', $date);
+//                $age['agenda'] = $this->db->get('agenda')->result();
+//                if (count($age['agenda']) == 0) {
+//                    echo '<span style="color: green">Horário Disponível!</span>';
+//                } else {
+//                    //CONTINUA AQUI
+//                    foreach ($age['agenda'] as $a) {
+//                        $ha = $a->horario_agenda;
+//                    }
+//                    $ha->add(new DateInterval('PT59M'));
+//                    if ($hora < $ha) {
+//                        echo '<span style="color: red">Horário Indisponível!</span>';
+//                    } else {
+//                        echo '<span style="color: green">Horário Disponível!</span>';
+//                    }
+//                }
+//            }
+//        } else {
+//            
+//        }
+//    }
 
     public function excluir($cod = null) {
         $this->verificar_sessao();
@@ -268,11 +265,48 @@ class Agenda extends CI_Controller {
             $dados ['agenda'] = $this->db->get('agenda')->result();
 
             if (count($dados['agenda']) == 0) {
-                echo '<h4>Nehum Horário Agendado Para <button class="btn btn-success" disabled>' . date("d/m/Y", strtotime($cond)) . '</button></h4>';
+                echo '<h4>Horários Disponíveis Para <button class="btn btn-success" disabled>' . date("d/m/Y", strtotime($cond)) . '</button></h4>';
+                $horaInicial = new DateTime('09:00');
+                $horaFinal = new DateTime('13:00');
+                echo '<button class="col-md-6 btn" disabled>' . $horaInicial->format("H:i") . '</button><br>';
+                while ($horaInicial->add(new DateInterval('PT30M')) < $horaFinal) {
+                    echo '<button class="col-md-6 btn" disabled>' . $horaInicial->format("H:i") . '</button><br>';
+                }
+                echo '<button class="col-md-6 btn" disabled>' . $horaFinal->format("H:i") . '</button><br>';
             } else {
-                echo '<h4> Horários Agendados Para <button class="btn btn-success" disabled>' . date("d/m/Y", strtotime($cond)) . '</button></h4>';
+//                echo '<h4> Horários Agendados Para <button class="btn btn-success" disabled>' . date("d/m/Y", strtotime($cond)) . '</button></h4>';
+//                foreach ($dados['agenda'] as $d) {
+//                    echo '<button class="col-md-6 btn btn-danger" disabled>' . date("H:i", strtotime($d->horario_agenda)) . '</button><br><br>';
+//                }
+                echo '<h4>Horários Disponíveis Para <button class="btn btn-success" disabled>' . date("d/m/Y", strtotime($cond)) . '</button></h4>';
                 foreach ($dados['agenda'] as $d) {
-                    echo '<button class="col-md-6 btn btn-danger" disabled>' . date("H:i", strtotime($d->horario_agenda)) . '</button><br><br>';
+                    $ha = $d->horario_agenda;
+                }
+                $nove3 = new DateTime('09:30');
+                $dez = new DateTime('10:00');
+                $dez3 = new DateTime('10:30');
+                $onze = new DateTime('11:00');
+                $onze3 = new DateTime('11:30');
+                $doze = new DateTime('12:00');
+                $doze3 = new DateTime('12:30');
+                $h = new DateTime($ha);
+                $horaInicial = new DateTime('09:00');
+                $horaFinal = new DateTime('13:00');
+                if ($h == $horaInicial) {
+                    $horaInicial = new DateTime('10:00');
+                    echo '<button class="col-md-6 btn" disabled>' . $horaInicial->format("H:i") . '</button><br>';
+                    while ($horaInicial->add(new DateInterval('PT30M')) < $horaFinal) {
+                        echo '<button class="col-md-6 btn" disabled>' . $horaInicial->format("H:i") . '</button><br>';
+                    }
+                    echo '<button class="col-md-6 btn" disabled>' . $horaFinal->format("H:i") . '</button><br>';
+                }
+                if ($h == $horaFinal) {
+                    $horaFinal = new DateTime('12:00');
+                    echo '<button class="col-md-6 btn" disabled>' . $horaInicial->format("H:i") . '</button><br>';
+                    while ($horaInicial->add(new DateInterval('PT30M')) < $horaFinal) {
+                        echo '<button class="col-md-6 btn" disabled>' . $horaInicial->format("H:i") . '</button><br>';
+                    }
+                    echo '<button class="col-md-6 btn" disabled>' . $horaFinal->format("H:i") . '</button><br>';
                 }
             }
         } else {

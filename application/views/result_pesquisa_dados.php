@@ -278,14 +278,40 @@
                                                     <td><?= $usu->CPF; ?></td>                                                                                       
                                                     <td>
                                                         <a href="<?= base_url('agenda/agendamento_dados/' . $usu->cod_usuaria) ?>" class="btn btn-success btn-group">Agendar Atendimento</a>    
-                                                        <button id="detalhe" type="button" class="btn btn-info btn-group" value="<?= $usu->cod_usuaria; ?>">Detalhar</button>
+                                                        <a class="btn btn-info btn-group" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dados Da Usuária</a>
+                                                        <div class="dropdown-menu dropdown-menu-right user-dd animated"> 
+                                                            <div class="form-group container-fluid">
+                                                                <?php
+                                                                $cpf = $usu->CPF;
+                                                                $this->db->where('CPF', $cpf);
+                                                                $dados['usuaria'] = $this->db->get('usuaria')->result();
+                                                                ?>
+                                                                <?php foreach ($dados['usuaria'] as $da) { ?>
+                                                                    <?php
+                                                                    $s = $da->sexo;
+                                                                    if ($s === 'F') {
+                                                                        $sexo = 'Feminino';
+                                                                    } elseif ($s === 'M') {
+                                                                        $sexo = 'Masculino';
+                                                                    } else {
+                                                                        $sexo = 'Hermafrodita';
+                                                                    }
+                                                                    ?>
+                                                                    <span>Nome: <?= $da->nome; ?></span><br>  
+                                                                    <span>CPF: <?= $da->CPF; ?></span><br>
+                                                                    <span>RG: <?= $da->RG; ?></span><br>
+                                                                    <span>Telefone: <?= $da->telefone; ?></span><br>
+                                                                    <span>Data de Nascimento: <?= date("d/m/Y", strtotime($da->data_nascimento)); ?></span><br>
+                                                                    <span>Sexo: <?= $sexo; ?></span>
+                                                                <?php } ?>   
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>                               
                                             <?php } ?>   
                                         </tbody>
                                     </table>
-                                </div>
-                                <div id="resultados"></div>
+                                </div>                             
                             </div>   
                         </div>     
                     </div>
