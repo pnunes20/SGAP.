@@ -305,56 +305,16 @@
                                     </div>
                                 </div>
                             </div>                 
-                        </div>   
-                    </div>
-                    <div class="row">
-                        <?php foreach ($atendimento_psicologico as $aten) { ?>
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title m-b-0">Informações Do Atendimento Psicológico</h5>
-                                        <div class="form-group m-t-20">
-                                            <label>Atendimento Realizado na Data:<small class="text-muted"></small></label>
-                                            <input class="form-control col-md-6" value="<?= date("d/m/Y", strtotime($aten->data_atendimento)); ?>" disabled/>
-                                        </div>
-                                        <div class="form-group m-t-20">
-                                            <label>Cursos Já Realizados Na CRM:<small class="text-muted"></small></label>                                       
-                                            <input class="form-control col-md-6" value="" disabled/>                                      
-                                        </div>
-                                        <div class="form-group row col-12">
-                                            <label>Outros Atendimentos Recebidos Pela Equipe Técnica Da CRM:<small class="text-muted"></small></label>
-                                            <input class="form-control form-group col-md-6" value="" disabled/>
-                                            <span class="form-group">Ano:</span><input class="form-control form-group col-md-4" value="" disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Autor Da Violência:<small class="text-muted"></small></label>
-                                            <input class="form-control col-md-4" value="" disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tipo de Violência:<small class="text-muted"></small></label>
-                                            <input class="form-control col-md-4" value="" disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Quadro Clínico:<small class="text-muted"></small></label>  
-                                            <?php
-                                            $codigo = $aten->cod_atendimento;
-                                            $this->db->where('cod_quadro_clinico', $codigo);
-                                            $dados['quadro_clinico'] = $this->db->get('quadro_clinico')->result();
-                                            ?>
-                                            <?php foreach ($dados['quadro_clinico'] as $da) { ?>                                                               
-                                                <input class="form-control col-md-12" value="<?= $da->descricao; ?>" disabled/>
-                                            <?php } ?>   
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Descrição Do Caso:<small class="text-muted"></small></label>
-                                            <textarea class="form-control" style=" height: 100px; width: 300px;" disabled> 
-                                                <?= $aten->descricao_caso; ?>
-                                            </textarea>
-                                        </div>
-                                    </div>                               
-                                </div>                        
-                            </div>
-                        <?php } ?>
+                        </div>  
+                        <div class="col-md-6"><br>                                                                                           
+                            <div class="col-md-2 col-lg-6 col-xlg-3">
+                                <div class="card card-hover">                                
+                                    <a data-toggle="modal" data-target="#myModal1" class="box bg-success text-center" href="">
+                                        <h1 class="font-light text-white"></h1>
+                                        <h6 class="text-white">Ver Histórico de Atendimentos</h6></a>                              
+                                </div>
+                            </div>     
+                        </div>  
                     </div>
                 </div>
             </div>
@@ -366,6 +326,73 @@
         <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg">                            
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel"></h4>
+                    </div>
+                    <div class="modal-body">         
+                        <div class="col-md-12 form-group">                       
+                            <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <button class="btn btn-info" disabled><h4 class="card-title m-b-0">Atendimento Realizado <?= date("d/m/Y", strtotime($aten->data_atendimento)); ?></h4></button>                                          
+                                            <div class="form-group m-t-20">
+                                                <label>Cursos Já Realizados Na CRM:<small class="text-muted"></small></label>                                       
+                                                <input class="form-control col-md-6" value="" disabled/>                                      
+                                            </div>
+                                            <div class="form-group row col-12">
+                                                <label>Outros Atendimentos Recebidos Pela Equipe Técnica Da CRM:<small class="text-muted"></small></label>
+                                                <input class="form-control form-group col-md-6" value="" disabled/>
+                                                <span class="form-group">Ano:</span><input class="form-control form-group col-md-4" value="" disabled/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Autor Da Violência:<small class="text-muted"></small></label>
+                                                <input class="form-control col-md-4" value="" disabled/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tipo de Violência:<small class="text-muted"></small></label>
+                                                <input class="form-control col-md-4" value="" disabled/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Quadro Clínico:<small class="text-muted"></small></label>  
+                                                <?php
+                                                $codigo = $aten->cod_atendimento;
+                                                $this->db->where('cod_quadro_clinico', $codigo);
+                                                $dados['quadro_clinico'] = $this->db->get('quadro_clinico')->result();
+                                                ?>
+                                                <?php foreach ($dados['quadro_clinico'] as $da) { ?>                                                               
+                                                    <input class="form-control col-md-12" value="<?= $da->descricao; ?>" disabled/>
+                                                <?php } ?>   
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descrição Do Caso:<small class="text-muted"></small></label>
+                                                <textarea class="form-control" style=" height: 100px; width: 300px;" disabled> 
+                                                    <?= $aten->descricao_caso; ?>
+                                                </textarea>
+                                            </div>
+                                        </div>                               
+                                    </div>                        
+                                </div>  
+                                <div class="modal-footer">
+                                </div>
+                            <?php } ?>
+                        </div>  
+                        <div class="col-12 row">
+                            <div class="col-md-11">
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>  
+                            </div>
+                        </div>                        
+                    </div>                      
+                </div>                    
+            </div>
+        </div> 
+
         <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg">                            
                 <div class="modal-content">

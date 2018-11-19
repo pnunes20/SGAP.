@@ -218,7 +218,7 @@
                             <li class="sidebar-item"> <a data-toggle="modal" data-target="#myModal2" class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" data-toggle="modal" data-target="#myModal3" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Prontuários</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Relatórios</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>relatorios" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Relatórios</span></a></li>
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
