@@ -24,14 +24,13 @@ class Atendimento extends CI_Controller {
                 $dados['atendimento_psicologico'] = '';
             } else {
                 foreach ($dados['atendimento_psicologico'] as $d) {
-                    $cod = $d->cod_atendimento;
+                    $codigo = $d->cod_atendimento;
                 }
-                $this->db->where('cod_quadro_clinico', $cod);
+                $this->db->where('cod_quadro_clinico', $codigo);
                 $dados['quadro_clinico'] = $this->db->get('quadro_clinico')->result();
 
                 $this->load->view('atendimento', $dados);
             }
-            $this->load->view('atendimento', $dados);
         }
         if ($cod != '') {
             $this->db->where('cod_usuaria', $cod);
@@ -55,16 +54,6 @@ class Atendimento extends CI_Controller {
             }
         }
     }
-
-    /*
-      public function index($cod = null) {
-      $this->verificar_sessao();
-
-      $this->db->where('cod_usuaria', $cod);
-      $data['usuaria'] = $this->db->get('usuaria')->result();
-      $this->load->view('atendimento', $data);
-      }
-     */
 
     public function pesquisar() {
         $this->verificar_sessao();
