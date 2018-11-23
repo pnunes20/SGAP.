@@ -1,6 +1,8 @@
-<html lang="pt-br">
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
     <head>
-         <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,19 +11,25 @@
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
         <title>SGAP</title>
-        <!-- Custom CSS -->        
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/css/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.css">
+        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.snow.css">
         <link href="<?= base_url(); ?>assets/matrix/dist/css/style.min.css" rel="stylesheet">
-        
-        <link href='<?= base_url(); ?>assets/matrix/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
-        <link href='<?= base_url(); ?>assets/matrix/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-        <link href='<?= base_url(); ?>assets/matrix/fullcalendar/calendar.css' rel='stylesheet' />
-
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     </head>
+
     <body>
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
-          <div class="preloader">
+        <div class="preloader">
             <div class="lds-ripple">
                 <div class="lds-pos"></div>
                 <div class="lds-pos"></div>
@@ -179,7 +187,7 @@
                                 <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>Perfil</a>
                                     <a class="dropdown-item" href="<?= base_url(); ?>login"><i class="ti-wallet m-r-5 m-l-5"></i>Usuários</a>
-                                    <a class="dropdown-item" href="#"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                                     <div class="dropdown-divider"></div>
@@ -209,8 +217,8 @@
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda/listar_agenda" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Início</span></a></li>
                             <li class="sidebar-item"> <a data-toggle="modal" data-target="#myModal2" class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda/agenda_teste" aria-expanded="false"><i class="mdi mdi-calendar"></i><span class="hide-menu">Agenda</span></a></li>
-                            </li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" data-toggle="modal" data-target="#myModal3" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Prontuários</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Relatórios</span></a></li>
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
@@ -230,7 +238,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Atendimentos Agendados</h3>
+                            <h3 class="page-title">Relatório Por Tipo De Violência</h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -248,7 +256,91 @@
                 <!-- ============================================================== -->
                 <!-- Container fluid  -->
                 <div class="container-fluid">                
-                    <div id="calendar"></div>
+                    <div class="row"> 
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="col-12 form-group row">
+                                        <label class="m-t-5"><h5>Data Inicial:</h5></label> 
+                                        <div class="input-group col-md-3">                                                           
+                                            <input type="date" class="form-control col-md-7" name="data_rel1" id="data_rel1" required> 
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            </div>   
+                                        </div> 
+                                        <label class="m-t-5"><h5>Data Final:</h5></label> 
+                                        <div class="input-group col-md-3">
+                                            <input type="date" class="form-control col-md-7" name="data_rel2" id="data_rel2" required> 
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            </div>   
+                                        </div> 
+                                        <div class="input-group col-md-4">
+                                            <button type="button" class=" btn btn-info col-md-5" id="data_r_viol">Filtrar</button>                                             
+                                        </div> 
+                                    </div>                                   
+                                    <br>
+                                    <div class="row">
+                                        <!-- column -->                                    
+                                        <div class="col-md-5">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bg-primary p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-psicol"></h5>
+                                                        <small class="font-light">Total De Violência Psicológica</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bg-primary p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-fisica"></h5>
+                                                        <small class="font-light">Total De Violência Física</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 m-t-15">
+                                                    <div class="bg-primary p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-patri"></h5>
+                                                        <small class="font-light">Total De Violência Patrimonial</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 m-t-15">
+                                                    <div class="bg-primary p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-sexual"></h5>
+                                                        <small class="font-light">Total De Violência Sexual</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 m-t-15">
+                                                    <div class="bg-primary p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-moral"></h5>
+                                                        <small class="font-light">Total De Violência Moral</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 m-t-15">
+                                                    <div class="bg-primary p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-amorte"></h5>
+                                                        <small class="font-light">Total De Ameaça de Morte</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 m-t-15">
+                                                    <div class="bg-primary p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-ger-viol"></h5>
+                                                        <small class="font-light">Total De Atendimentos</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- column -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
                 </div>
                 <!-- ============================================================== -->
 
@@ -272,6 +364,28 @@
         <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->
+
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg">                            
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">Pesquisar Prontuário</h4>
+                    </div>
+                    <div class="modal-body">         
+                        <div class="col-md-12 form-group">                       
+                            <input type="text" name="pesquisar_p" id="pesquisar_p" class="form-control" placeholder="Nome ou CPF">
+                        </div>  
+                        <div id="check"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn btn-danger" >Fechar</a>
+                        <button type="button" class="btn btn-success" id="pesquisar">Pesquisar</button>
+                    </div>
+                </div>                    
+            </div>
+        </div> 
+
         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog">
                 <form action="<?= base_url(); ?>atendimento/pesquisar" method="post">                
@@ -294,111 +408,80 @@
             </div>
         </div> 
 
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
-    <!-- This Page JS -->
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
 
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-    <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+        <!-- ============================================================== -->
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/extra-libs/sparkline/sparkline.js"></script>
+        <!--Wave Effects -->
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/sidebarmenu.js"></script>
+        <!--Custom JavaScript -->
+        <script type="text/javascript" src="<?= base_url(); ?>assets/javascriptcustom.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/custom.min.js"></script>
+        <!-- This Page JS -->
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/dist/js/pages/mask/mask.init.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.full.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/select2/dist/js/select2.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
+        <script>
+            //***********************************//
+            // For select 2
+            //***********************************//
+            $(".select2").select2();
 
+            /*colorpicker*/
+            $('.demo').each(function () {
+                //
+                // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                //
+                //  $(selector).minicolors();
+                //
+                // The way I've done it below is just for the demo, so don't get confused
+                // by it. Also, data- attributes aren't supported at this time...they're
+                // only used for this demo.
+                //
+                $(this).minicolors({
+                    control: $(this).attr('data-control') || 'hue',
+                    position: $(this).attr('data-position') || 'bottom left',
 
-    <script src='<?= base_url(); ?>assets/matrix/fullcalendar/lib/moment.min.js'></script>
-    <script src='<?= base_url(); ?>assets/matrix/fullcalendar/fullcalendar.min.js'></script>
-    <script src='<?= base_url(); ?>assets/matrix/fullcalendar/locale/pt-br.js'></script>
-    <script>
+                    change: function (value, opacity) {
+                        if (!value)
+                            return;
+                        if (opacity)
+                            value += ', ' + opacity;
+                        if (typeof console === 'object') {
+                            console.log(value);
+                        }
+                    },
+                    theme: 'bootstrap'
+                });
 
-        $(document).ready(function () {
-
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay,listWeek'
-                },
-                defaultDate: '2018-03-12',
-                navLinks: true, // can click day/week names to navigate views
-                editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                events: [
-                    {
-                        title: 'All Day Event',
-                        start: '2018-03-01'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: '2018-03-07',
-                        end: '2018-03-10'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2018-03-09T16:00:00'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2018-03-16T16:00:00'
-                    },
-                    {
-                        title: 'Conference',
-                        start: '2018-03-11',
-                        end: '2018-03-13'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2018-03-12T10:30:00',
-                        end: '2018-03-12T12:30:00'
-                    },
-                    {
-                        title: 'Lunch',
-                        start: '2018-03-12T12:00:00'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2018-03-12T14:30:00'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2018-03-12T17:30:00'
-                    },
-                    {
-                        title: 'Dinner',
-                        start: '2018-03-12T20:00:00'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: '2018-03-13T07:00:00'
-                    },
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: '2018-03-28'
-                    }
-                ]
+            });
+            /*datwpicker*/
+            jQuery('.mydatepicker').datepicker();
+            jQuery('#datepicker-autoclose').datepicker({
+                autoclose: true,
+                todayHighlight: true
+            });
+            var quill = new Quill('#editor', {
+                theme: 'snow'
             });
 
-        });
-
-    </script>
-
-</body>
+        </script>
+    </body>
 
 </html>

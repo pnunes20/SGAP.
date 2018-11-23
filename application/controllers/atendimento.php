@@ -85,15 +85,32 @@ class Atendimento extends CI_Controller {
         $cod = $this->input->post('cod_usuaria');
         $this->db->where('cod_usuaria', $cod);
         $info['usuaria'] = $this->db->get('usuaria')->result();
-
-        foreach ($info['usuaria'] as $in) {
-            $nome = $in->nome;
-            $CPF = $in->CPF;
+        foreach ($info['usuaria'] as $u) {
+            $nome = $u->nome;
+            $CPF = $u->CPF;
+        }
+        $this->db->where('cod_cor', $cod);
+        $info['cor'] = $this->db->get('cor')->result();
+        foreach ($info['cor'] as $c) {
+            $cor = $c->descricao;
+        }
+        $this->db->where('cod_escolaridade', $cod);
+        $info['escolaridade'] = $this->db->get('escolaridade')->result();
+        foreach ($info['escolaridade'] as $esc) {
+            $escol = $esc->descricao;
+        }
+        $this->db->where('cod_tipo_violencia', $cod);
+        $info['tipo_violencia'] = $this->db->get('tipo_violencia')->result();
+        foreach ($info['tipo_violencia'] as $tv) {
+            $tipo_viol = $tv->descricao;
         }
         $data['nome'] = $nome;
         $data['cpf'] = $CPF;
         $data['data_atendimento'] = date('Y-m-d');
         $data['descricao_caso'] = $this->input->post('desc_caso');
+        $data['cor'] = $cor;
+        $data['escol'] = $escol;
+        $data['tipo_viol'] = $tipo_viol;
         $quadro1 = $this->input->post('quadro_clinico1');
         $quadro2 = $this->input->post('quadro_clinico2');
         $quadro3 = $this->input->post('quadro_clinico3');
@@ -107,7 +124,7 @@ class Atendimento extends CI_Controller {
         }
         if ($quadro3 != '') {
             $qdr['descricao'] = $quadro3;
-        }        
+        }
         if ($quadro4 != '') {
             $qdr['descricao'] = $quadro4;
         }

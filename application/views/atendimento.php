@@ -398,6 +398,27 @@
                                         ?>
                                         <input class="form-control col-md-4" value="<?= $sexo; ?>" disabled/>
                                     </div>
+                                    <div class="form-group m-t-20">
+                                        <label>Cor:<small class="text-muted"></small></label>                                      
+                                        <?php
+                                        $codigo = $usuaria[0]->cod_usuaria;
+                                        $this->db->where('cod_cor', $codigo);
+                                        $dados['cor'] = $this->db->get('cor')->result();
+                                        ?>
+                                        <?php foreach ($dados['cor'] as $da) { ?>                                                               
+                                            <input class="form-control col-md-4" value="<?= $da->descricao; ?>" disabled/>
+                                        <?php } ?>                                       
+                                    </div>
+                                    <div class="form-group m-t-20">
+                                        <label>Escolaridade:<small class="text-muted"></small></label>                                      
+                                        <?php
+                                        $this->db->where('cod_escolaridade', $codigo);
+                                        $dados['escolaridade'] = $this->db->get('escolaridade')->result();
+                                        ?>
+                                        <?php foreach ($dados['escolaridade'] as $da) { ?>                                                               
+                                            <input class="form-control col-md-4" value="<?= $da->descricao; ?>" disabled/>
+                                        <?php } ?>                                       
+                                    </div>
                                 </div>
                             </div>
                         </div>                     
@@ -422,51 +443,60 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h3 class="card-title m-b-0">Informações De Outros Atendimentos:</h3>
-                                    <?php if ($atendimento_psicologico === ''){}else{   ?>
+                                    <?php if ($atendimento_psicologico === '') {                                        
+                                    } else {
+                                    ?>
                                     <?php foreach ($atendimento_psicologico as $aten) { ?>
-                                        <div class="form-group m-t-20">
-                                            <label>Atendimento Realizado Na Data:<small class="text-muted"></small></label>                        
-                                            <input class="form-control col-md-4" value="<?= date('d/m/Y', strtotime($aten->data_atendimento)) ?>" disabled/>                                            
-                                        </div>
-                                        <div class="form-group m-t-20">
-                                            <label>Cursos Já Realizados Na CRM:<small class="text-muted"></small></label>                        
-                                            <input class="form-control col-md-4" value="" disabled/>                                            
-                                        </div>
-                                        <div class="form-group row col-12">
-                                            <label class="col-md-12">Atendimentos Já Recebidos Pela Equipe Técnica Da CRM:<small class="text-muted"></small></label>
+                                            <div class="form-group m-t-20">
+                                                <label>Atendimento Realizado Na Data:<small class="text-muted"></small></label>                        
+                                                <input class="form-control col-md-4" value="<?= date('d/m/Y', strtotime($aten->data_atendimento)) ?>" disabled/>                                            
+                                            </div>
+                                            <div class="form-group m-t-20">
+                                                <label>Cursos Já Realizados Na CRM:<small class="text-muted"></small></label>                        
+                                                <input class="form-control col-md-4" value="" disabled/>                                            
+                                            </div>
+                                            <div class="form-group row col-12">
+                                                <label class="col-md-12">Atendimentos Já Recebidos Pela Equipe Técnica Da CRM:<small class="text-muted"></small></label>
 
-                                            <input class="form-control form-group col-md-4" value="" disabled/>
-                                            <span class="form-group">Ano:</span><input class="form-control form-group col-md-4" value="" disabled/>
+                                                <input class="form-control form-group col-md-4" value="" disabled/>
+                                                <span class="form-group">Ano:</span><input class="form-control form-group col-md-4" value="" disabled/>
 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Autor Da Violência:<small class="text-muted"></small></label>
-                                            <input class="form-control col-md-4" value="" disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tipo de Violência:<small class="text-muted"></small></label>
-                                            <input class="form-control col-md-4" value="" disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Quadro Clínico:<small class="text-muted"></small></label>                                           
-                                            <?php
-                                            $codigo = $aten->cod_atendimento;
-                                            $this->db->where('cod_quadro_clinico', $codigo);
-                                            $dados['quadro_clinico'] = $this->db->get('quadro_clinico')->result();
-                                            ?>
-                                            <?php foreach ($dados['quadro_clinico'] as $da) { ?>                                                               
-                                                <input class="form-control col-md-12" value="<?= $da->descricao; ?>" disabled/>
-                                            <?php } ?>                                            
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Descrição Do Caso:<small class="text-muted"></small></label>
-                                            <textarea class="form-control" style=" height: 100px; width: 300px;" disabled> 
-                                                <?= $aten->descricao_caso ?>
-                                            </textarea>               
-                                        </div>
-                                        __________________________________________________________________________
-                                    <?php }?>
-                                    <?php }?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Autor Da Violência:<small class="text-muted"></small></label>
+                                                <input class="form-control col-md-4" value="" disabled/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tipo de Violência:<small class="text-muted"></small></label>
+                                                <?php
+                                                $codig = $usuaria[0]->cod_usuaria;
+                                                $this->db->where('cod_tipo_violencia', $codig);
+                                                $dados['tipo_violencia'] = $this->db->get('tipo_violencia')->result();
+                                                ?>
+                                                <?php foreach ($dados['tipo_violencia'] as $da) { ?>                                                               
+                                                    <input class="form-control col-md-12" value="<?= $da->descricao; ?>" disabled/>
+                                                <?php } ?>                                            
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Quadro Clínico:<small class="text-muted"></small></label>                                           
+                                                <?php
+                                                $codigo = $aten->cod_atendimento;
+                                                $this->db->where('cod_quadro_clinico', $codigo);
+                                                $dados['quadro_clinico'] = $this->db->get('quadro_clinico')->result();
+                                                ?>
+                                                <?php foreach ($dados['quadro_clinico'] as $da) { ?>                                                               
+                                                    <input class="form-control col-md-12" value="<?= $da->descricao; ?>" disabled/>
+        <?php } ?>                                            
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descrição Do Caso:<small class="text-muted"></small></label>
+                                                <textarea class="form-control" style=" height: 100px; width: 300px;" disabled> 
+        <?= $aten->descricao_caso ?>
+                                                </textarea>               
+                                            </div>
+                                            __________________________________________________________________________
+    <?php } ?>
+<?php } ?>
                                 </div>
                             </div>
                         </div>                     

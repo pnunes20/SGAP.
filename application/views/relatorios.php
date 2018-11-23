@@ -238,7 +238,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Atendimentos Agendados</h3>
+                            <h3 class="page-title">Relatório Por Cor</h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -257,44 +257,82 @@
                 <!-- Container fluid  -->
                 <div class="container-fluid">                
                     <div class="row"> 
-                        <div class="col-12 row">
-                            <div class="col-md-6">
-                                <input class="col-md-4 form-group form-control" type="text" id="rel-ano" placeholder="Pesquisar..." />
-                            </div>                             
-                            <div class="col-md-6">                                
-                              <input type="" class="form-control form-group" id="rel-mes" />                            
-                            </div>   
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="col-12 form-group row">
+                                        <label class="m-t-5"><h5>Data Inicial:</h5></label> 
+                                        <div class="input-group col-md-3">                                                           
+                                            <input type="date" class="form-control col-md-7" name="data_rel1" id="data_rel1" required> 
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            </div>   
+                                        </div> 
+                                         <label class="m-t-5"><h5>Data Final:</h5></label> 
+                                        <div class="input-group col-md-3">
+                                            <input type="date" class="form-control col-md-7" name="data_rel2" id="data_rel2" required> 
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            </div>   
+                                        </div> 
+                                        <div class="input-group col-md-4">
+                                            <button type="button" class=" btn btn-info col-md-5" id="data_r">Filtrar</button>                                             
+                                        </div> 
+                                    </div>                                   
+                                    <br>
+                                    <div class="row">
+                                        <!-- column -->                                    
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bg-info p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-negras"></h5>
+                                                        <small class="font-light">Total De Mulheres Negras</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bg-info p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-brancas"></h5>
+                                                        <small class="font-light">Total De Mulheres Brancas</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 m-t-15">
+                                                    <div class="bg-info p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-indig"></h5>
+                                                        <small class="font-light">Total De Mulheres Indígenas</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 m-t-15">
+                                                    <div class="bg-info p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-pardas"></h5>
+                                                        <small class="font-light">Total De Mulheres Pardas</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 m-t-15">
+                                                    <div class="bg-info p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-amarelas"></h5>
+                                                        <small class="font-light">Total De Mulheres Amarelas</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 m-t-15">
+                                                    <div class="bg-info p-10 text-white text-center">
+                                                        <i class="fa fa-user m-b-5 font-16"></i>
+                                                        <h5 class="m-b-0 m-t-5" id="result-rel"></h5>
+                                                        <small class="font-light">Total De Atendimentos</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- column -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div id="result-pesq" class="col-md-11 table table-responsive form-group">            
-                            <table class=" table table-striped table-hover table-condensed">
-                                <thead class="">
-                                    <tr>                                              
-                                        <th><h4>Idade</h4></th>  
-                                        <th><h4>Cor</h4></th>  
-                                        <th><h4>Escolaridade</h4></th>  
-                                        <th><h4>Renda</h4></th>  
-                                        <th><h4>Religião</h4></th>  
-                                    </tr>
-                                </thead>
-                                <tbody>     
-                                    <?php foreach ($agenda as $age) { ?>   
-                                        <tr >                                                    
-                                            <td><?= $age->nome; ?></td>
-                                            <td><?= $age->CPF; ?></td>
-                                            <td><?= date("d/m/Y", strtotime($age->data_agenda)); ?></td> 
-                                            <td><?= date("H:i", strtotime($age->horario_agenda)); ?></td>    
-                                        </tr> 
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                            <?php /*
-                              $n_pag = 1;
-                              for ($i=1;$i<=$qtd_botoes;$i++){?>
-                              <a href="<?= base_url('agenda/pag/'.$n_pag)?>"><?=$i?></a>
-                              <?php
-                              $n_pag+=$reg_p_pag;
-                              } */ ?>
-                        </div>                    
                     </div>    
                 </div>
                 <!-- ============================================================== -->

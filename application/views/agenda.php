@@ -268,14 +268,7 @@
                                     <h1 class="font-light text-white"><i class="mdi mdi-account-search"></i></h1>
                                     <h6 class="text-white">Pesquisar Cadastro de Usuária e Agendar</h6></a>                              
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xlg-3">
-                            <div class="card card-hover">
-                                <a class="box bg-danger text-center" href="<?= base_url(); ?>agenda/agendamento">
-                                    <h1 class="font-light text-white"><i class="mdi mdi-calendar-text"></i></h1>
-                                    <h6 class="text-white">Inserir Informações e Agendar</h6></a>
-                            </div>
-                        </div>
+                        </div>                       
                     </div>                   
                 </div>                
             </div>            

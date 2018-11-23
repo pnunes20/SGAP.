@@ -218,7 +218,13 @@
                             <li class="sidebar-item"> <a data-toggle="modal" data-target="#myModal2" class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>atendimento" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Atendimento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>agenda" aria-expanded="false"><i class="mdi mdi-calendar-check"></i><span class="hide-menu">Agendamento</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" data-toggle="modal" data-target="#myModal3" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Prontuários</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>relatorios" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Relatórios</span></a></li>
+<!--                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url(); ?>relatorios" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Relatórios</span></a></li>-->
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Relatórios</span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"><a href="<?= base_url(); ?>relatorios" class="sidebar-link"><i class="mdi mdi-account"></i><span class="hide-menu">Relatório Por Cor</span></a></li>
+                                    <li class="sidebar-item"><a href="<?= base_url(); ?>relatorios/relatorios_tipo_viol" class="sidebar-link"><i class="mdi mdi-account"></i><span class="hide-menu">Relatório Por Tipo de Violência</span></a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
@@ -320,7 +326,6 @@
                                                 </form>
                                             </td>
                                         </tr> 
-
                                     <?php } ?>
                                 </tbody>
                             </table>
@@ -430,48 +435,48 @@
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <script src="<?= base_url(); ?>assets/matrix/assets/libs/quill/dist/quill.min.js"></script>
         <script>
-                                                            //***********************************//
-                                                            // For select 2
-                                                            //***********************************//
-                                                            $(".select2").select2();
+                                                    //***********************************//
+                                                    // For select 2
+                                                    //***********************************//
+                                                    $(".select2").select2();
 
-                                                            /*colorpicker*/
-                                                            $('.demo').each(function () {
-                                                                //
-                                                                // Dear reader, it's actually very easy to initialize MiniColors. For example:
-                                                                //
-                                                                //  $(selector).minicolors();
-                                                                //
-                                                                // The way I've done it below is just for the demo, so don't get confused
-                                                                // by it. Also, data- attributes aren't supported at this time...they're
-                                                                // only used for this demo.
-                                                                //
-                                                                $(this).minicolors({
-                                                                    control: $(this).attr('data-control') || 'hue',
-                                                                    position: $(this).attr('data-position') || 'bottom left',
+                                                    /*colorpicker*/
+                                                    $('.demo').each(function () {
+                                                        //
+                                                        // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                                                        //
+                                                        //  $(selector).minicolors();
+                                                        //
+                                                        // The way I've done it below is just for the demo, so don't get confused
+                                                        // by it. Also, data- attributes aren't supported at this time...they're
+                                                        // only used for this demo.
+                                                        //
+                                                        $(this).minicolors({
+                                                            control: $(this).attr('data-control') || 'hue',
+                                                            position: $(this).attr('data-position') || 'bottom left',
 
-                                                                    change: function (value, opacity) {
-                                                                        if (!value)
-                                                                            return;
-                                                                        if (opacity)
-                                                                            value += ', ' + opacity;
-                                                                        if (typeof console === 'object') {
-                                                                            console.log(value);
-                                                                        }
-                                                                    },
-                                                                    theme: 'bootstrap'
-                                                                });
+                                                            change: function (value, opacity) {
+                                                                if (!value)
+                                                                    return;
+                                                                if (opacity)
+                                                                    value += ', ' + opacity;
+                                                                if (typeof console === 'object') {
+                                                                    console.log(value);
+                                                                }
+                                                            },
+                                                            theme: 'bootstrap'
+                                                        });
 
-                                                            });
-                                                            /*datwpicker*/
-                                                            jQuery('.mydatepicker').datepicker();
-                                                            jQuery('#datepicker-autoclose').datepicker({
-                                                                autoclose: true,
-                                                                todayHighlight: true
-                                                            });
-                                                            var quill = new Quill('#editor', {
-                                                                theme: 'snow'
-                                                            });
+                                                    });
+                                                    /*datwpicker*/
+                                                    jQuery('.mydatepicker').datepicker();
+                                                    jQuery('#datepicker-autoclose').datepicker({
+                                                        autoclose: true,
+                                                        todayHighlight: true
+                                                    });
+                                                    var quill = new Quill('#editor', {
+                                                        theme: 'snow'
+                                                    });
 
         </script>
     </body>

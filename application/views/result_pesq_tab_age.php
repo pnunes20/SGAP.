@@ -19,7 +19,7 @@
                     <form action="<?= base_url() ?>atendimento" method="post">
                         <input type="hidden" name="nome_usu" value="<?= $age->nome ?>"/>
                         <button type="submit" class="btn btn-success btn-group">Atendimento</button>
-                        <a href="<?= base_url('agenda/editar/' . $age->cod_agenda) ?>" class="btn btn-primary btn-group">Editar</a>                                                        
+                        <a href="<?= base_url('agenda/editar/' . $age->cod_agenda) ?>" class="btn btn-primary btn-group">Alterar Data Ou Horário</a>                                                        
                         <a href="<?= base_url('agenda/excluir/' . $age->cod_agenda) ?>" class="btn btn-danger btn-group" onclick="return confirm('Este Agendamento Será Cancelado! Continuar?');">Cancelar</a>
                         <a class="btn btn-info btn-group" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dados Da Usuária</a>
                         <div class="dropdown-menu dropdown-menu-right user-dd animated"> 

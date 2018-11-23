@@ -278,7 +278,7 @@
                                     </div>
                                     <div class="form-group m-t-20">
                                         <label>CPF:<small class="text-muted"></small></label>                                      
-                                        <input class="form-control col-md-6" value="<?= $usuaria[0]->CPF; ?>" disabled/>                                     
+                                        <input class="form-control col-md-4" value="<?= $usuaria[0]->CPF; ?>" disabled/>                                     
                                     </div>
                                     <div class="form-group m-t-20">
                                         <label>RG:<small class="text-muted"></small></label>                                      
@@ -286,7 +286,7 @@
                                     </div>
                                     <div class="form-group m-t-20">
                                         <label>Telefone:<small class="text-muted"></small></label>                                      
-                                        <input class="form-control col-md-6" value="<?= $usuaria[0]->telefone; ?>" disabled/>                                     
+                                        <input class="form-control col-md-4" value="<?= $usuaria[0]->telefone; ?>" disabled/>                                     
                                     </div>
                                     <div class="form-group m-t-20">
                                         <label>Sexo:<small class="text-muted"></small></label>         
@@ -302,6 +302,27 @@
                                         }
                                         ?>
                                         <input class="form-control form-group col-md-4" value="<?= $sexo; ?>" disabled/>
+                                    </div>
+                                    <div class="form-group m-t-20">
+                                        <label>Cor:<small class="text-muted"></small></label>                                      
+                                        <?php
+                                        $codigo = $usuaria[0]->cod_usuaria;
+                                        $this->db->where('cod_cor', $codigo);
+                                        $dados['cor'] = $this->db->get('cor')->result();
+                                        ?>
+                                        <?php foreach ($dados['cor'] as $da) { ?>                                                               
+                                            <input class="form-control col-md-4" value="<?= $da->descricao; ?>" disabled/>
+                                        <?php } ?>                                       
+                                    </div>
+                                    <div class="form-group m-t-20">
+                                        <label>Escolaridade:<small class="text-muted"></small></label>                                      
+                                        <?php
+                                        $this->db->where('cod_escolaridade', $codigo);
+                                        $dados['escolaridade'] = $this->db->get('escolaridade')->result();
+                                        ?>
+                                        <?php foreach ($dados['escolaridade'] as $da) { ?>                                                               
+                                            <input class="form-control col-md-4" value="<?= $da->descricao; ?>" disabled/>
+                                        <?php } ?>                                       
                                     </div>
                                 </div>
                             </div>                 
@@ -355,7 +376,14 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Tipo de Violência:<small class="text-muted"></small></label>
-                                                <input class="form-control col-md-4" value="" disabled/>
+                                                <?php
+                                                $codig = $usuaria[0]->cod_usuaria;
+                                                $this->db->where('cod_tipo_violencia', $codig);
+                                                $dados['tipo_violencia'] = $this->db->get('tipo_violencia')->result();
+                                                ?>
+                                                <?php foreach ($dados['tipo_violencia'] as $da) { ?>                                                               
+                                                    <input class="form-control col-md-12" value="<?= $da->descricao; ?>" disabled/>
+                                                <?php } ?>      
                                             </div>
                                             <div class="form-group">
                                                 <label>Quadro Clínico:<small class="text-muted"></small></label>  
