@@ -217,6 +217,7 @@
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"><a href="<?= base_url(); ?>relatorios" class="sidebar-link"><i class="mdi mdi-account"></i><span class="hide-menu">Relatório Por Cor</span></a></li>
                                     <li class="sidebar-item"><a href="<?= base_url(); ?>relatorios/relatorios_tipo_viol" class="sidebar-link"><i class="mdi mdi-account"></i><span class="hide-menu">Relatório Por Tipo de Violência</span></a></li>
+                                    <li class="sidebar-item"><a data-toggle="modal" data-target="#myModal8" href="#" class="sidebar-link"><i class="mdi mdi-file-export"></i><span class="hide-menu">Gerar Planilha</span></a></li>                      
                                 </ul>
                             </li>                            
                         </ul>
