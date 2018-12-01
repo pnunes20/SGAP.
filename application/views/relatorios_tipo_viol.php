@@ -222,6 +222,7 @@
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"><a href="<?= base_url(); ?>relatorios" class="sidebar-link"><i class="mdi mdi-account"></i><span class="hide-menu">Relatório Por Cor</span></a></li>
                                     <li class="sidebar-item"><a href="<?= base_url(); ?>relatorios/relatorios_tipo_viol" class="sidebar-link"><i class="mdi mdi-account"></i><span class="hide-menu">Relatório Por Tipo de Violência</span></a></li>
+                                    <li class="sidebar-item"><a data-toggle="modal" data-target="#myModal8" href="" class="sidebar-link"><i class="mdi mdi-file-export"></i><span class="hide-menu">Gerar Planilha</span></a></li>                                     
                                 </ul>
                             </li>
                         </ul>
@@ -243,7 +244,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Relatório Por Tipo De Violência</h3>
+                            <h3 class="page-title">Relatório Quantitativo</h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -267,80 +268,107 @@
                                 <div class="card-body">
                                     <div class="col-12 form-group row">
                                         <label class="m-t-5"><h5>Data Inicial:</h5></label> 
-                                        <div class="input-group col-md-3">                                                           
-                                            <input type="date" class="form-control col-md-7" name="data_rel1" id="data_rel1" required> 
+                                        <div class="input-group col-md-2">                                                           
+                                            <input type="date" class="form-control col-md-9" name="data_rel1" id="data_rel1" required> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>   
                                         </div> 
                                         <label class="m-t-5"><h5>Data Final:</h5></label> 
-                                        <div class="input-group col-md-3">
-                                            <input type="date" class="form-control col-md-7" name="data_rel2" id="data_rel2" required> 
+                                        <div class="input-group col-md-2">
+                                            <input type="date" class="form-control col-md-9" name="data_rel2" id="data_rel2" required> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>   
                                         </div> 
-                                        <div class="input-group col-md-4">
-                                            <button type="button" class=" btn btn-info col-md-5" id="data_r_viol">Filtrar</button>                                             
+                                        <div class="input-group col-md-2">
+                                            <button type="button" class=" btn btn-info col-md-6" id="data_r_viol">Filtrar</button>                                             
+                                        </div> 
+                                        <div class="input-group col-md-2">
                                         </div> 
                                     </div>                                   
                                     <br>
-                                    <div class="row">
-                                        <!-- column -->                                    
-                                        <div class="col-md-5">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="bg-primary p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-psicol"></h5>
-                                                        <small class="font-light">Total De Violência Psicológica</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="bg-primary p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-fisica"></h5>
-                                                        <small class="font-light">Total De Violência Física</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 m-t-15">
-                                                    <div class="bg-primary p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-patri"></h5>
-                                                        <small class="font-light">Total De Violência Patrimonial</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 m-t-15">
-                                                    <div class="bg-primary p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-sexual"></h5>
-                                                        <small class="font-light">Total De Violência Sexual</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 m-t-15">
-                                                    <div class="bg-primary p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-moral"></h5>
-                                                        <small class="font-light">Total De Violência Moral</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 m-t-15">
-                                                    <div class="bg-primary p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-amorte"></h5>
-                                                        <small class="font-light">Total De Ameaça de Morte</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 m-t-15">
-                                                    <div class="bg-primary p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-ger-viol"></h5>
-                                                        <small class="font-light">Total De Atendimentos</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- column -->
+                                    <br>
+                                    <!--                                    <div class="row">
+                                                                            <div class="col-md-5">
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        <div class="bg-primary p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-psicol"></h5>
+                                                                                            <small class="font-light">Total De Violência Psicológica</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <div class="bg-primary p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-fisica"></h5>
+                                                                                            <small class="font-light">Total De Violência Física</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6 m-t-15">
+                                                                                        <div class="bg-primary p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-patri"></h5>
+                                                                                            <small class="font-light">Total De Violência Patrimonial</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6 m-t-15">
+                                                                                        <div class="bg-primary p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-sexual"></h5>
+                                                                                            <small class="font-light">Total De Violência Sexual</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6 m-t-15">
+                                                                                        <div class="bg-primary p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-moral"></h5>
+                                                                                            <small class="font-light">Total De Violência Moral</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6 m-t-15">
+                                                                                        <div class="bg-primary p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-amorte"></h5>
+                                                                                            <small class="font-light">Total De Ameaça de Morte</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6 m-t-15">
+                                                                                        <div class="bg-primary p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-ger-viol"></h5>
+                                                                                            <small class="font-light">Total De Atendimentos</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>-->
+                                    <div class="table-responsive col-md-8">    
+                                        <table class=" table table-striped table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Total de Atendimentos</th>
+                                                    <th>Violência Psicológica</th>  
+                                                    <th>Violência Física</th>                                                                                        
+                                                    <th>Violência Moral</th>
+                                                    <th>Violência Patrimonial</th>
+                                                    <th>Violência Sexual</th>
+                                                    <th>Ameaça De Morte</th>                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>                           
+                                                <tr>
+                                                    <td id="result-ger-viol"></td>
+                                                    <td id="result-psicol"></td>
+                                                    <td id="result-fisica"></td>                                                                                       
+                                                    <td id="result-moral"></td>
+                                                    <td id="result-patri"></td>
+                                                    <td id="result-sexual"></td>
+                                                    <td id="result-amorte"></td>
+                                                </tr>  
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -369,6 +397,50 @@
         <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->
+        <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg">                               
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">Gerar Planilha</h4>
+                    </div>
+                    <div class="modal-body">         
+                        <form action="<?= base_url(); ?>relatorios/gerar_planilha_p_data" method="post">
+                            <div class="col-12 form-group row">
+                                <label class="m-t-5"><h5>Data Inicial:</h5></label> 
+                                <div class="input-group col-md-4">                                                           
+                                    <input type="date" class="form-control col-md-7" name="data_rel1" required> 
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>   
+                                </div> 
+                                <label class="m-t-5"><h5>Data Final:</h5></label> 
+                                <div class="input-group col-md-4">
+                                    <input type="date" class="form-control col-md-7" name="data_rel2" required> 
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>   
+                                </div> 
+                            </div>
+                            <div class="col-12 form-group row">
+                                <div class="input-group col-md-2">
+                                    <button type="submit" class=" btn btn-info col-md-12">Filtrar</button>                                             
+                                </div>  
+                                <div class="input-group col-md-1">
+                                    <label class="m-t-5"><h5>OU</h5></label>                                            
+                                </div>  
+                                <div class="input-group col-md-4">
+                                    <a href="<?= base_url(); ?>relatorios/gerar_planilha" class="btn btn-success col-md-7">Todo o Período</a>                                             
+                                </div> 
+                            </div>
+                        </form>  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>                          
+                    </div>
+                </div>                    
+            </div>
+        </div> 
 
         <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg">                            

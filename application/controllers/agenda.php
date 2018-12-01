@@ -15,14 +15,12 @@ class Agenda extends CI_Controller {
         $this->load->view('agenda');
     }
 
-    public function listar_agenda() {
+    public function listar_agenda($value = null) {
         $this->verificar_sessao();
-
+        date_default_timezone_set('America/Rio_Branco');
         $this->db->select('*');
         $dados['agenda'] = $this->db->get('agenda')->result();
-        if (count($dados['agenda']) === 0) {
-            $this->db->select('*');
-            $dados['agenda'] = $this->db->get('agenda')->result();
+        if (count($dados['agenda']) == 0) {
             $this->load->view('listar_agenda', $dados);
         } else {
             foreach ($dados['agenda'] as $d) {
@@ -32,17 +30,18 @@ class Agenda extends CI_Controller {
                 $verifdata = date('Y-m-d', strtotime('-1 day'));
                 $this->db->where('data_agenda', $verifdata);
                 $this->db->delete('agenda');
-
-                $this->db->select('*');
-                $this->db->order_by('data_agenda');
-                $this->db->order_by('horario_agenda');
-                $this->load->view('listar_agenda', $dados);
-            } else {
                 $this->db->select('*');
                 $this->db->order_by('data_agenda');
                 $this->db->order_by('horario_agenda');
                 $dados['agenda'] = $this->db->get('agenda')->result();
                 $this->load->view('listar_agenda', $dados);
+            } else {
+                $this->db->select('*');
+                $this->db->order_by('data_agenda');
+                $this->db->order_by('horario_agenda');
+                $data['agenda'] = $this->db->get('agenda')->result();
+
+                $this->load->view('listar_agenda', $data);
             }
         }
     }
@@ -356,6 +355,7 @@ class Agenda extends CI_Controller {
 
     public function pag($value = null) {
         $this->verificar_sessao();
+
         if ($value == null) {
             $value = 1;
         }
@@ -387,12 +387,6 @@ class Agenda extends CI_Controller {
         }
         $data['qtd_botoes'] = $v_inteiro;
         $this->load->view('listar_agenda', $data);
-    }
-
-    public function agenda_teste() {
-        $this->verificar_sessao();
-
-        $this->load->view('agenda_teste');
     }
 
 }

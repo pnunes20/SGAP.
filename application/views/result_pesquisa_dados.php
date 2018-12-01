@@ -260,6 +260,24 @@
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Container fluid  -->
+                <?php
+
+                function mask($val, $mask) {
+                    $maskared = '';
+                    $k = 0;
+                    for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+                        if ($mask[$i] == '#') {
+                            if (isset($val[$k]))
+                                $maskared .= $val[$k++];
+                        }
+                        else {
+                            if (isset($mask[$i]))
+                                $maskared .= $mask[$i];
+                        }
+                    }
+                    return $maskared;
+                }
+                ?>          
                 <div class="container-fluid">                
                     <div class="row">
                         <div class="col-md-12">
@@ -279,7 +297,7 @@
                                                 <tr>
                                                     <td><?= $usu->cod_usuaria; ?></td>
                                                     <td><?= $usu->nome; ?></td>
-                                                    <td><?= $usu->CPF; ?></td>                                                                                       
+                                                    <td><?= mask($usu->CPF,'###.###.###-##'); ?></td>                                                                                       
                                                     <td>
                                                         <a href="<?= base_url('agenda/agendamento_dados/' . $usu->cod_usuaria) ?>" class="btn btn-success btn-group">Agendar Atendimento</a>    
                                                         <a class="btn btn-info btn-group" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dados Da Usuária</a>
@@ -302,9 +320,9 @@
                                                                     }
                                                                     ?>
                                                                     <span>Nome: <?= $da->nome; ?></span><br>  
-                                                                    <span>CPF: <?= $da->CPF; ?></span><br>
+                                                                    <span>CPF: <?= mask($da->CPF,'###.###.###-##'); ?></span><br>
                                                                     <span>RG: <?= $da->RG; ?></span><br>
-                                                                    <span>Telefone: <?= $da->telefone; ?></span><br>
+                                                                    <span>Telefone: <?= mask($da->telefone,'(##) #####-####'); ?></span><br>
                                                                     <span>Data de Nascimento: <?= date("d/m/Y", strtotime($da->data_nascimento)); ?></span><br>
                                                                     <span>Sexo: <?= $sexo; ?></span>
                                                                 <?php } ?>   

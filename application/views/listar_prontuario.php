@@ -264,6 +264,24 @@
                 <!-- ============================================================== -->
                 <!-- Container fluid  -->
                 <!-- ============================================================== -->
+                <?php
+
+                function mask($val, $mask) {
+                    $maskared = '';
+                    $k = 0;
+                    for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+                        if ($mask[$i] == '#') {
+                            if (isset($val[$k]))
+                                $maskared .= $val[$k++];
+                        }
+                        else {
+                            if (isset($mask[$i]))
+                                $maskared .= $mask[$i];
+                        }
+                    }
+                    return $maskared;
+                }
+                ?>          
                 <div class="container-fluid">
                     <!-- ============================================================== -->
                     <!-- Start Page Content -->
@@ -283,7 +301,7 @@
                                     </div>
                                     <div class="form-group m-t-20">
                                         <label>CPF:<small class="text-muted"></small></label>                                      
-                                        <input class="form-control col-md-4" value="<?= $usuaria[0]->CPF; ?>" disabled/>                                     
+                                        <input class="form-control col-md-4" value="<?= mask($usuaria[0]->CPF,'###.###.###-##'); ?>" disabled/>                                     
                                     </div>
                                     <div class="form-group m-t-20">
                                         <label>RG:<small class="text-muted"></small></label>                                      
@@ -291,7 +309,7 @@
                                     </div>
                                     <div class="form-group m-t-20">
                                         <label>Telefone:<small class="text-muted"></small></label>                                      
-                                        <input class="form-control col-md-4" value="<?= $usuaria[0]->telefone; ?>" disabled/>                                     
+                                        <input class="form-control col-md-4" value="<?= mask($usuaria[0]->telefone,'(##) #####-####'); ?>" disabled/>                                     
                                     </div>
                                     <div class="form-group m-t-20">
                                         <label>Sexo:<small class="text-muted"></small></label>         
@@ -364,7 +382,7 @@
                             <?php foreach ($atendimento_psicologico as $aten) { ?>
                                 <div class="col-md-12">
                                     <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body">                                        
                                             <button class="btn btn-info" disabled><h4 class="card-title m-b-0">Atendimento Realizado <?= date("d/m/Y", strtotime($aten->data_atendimento)); ?></h4></button>                                          
                                             <div class="form-group m-t-20">
                                                 <label>Cursos Já Realizados Na CRM:<small class="text-muted"></small></label>                                       

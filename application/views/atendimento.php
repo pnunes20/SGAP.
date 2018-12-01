@@ -356,6 +356,24 @@
         <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->
+        <?php
+
+        function mask($val, $mask) {
+            $maskared = '';
+            $k = 0;
+            for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+                if ($mask[$i] == '#') {
+                    if (isset($val[$k]))
+                        $maskared .= $val[$k++];
+                }
+                else {
+                    if (isset($mask[$i]))
+                        $maskared .= $mask[$i];
+                }
+            }
+            return $maskared;
+        }
+        ?>  
         <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg">                              
                 <div class="modal-content">
@@ -378,7 +396,7 @@
                                     </div>
                                     <div class="form-group row col-12">
                                         <label class="col-md-12">CPF:<small class="text-muted"></small></label>                                                                      
-                                        <input class="form-control form-group col-md-4" value="<?= $usuaria[0]->CPF; ?>" disabled/>
+                                        <input class="form-control form-group col-md-4" value="<?= mask($usuaria[0]->CPF,'###.###.###-##'); ?>" disabled/>
                                     </div>
                                     <div class="form-group">
                                         <label>RG:<small class="text-muted"></small></label>
@@ -386,7 +404,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Telefone:<small class="text-muted"></small></label>                                       
-                                        <input class="form-control col-md-4" value="<?= $usuaria[0]->telefone; ?>" disabled/>                                    
+                                        <input class="form-control col-md-4" value="<?= mask($usuaria[0]->telefone,'(##) #####-####'); ?>" disabled/>                                    
                                     </div>
                                     <div class="form-group">
                                         <label>Sexo:<small class="text-muted"></small></label>
@@ -453,7 +471,7 @@
                                         
                                     } else {
                                         ?>
-    <?php foreach ($atendimento_psicologico as $aten) { ?>
+                                        <?php foreach ($atendimento_psicologico as $aten) { ?>
                                             <div class="form-group m-t-20">
                                                 <label>Atendimento Realizado Na Data:<small class="text-muted"></small></label>                        
                                                 <input class="form-control col-md-4" value="<?= date('d/m/Y', strtotime($aten->data_atendimento)) ?>" disabled/>                                            
@@ -482,7 +500,7 @@
                                                 ?>
                                                 <?php foreach ($dados['tipo_violencia'] as $da) { ?>                                                               
                                                     <input class="form-control col-md-12" value="<?= $da->descricao; ?>" disabled/>
-        <?php } ?>                                            
+                                                <?php } ?>                                            
                                             </div>
                                             <div class="form-group">
                                                 <label>Quadro Clínico:<small class="text-muted"></small></label>                                           
@@ -493,17 +511,17 @@
                                                 ?>
                                                 <?php foreach ($dados['quadro_clinico'] as $da) { ?>                                                               
                                                     <input class="form-control col-md-12" value="<?= $da->descricao; ?>" disabled/>
-        <?php } ?>                                            
+                                                <?php } ?>                                            
                                             </div>
                                             <div class="form-group">
                                                 <label>Descrição Do Caso:<small class="text-muted"></small></label>
                                                 <textarea class="form-control" style=" height: 100px; width: 300px;" disabled> 
-        <?= $aten->descricao_caso ?>
+                                                    <?= $aten->descricao_caso ?>
                                                 </textarea>               
                                             </div>
                                             __________________________________________________________________________
-    <?php } ?>
-<?php } ?>
+                                        <?php } ?>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>                     

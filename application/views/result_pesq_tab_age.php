@@ -1,3 +1,21 @@
+<?php
+
+function mask($val, $mask) {
+    $maskared = '';
+    $k = 0;
+    for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+        if ($mask[$i] == '#') {
+            if (isset($val[$k]))
+                $maskared .= $val[$k++];
+        }
+        else {
+            if (isset($mask[$i]))
+                $maskared .= $mask[$i];
+        }
+    }
+    return $maskared;
+}
+?>          
 <table class=" table table-striped table-hover table-condensed">
     <thead class="">
         <tr>                                               
@@ -12,12 +30,12 @@
         <?php foreach ($agenda as $age) { ?>                                    
             <tr id="ret">                                                    
                 <td><?= $age->nome; ?></td>
-                <td><?= $age->CPF; ?></td>
+                <td><?= mask($age->CPF, '###.###.###-##'); ?></td>
                 <td><?= date("d/m/Y", strtotime($age->data_agenda)); ?></td> 
                 <td><?= date("H:i", strtotime($age->horario_agenda)); ?></td>                                    
                 <td>
                     <form action="<?= base_url() ?>atendimento" method="post">
-                        <input type="hidden" name="nome_usu" value="<?= $age->nome ?>"/>
+                        <input type="hidden" name="cpf_usu" value="<?= $age->CPF ?>"/>
                         <button type="submit" class="btn btn-success btn-group">Atendimento</button>
                         <a href="<?= base_url('agenda/editar/' . $age->cod_agenda) ?>" class="btn btn-primary btn-group">Alterar Data Ou Horário</a>                                                        
                         <a href="<?= base_url('agenda/excluir/' . $age->cod_agenda) ?>" class="btn btn-danger btn-group" onclick="return confirm('Este Agendamento Será Cancelado! Continuar?');">Cancelar</a>
@@ -41,9 +59,9 @@
                                     }
                                     ?>
                                     <span>Nome: <?= $da->nome; ?></span><br>  
-                                    <span>CPF: <?= $da->CPF; ?></span><br>
+                                    <span>CPF: <?= mask($da->CPF, '###.###.###-##'); ?></span><br>
                                     <span>RG: <?= $da->RG; ?></span><br>
-                                    <span>Telefone: <?= $da->telefone; ?></span><br>
+                                    <span>Telefone: <?= mask($da->telefone, '(##) #####-####'); ?></span><br>
                                     <span>Data de Nascimento: <?= date("d/m/Y", strtotime($da->data_nascimento)); ?></span><br>
                                     <span>Sexo: <?= $sexo; ?></span>
                                 <?php } ?>   

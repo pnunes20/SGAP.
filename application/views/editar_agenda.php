@@ -256,6 +256,24 @@
                 <!-- ============================================================== -->
                 <!-- Container fluid  -->
                 <!-- ============================================================== -->
+                <?php
+
+                function mask($val, $mask) {
+                    $maskared = '';
+                    $k = 0;
+                    for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+                        if ($mask[$i] == '#') {
+                            if (isset($val[$k]))
+                                $maskared .= $val[$k++];
+                        }
+                        else {
+                            if (isset($mask[$i]))
+                                $maskared .= $mask[$i];
+                        }
+                    }
+                    return $maskared;
+                }
+                ?>  
                 <div class="container-fluid">
                     <!-- ============================================================== -->
                     <!-- Start Page Content -->
@@ -276,7 +294,7 @@
                                         <label><h5>CPF</h5></label>
                                         <div class="input-group col-md-6">
                                             <input type="hidden" name="CPF" value="<?= $agenda[0]->CPF; ?>"/>
-                                            <input type="text" class="form-control" name="CPF" id="CPF" value="<?= $agenda[0]->CPF; ?>" disabled>                                            
+                                            <input type="text" class="form-control" name="CPF" id="CPF" value="<?= mask($agenda[0]->CPF,'###.###.###-##'); ?>" disabled>                                            
                                         </div>  
                                         <br>
                                         <label><h5>Data</h5></label>
@@ -294,11 +312,11 @@
                                                 <span class="input-group-text"><i class="fa fa-clock"></i></span>                                                 
                                             </div>   
                                         </div>
-                                         <div id="resulth"></div>
-                                    <br>
+                                        <div id="resulth"></div>
+                                        <br>
                                     </div>
                                     <div class="border-top">
-                                         <div id="resulthd"></div>
+                                        <div id="resulthd"></div>
                                         <div class="card-body">
                                             <button type="submit" class="btn btn-success">Salvar</button>
                                             <a class="btn btn-danger" href="<?= base_url() ?>agenda/listar_agenda">Cancelar</a>

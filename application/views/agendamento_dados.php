@@ -265,6 +265,24 @@
                     <!-- ============================================================== -->
                     <!-- Start Page Content -->
                     <!-- ============================================================== -->
+                    <?php
+
+                    function mask($val, $mask) {
+                        $maskared = '';
+                        $k = 0;
+                        for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+                            if ($mask[$i] == '#') {
+                                if (isset($val[$k]))
+                                    $maskared .= $val[$k++];
+                            }
+                            else {
+                                if (isset($mask[$i]))
+                                    $maskared .= $mask[$i];
+                            }
+                        }
+                        return $maskared;
+                    }
+                    ?>  
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
@@ -280,7 +298,7 @@
                                     <label><h5>CPF</h5></label>
                                     <div class="input-group col-md-6">
                                         <input type="hidden" name="CPF" id="CPF" value="<?= $usuaria[0]->CPF; ?>">
-                                        <input type="text" class="form-control" name="CPF" id="CPF" value="<?= $usuaria[0]->CPF; ?>" disabled>                                            
+                                        <input type="text" class="form-control" name="CPF" id="CPF" value="<?= mask($usuaria[0]->CPF, '###.###.###-##'); ?>" disabled>                                            
                                     </div>  
                                     <br> 
                                     <label><h5>Data</h5></label>

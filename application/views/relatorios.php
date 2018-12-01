@@ -243,7 +243,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-12 d-flex no-block align-items-center">
-                            <h3 class="page-title">Relatório Por Cor</h3>
+                            <h3 class="page-title">Relatório Quantitativo</h3>
                             <div class="ml-auto text-right">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -267,73 +267,101 @@
                                 <div class="card-body">
                                     <div class="col-12 form-group row">
                                         <label class="m-t-5"><h5>Data Inicial:</h5></label> 
-                                        <div class="input-group col-md-3">                                                           
-                                            <input type="date" class="form-control col-md-7" name="data_rel1" id="data_rel1" required> 
+                                        <div class="input-group col-md-2">                                                           
+                                            <input type="date" class="form-control col-md-9" name="data_rel1" id="data_rel1" required> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>   
                                         </div> 
                                         <label class="m-t-5"><h5>Data Final:</h5></label> 
-                                        <div class="input-group col-md-3">
-                                            <input type="date" class="form-control col-md-7" name="data_rel2" id="data_rel2" required> 
+                                        <div class="input-group col-md-2">
+                                            <input type="date" class="form-control col-md-9" name="data_rel2" id="data_rel2" required> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>   
                                         </div> 
-                                        <div class="input-group col-md-4">
-                                            <button type="button" class=" btn btn-info col-md-5" id="data_r">Filtrar</button>                                             
+                                        <div class="input-group col-md-2">
+                                            <button type="button" class=" btn btn-info col-md-6" id="data_r">Filtrar</button>                                             
+                                        </div> 
+                                        <div class="input-group col-md-2">
+
                                         </div> 
                                     </div>                                   
                                     <br>
-                                    <div class="row">
-                                        <!-- column -->                                    
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="bg-info p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-negras"></h5>
-                                                        <small class="font-light">Total De Mulheres Negras</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="bg-info p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-brancas"></h5>
-                                                        <small class="font-light">Total De Mulheres Brancas</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 m-t-15">
-                                                    <div class="bg-info p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-indig"></h5>
-                                                        <small class="font-light">Total De Mulheres Indígenas</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 m-t-15">
-                                                    <div class="bg-info p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-pardas"></h5>
-                                                        <small class="font-light">Total De Mulheres Pardas</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 m-t-15">
-                                                    <div class="bg-info p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-amarelas"></h5>
-                                                        <small class="font-light">Total De Mulheres Amarelas</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 m-t-15">
-                                                    <div class="bg-info p-10 text-white text-center">
-                                                        <i class="fa fa-user m-b-5 font-16"></i>
-                                                        <h5 class="m-b-0 m-t-5" id="result-rel"></h5>
-                                                        <small class="font-light">Total De Atendimentos</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- column -->
+                                    <br>
+                                    <!--                                    <div class="row">
+                                                                             column                                     
+                                                                            <div class="col-md-4">
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        <div class="bg-info p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-negras"></h5>
+                                                                                            <small class="font-light">Total De Mulheres Negras</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <div class="bg-info p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-brancas"></h5>
+                                                                                            <small class="font-light">Total De Mulheres Brancas</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6 m-t-15">
+                                                                                        <div class="bg-info p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-indig"></h5>
+                                                                                            <small class="font-light">Total De Mulheres Indígenas</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6 m-t-15">
+                                                                                        <div class="bg-info p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-pardas"></h5>
+                                                                                            <small class="font-light">Total De Mulheres Pardas</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6 m-t-15">
+                                                                                        <div class="bg-info p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-amarelas"></h5>
+                                                                                            <small class="font-light">Total De Mulheres Amarelas</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6 m-t-15">
+                                                                                        <div class="bg-info p-10 text-white text-center">
+                                                                                            <i class="fa fa-user m-b-5 font-16"></i>
+                                                                                            <h5 class="m-b-0 m-t-5" id="result-rel"></h5>
+                                                                                            <small class="font-light">Total De Atendimentos</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                             column 
+                                                                        </div>-->
+                                    <div class="table-responsive col-md-8">    
+                                        <table class=" table table-striped table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Total de Atendimentos</th>
+                                                    <th>Mulheres Negras</th>  
+                                                    <th>Mulheres Brancas</th>                                                                                        
+                                                    <th>Mulheres Pardas</th>
+                                                    <th>Mulheres Indígenas</th>
+                                                    <th>Mulheres Amarelas</th>                                                                                                       
+                                                </tr>
+                                            </thead>
+                                            <tbody>                           
+                                                <tr>
+                                                    <td id="result-rel"></td>
+                                                    <td id="result-negras"></td>
+                                                    <td id="result-brancas"></td>                                                                                       
+                                                    <td id="result-pardas"></td>
+                                                    <td id="result-indig"></td>
+                                                    <td id="result-amarelas"></td>                                                    
+                                                </tr>  
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

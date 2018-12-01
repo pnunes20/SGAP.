@@ -22,6 +22,7 @@ class Atendimento extends CI_Controller {
             $dados['atendimento_psicologico'] = $this->db->get('atendimento_psicologico')->result();
             if (count($dados['atendimento_psicologico']) == 0) {
                 $dados['atendimento_psicologico'] = '';
+                $this->load->view('atendimento', $dados);
             } else {
                 foreach ($dados['atendimento_psicologico'] as $d) {
                     $codigo = $d->cod_atendimento;

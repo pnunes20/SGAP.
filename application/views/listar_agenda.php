@@ -270,7 +270,24 @@
                             <label class="form-group col-md-5">Filtrar Por Data:</label>
                             <input type="date" class="form-control form-group col-md-6" id="pesq-date" />                            
                         </div>   
+                        <?php
 
+                        function mask($val, $mask) {
+                            $maskared = '';
+                            $k = 0;
+                            for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+                                if ($mask[$i] == '#') {
+                                    if (isset($val[$k]))
+                                        $maskared .= $val[$k++];
+                                }
+                                else {
+                                    if (isset($mask[$i]))
+                                        $maskared .= $mask[$i];
+                                }
+                            }
+                            return $maskared;
+                        }
+                        ?>                       
                         <div id="result-pesq" class="col-md-11 table table-responsive form-group">
                             <table class=" table table-striped table-hover table-condensed">
                                 <thead class="">
@@ -283,10 +300,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>     
-                                    <?php foreach ($agenda as $age) { ?>   
+                                <?php foreach ($agenda as $age) { ?>   
                                         <tr >                                                    
-                                            <td><?= $age->nome; ?></td>
-                                            <td><?= $age->CPF; ?></td>
+                                            <td><?= $age->nome; ?></td>    
+                                            <td><?= mask($age->CPF, '###.###.###-##'); ?></td>
                                             <td><?= date("d/m/Y", strtotime($age->data_agenda)); ?></td> 
                                             <td><?= date("H:i", strtotime($age->horario_agenda)); ?></td>                                    
                                             <td>   
@@ -308,34 +325,36 @@
                                                                 $s = $da->sexo;
                                                                 if ($s === 'F') {
                                                                     $sexo = 'Feminino';
-                                                                } elseif ($s === 'M') {
+                                                                } if ($s === 'M') {
                                                                     $sexo = 'Masculino';
                                                                 } else {
                                                                     $sexo = 'Hermafrodita';
                                                                 }
                                                                 ?>
                                                                 <span>Nome: <?= $da->nome; ?></span><br>  
-                                                                <span>CPF: <?= $da->CPF; ?></span><br>
+                                                                <span>CPF: <?= mask($da->CPF, '###.###.###-##'); ?></span><br>
                                                                 <span>RG: <?= $da->RG; ?></span><br>
-                                                                <span>Telefone: <?= $da->telefone; ?></span><br>
+                                                                <span>Telefone: <?= mask($da->telefone, '(##) #####-####'); ?></span><br>
                                                                 <span>Data de Nascimento: <?= date("d/m/Y", strtotime($da->data_nascimento)); ?></span><br>
                                                                 <span>Sexo: <?= $sexo; ?></span>
-                                                            <?php } ?>   
-                                                        </div>
+                                                               <?php } ?>   
+                                                         </div>
                                                     </div>
                                                 </form>
                                             </td>
                                         </tr> 
-                                    <?php } ?>
+                                  <?php } ?>
                                 </tbody>
                             </table>
                             <?php /*
                               $n_pag = 1;
-                              for ($i=1;$i<=$qtd_botoes;$i++){?>
-                              <a href="<?= base_url('agenda/pag/'.$n_pag)?>"><?=$i?></a>
+                              for ($i = 1; $i <= $qtd_botoes; $i++) {
+                              ?>
+                              <a href="<?= base_url('agenda/pag/' . $n_pag) ?>"><?= $i ?></a>
                               <?php
-                              $n_pag+=$reg_p_pag;
-                              } */ ?>
+                              $n_pag += $reg_p_pag;
+                              }
+                             */ ?> 
                         </div>                    
                     </div>    
                 </div>
