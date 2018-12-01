@@ -370,6 +370,51 @@
         <!-- ============================================================== -->
         <!-- End Wrapper -->
         <!-- ============================================================== -->
+         <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg">                               
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">Gerar Planilha</h4>
+                    </div>
+                    <div class="modal-body">         
+                        <form action="<?= base_url(); ?>relatorios/gerar_planilha_p_data" method="post">
+                            <div class="col-12 form-group row">
+                                <label class="m-t-5"><h5>Data Inicial:</h5></label> 
+                                <div class="input-group col-md-4">                                                           
+                                    <input type="date" class="form-control col-md-7" name="data_rel1" required> 
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>   
+                                </div> 
+                                <label class="m-t-5"><h5>Data Final:</h5></label> 
+                                <div class="input-group col-md-4">
+                                    <input type="date" class="form-control col-md-7" name="data_rel2" required> 
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>   
+                                </div> 
+                            </div>
+                            <div class="col-12 form-group row">
+                                <div class="input-group col-md-2">
+                                    <button type="submit" class=" btn btn-info col-md-12">Filtrar</button>                                             
+                                </div>  
+                                <div class="input-group col-md-1">
+                                    <label class="m-t-5"><h5>OU</h5></label>                                            
+                                </div>  
+                                <div class="input-group col-md-4">
+                                    <a href="<?= base_url(); ?>relatorios/gerar_planilha" class="btn btn-success col-md-7">Todo o Período</a>                                             
+                                </div> 
+                            </div>
+                        </form>  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>                          
+                    </div>
+                </div>                    
+            </div>
+        </div> 
+        
         <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg">                            
                 <div class="modal-content">
