@@ -103,35 +103,14 @@
                         <!-- ============================================================== -->
                         <!-- Right side toggle and nav items -->
                         <!-- ============================================================== -->
-                        <ul class="navbar-nav float-right">
-                            <!-- ============================================================== -->
-                            <!-- Comment -->
-                            <!-- ============================================================== -->
-                           
-                            <!-- ============================================================== -->
-                            <!-- End Comment -->
-                            <!-- ============================================================== -->
-                            <!-- ============================================================== -->
-                            <!-- Messages -->
-                            <!-- ============================================================== -->
-                          
-                            <!-- ============================================================== -->
-                            <!-- End Messages -->
-                            <!-- ============================================================== -->
-
-                            <!-- ============================================================== -->
-                            <!-- User profile and search -->
-                            <!-- ============================================================== -->
+                        <ul class="navbar-nav float-right">                           
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url(); ?>assets/matrix/assets/images/users/1.jpg" alt="Perfil" class="rounded-circle" width="31"></a>
                                 <div class="dropdown-menu dropdown-menu-right user-dd animated">                                   
                                     <a class="dropdown-item" href="<?= base_url(); ?>login"><i class="ti-wallet m-r-5 m-l-5"></i>Usuários</a>     
                                     <a class="dropdown-item" href="<?= base_url(); ?>dashboard/logout"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>                                                                   
                                 </div>
-                            </li>
-                            <!-- ============================================================== -->
-                            <!-- User profile and search -->
-                            <!-- ============================================================== -->
+                            </li>                            
                         </ul>
                     </div>
                 </nav>
