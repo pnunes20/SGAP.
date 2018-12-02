@@ -216,6 +216,22 @@ class Atendimento extends CI_Controller {
     public function listar_prontuario() {
         $this->verificar_sessao();
 
+        function mask($val, $mask) {
+            $maskared = '';
+            $k = 0;
+            for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+                if ($mask[$i] == '#') {
+                    if (isset($val[$k]))
+                        $maskared .= $val[$k++];
+                }
+                else {
+                    if (isset($mask[$i]))
+                        $maskared .= $mask[$i];
+                }
+            }
+            return $maskared;
+        }
+
         $termo = $this->input->post('pesquisar_p');
         if ($termo != '') {
             $this->db->like('nome', $termo);
@@ -238,14 +254,14 @@ class Atendimento extends CI_Controller {
                         $NOME = $d->nome;
                         $cpf = $d->CPF;
                     }
-                    $this->db->where('cod_usuaria', $cpf);
+                    $this->db->where('CPF', $cpf);
                     $data['usuaria'] = $this->db->get('usuaria')->result();
                     foreach ($data['usuaria'] as $da) {
                         $COD = $da->cod_usuaria;
                     }
                     $this->db->where('cod_quadro_clinico', $cod);
                     $data['quadro_clinico'] = $this->db->get('quadro_clinico')->result();
-                    echo '<a href="' . base_url("atendimento/prontuario/" . '' . $COD . '') . '" class="btn btn-secondary btn-group">Usuária: ' . $NOME . ', CPF: ' . $cpf . '</a><br><br>';
+                    echo '<a href="' . base_url("atendimento/prontuario/" . '' . $COD . '') . '" class="btn btn-secondary btn-group">Usuária: ' . $NOME . ', CPF: ' . mask($cpf,'###.###.###-##') . '</a><br><br>';
                 }
             }
         } else {

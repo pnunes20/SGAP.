@@ -181,7 +181,7 @@
                             <input class="col-md-7 form-group form-control" type="text" id="pesq-age" placeholder="Pesquisar..." />
                         </div>                             
                         <div class="col-md-4 row">
-                            <label class="form-group col-md-5">Filtrar Por Data:</label>
+                            <label class="form-group col-md-3">Filtrar Por Data:</label>
                             <input type="date" class="form-control form-group col-md-6" id="pesq-date" />                            
                         </div>   
                         <?php

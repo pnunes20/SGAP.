@@ -190,7 +190,7 @@
                                                 <h3 class="page-title">Atendimento</h3>
                                             </div>
                                             <div class="col-md-2">
-                                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#myModal5">Ver Prontuário</a>
+                                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#myModal5">Ver Histórico de Atendimentos</a>
                                             </div>
                                             <div class="col-md-2">
                                                 <a href="" class="btn btn-info" data-toggle="modal" data-target="#myModal6">Ver Dados Cadastrais</a>
