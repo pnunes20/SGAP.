@@ -10,6 +10,11 @@
         <meta name="author" content="">
     </head>
     <body>
+       <table>
+            <tr>
+                <td><div class="col-12"><h4></h4></div></td>
+            </tr>
+        </table>
         <?php
         // Definimos o nome do arquivo que será exportado
         $arquivo = 'relatorio.xls';
@@ -22,7 +27,7 @@
         $html1 .= '<h4>Gerado Em: ' . date('d/m/Y', strtotime($data)) . ' às ' . date('H:i', strtotime($data)) . '</h4>';
         $html1 .= '<table border="1">';
         $html1 .= '<tr>';
-        $html1 .= '<td colspan="6"><h4>Por Cor</h4></tr>';
+        $html1 .= '<td colspan="6"><h4>Por Cor</h4></td>';
         $html1 .= '</tr>';
 
         $html1 .= '<tr>';
@@ -74,7 +79,7 @@
         $html = '';
         $html .= '<table border="1">';
         $html .= '<tr>';
-        $html .= '<td colspan="7"><h4>Por Tipo De Violência</h4></tr>';
+        $html .= '<td colspan="7"><h4>Por Tipo De Violência</h4></td>';
         $html .= '</tr>';
 
         $html .= '<tr>';
