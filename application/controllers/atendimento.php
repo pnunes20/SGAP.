@@ -94,6 +94,7 @@ class Atendimento extends CI_Controller {
         foreach ($info['tipo_violencia'] as $tv) {
             $tipo_viol = $tv->descricao;
         }
+        date_default_timezone_set('America/Rio_Branco');
         $data['nome'] = $nome;
         $data['cpf'] = $CPF;
         $data['data_atendimento'] = date('Y-m-d');
